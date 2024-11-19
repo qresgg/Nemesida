@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _moveSpeed = 2f;
     [SerializeField] bool _isPlayerDead = false;
 
+
     public void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
@@ -20,11 +21,11 @@ public class EnemySpawner : MonoBehaviour
             while(!_isPlayerDead)
             {
             Vector2 spawnPoint = Random.insideUnitCircle.normalized * _spawnRadius;
-            Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0);
+            Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0) + new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
 
             GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             }
     }
 }

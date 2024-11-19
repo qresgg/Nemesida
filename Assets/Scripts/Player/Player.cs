@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _shootInterval = 2.0f;
     [SerializeField] private float _projectileSpeed = 10.0f;
     [SerializeField] private float _shootRadius = 15.0f;
+    [SerializeField] private float _projectileCount = 1.0f;
     private float _lastShootTime;
 
     // Start is called before the first frame update
@@ -42,14 +43,27 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, _shootRadius);
+        List<Collider> enemies = new List<Collider>();
+
         foreach (var hitCollider in hitColliders)
         {
-            if(hitCollider.CompareTag("Enemy"))
+            if (hitCollider.CompareTag("Enemy"))
             {
+                enemies.Add(hitCollider);
+            }
+        }
+        
+        for (int i = 0; i < _projectileCount; i++)
+        {
+            if (i < enemies.Count)
+            {
+                int randomIndex = Random.Range(0, enemies.Count);
+                Collider target = enemies[randomIndex];
+                enemies.RemoveAt(randomIndex);
+
                 GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
                 Projectile projectileScript = projectile.GetComponent<Projectile>();
-                projectileScript.SetTarget(hitCollider.transform);
-                break;
+                projectileScript.SetTarget(target.transform);
             }
         }
     }
