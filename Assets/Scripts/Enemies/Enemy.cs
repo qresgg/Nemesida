@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform player;
     private float speed = 2.0f;
+    private Projectile playerProjectile;
 
     private void Start()
     {
@@ -16,5 +17,13 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
 
         transform.position += direction * speed * Time.deltaTime;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Projectile")
+        {
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }
