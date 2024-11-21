@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _spawnRadius = 10f;
     [SerializeField] float _moveSpeed = 2f;
     [SerializeField] bool _isPlayerDead = false;
+    [SerializeField] int _maxEnemies = 5;
 
 
     public void Start()
@@ -20,12 +21,17 @@ public class EnemySpawner : MonoBehaviour
     {
             while(!_isPlayerDead)
             {
-            Vector2 spawnPoint = Random.insideUnitCircle.normalized * _spawnRadius;
-            Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0) + new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
+            int currentEnemyCount = _enemyContainer.transform.childCount;
+            Debug.Log("Count" + currentEnemyCount);
+                if (currentEnemyCount < _maxEnemies)
+                {
+                    Vector2 spawnPoint = Random.insideUnitCircle.normalized * _spawnRadius;
+                    Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0) + new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
 
-            GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
-            newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(0.1f);
-            }
+                    GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+                    newEnemy.transform.parent = _enemyContainer.transform;
+                }
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

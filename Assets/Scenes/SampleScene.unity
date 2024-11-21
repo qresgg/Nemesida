@@ -225,6 +225,7 @@ MonoBehaviour:
   _spawnRadius: 10
   _moveSpeed: 2
   _isPlayerDead: 0
+  _maxEnemies: 5
 --- !u!4 &396280296
 Transform:
   m_ObjectHideFlags: 0
@@ -575,13 +576,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
+      propertyPath: _projectileCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1859925292015146826, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056920077287346638, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
-      propertyPath: m_Constraints
-      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6117463327459892626, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_LocalPosition.x
