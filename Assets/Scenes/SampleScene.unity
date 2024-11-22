@@ -223,7 +223,6 @@ MonoBehaviour:
   _player: {fileID: 1469668553}
   _enemyContainer: {fileID: 1162318172}
   _spawnRadius: 10
-  _moveSpeed: 2
   _isPlayerDead: 0
   _maxEnemies: 5
 --- !u!4 &396280296
@@ -489,7 +488,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714434988}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1714434990
 Camera:
   m_ObjectHideFlags: 0

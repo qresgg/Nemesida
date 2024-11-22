@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -9,11 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 3.5f;
     private Rigidbody _rb;
 
-
     [Header("Shooting")]
+    [SerializeField] public int _damageOut = 1;
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootInterval = 2.0f;
-    [SerializeField] private float _projectileSpeed = 10.0f;
     [SerializeField] private float _shootRadius = 15.0f;
     [SerializeField] private float _projectileCount = 1.0f;
     private float _lastShootTime;
@@ -52,19 +52,34 @@ public class Player : MonoBehaviour
                 enemies.Add(hitCollider);
             }
         }
-        
+
         for (int i = 0; i < _projectileCount; i++)
         {
-            if (i < enemies.Count)
+            if (enemies.Count > 0)
             {
-                int randomIndex = Random.Range(0, enemies.Count);
-                Collider target = enemies[randomIndex];
-                enemies.RemoveAt(randomIndex);
+                Collider closestEnemy = null;
+                float closestDistance = Mathf.Infinity;
+                Vector3 playerPosition = transform.position;
 
-                GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
-                Projectile projectileScript = projectile.GetComponent<Projectile>();
-                projectileScript.SetTarget(target.transform);
+                foreach (Collider enemy in enemies)
+                {
+                    float distanceToPlayer = Vector3.Distance(playerPosition, enemy.transform.position);
+                    if (distanceToPlayer < closestDistance)
+                    {
+                        closestDistance = distanceToPlayer;
+                        closestEnemy = enemy;
+                    }
+                }
+
+                if (closestEnemy != null)
+                {
+                    enemies.Remove(closestEnemy);
+                    GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+                    Projectile projectileScript = projectile.GetComponent<Projectile>();
+                    projectileScript.SetTarget(closestEnemy.transform);
+                }
             }
         }
+
     }
 }

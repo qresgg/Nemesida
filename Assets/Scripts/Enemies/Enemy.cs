@@ -1,12 +1,17 @@
 
+using System.Collections;
+using System.Reflection;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    private EnemySpawner enemySpawner;
     private float speed = 2.0f;
-    private float health, maxHealth = 3.0f;
+    private float health, maxHealth;
     private Projectile playerProjectile;
+
+    private int _playerDamage = 2;
 
     [SerializeField] EnemyHealthBar healthBar;
 
@@ -16,6 +21,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Transform>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         healthBar.UpdateHealthBar(health, maxHealth);
+
     }
     void Update()
     {
@@ -28,10 +34,11 @@ public class Enemy : MonoBehaviour
     {
         if(other.tag == "Projectile")
         {
-            TakeDamage(2);
+            TakeDamage(_playerDamage);
             Destroy(other.gameObject);
         }
     }
+    
     void Die()
     {
         Destroy(this.gameObject);
@@ -44,5 +51,10 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+    }
+    public void InitializeHP(int initialHP)
+    {
+        health = initialHP;
+        maxHealth = initialHP;
     }
 }
