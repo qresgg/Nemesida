@@ -5,18 +5,23 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] P_HPCount player_healthCount;
+    [SerializeField] P_HPBar player_healthBar;
+
     [Header("Movement")]
     private Vector3 _input;
     [SerializeField] private float _speed = 3.5f;
     private Rigidbody _rb;
 
     [Header("Shooting")]
-    [SerializeField] public int _damageOut = 1;
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootInterval = 2.0f;
     [SerializeField] private float _shootRadius = 15.0f;
     [SerializeField] private float _projectileCount = 1.0f;
     private float _lastShootTime;
+
+    [Header("Stats")]
+    [SerializeField] private float _health = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -81,5 +86,19 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+    public void Death()
+    {
+        Destroy(this.gameObject);
+    }
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        UpdateHealthUI();
+    }
+    private void UpdateHealthUI()
+    {
+        player_healthCount.UpdateHealth(_health);
+        player_healthBar.UpdateHealth(_health);
     }
 }
