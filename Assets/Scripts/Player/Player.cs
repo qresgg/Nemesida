@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] P_HPCount player_healthCount;
     [SerializeField] P_HPBar player_healthBar;
+    [SerializeField] P_XPBar player_xpBar;
+    [SerializeField] P_XPLevel player_xpLevel;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -22,8 +24,8 @@ public class Player : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
-
-    private int xp_points = 0;
+    [SerializeField] private float xp_points = 0f;
+    [SerializeField] private int xp_level = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,6 @@ public class Player : MonoBehaviour
             Shoot();
             _lastShootTime = Time.fixedTime;
         }
-        Debug.Log(xp_points);
     }
     void Movement()
     {
@@ -104,8 +105,23 @@ public class Player : MonoBehaviour
         player_healthCount.UpdateHealth(_health);
         player_healthBar.UpdateHealth(_health);
     }
-    public void TakeXP(int xp)
+    public void TakeXP(float xp)
     {
         xp_points += xp;
+        XPLevel();
+        UpdateXPUI();
+    }
+    private void UpdateXPUI()
+    {
+        player_xpBar.UpdateXP(xp_points);
+        player_xpLevel.UpdateXPLevel(xp_level);
+    }
+    private void XPLevel()
+    {
+        while (xp_points >= 100)
+        {
+            xp_points -= 100;
+            xp_level++;
+        }
     }
 }

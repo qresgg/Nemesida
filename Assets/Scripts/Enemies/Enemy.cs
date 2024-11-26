@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour
         {
             TakeDamage(_playerDamage);
             Destroy(other.gameObject);
-            xp_spawner.CollectDataAndSpawn(this.gameObject.transform.position);
         }
         if(other.tag == "Player")
         {
@@ -50,6 +49,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Destroy(this.gameObject);
+        xp_spawner.CollectDataAndSpawn(this.gameObject.transform.position);
     }
     void TakeDamage(float damageAmount)
     {

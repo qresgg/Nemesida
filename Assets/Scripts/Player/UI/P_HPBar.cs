@@ -8,6 +8,7 @@ public class P_HPBar : MonoBehaviour
     [SerializeField] Slider healthSlider;
     void Start()
     {
+        healthSlider.value = 100;
     }
 
     // Update is called once per frame
@@ -18,7 +19,6 @@ public class P_HPBar : MonoBehaviour
     public void UpdateHealth(float health)
     {
         healthSlider.value = health / 100;
-        Debug.Log("Updated Slider Health to: " + health);
 
         Time.timeScale = (health == 0) ? 0 : 1;
     }
