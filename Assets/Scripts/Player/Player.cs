@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
 
+    private int xp_points = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
             Shoot();
             _lastShootTime = Time.fixedTime;
         }
+        Debug.Log(xp_points);
     }
     void Movement()
     {
@@ -100,5 +103,9 @@ public class Player : MonoBehaviour
     {
         player_healthCount.UpdateHealth(_health);
         player_healthBar.UpdateHealth(_health);
+    }
+    public void TakeXP(int xp)
+    {
+        xp_points += xp;
     }
 }

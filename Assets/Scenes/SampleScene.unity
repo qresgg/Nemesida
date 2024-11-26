@@ -847,6 +847,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &829525542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 829525543}
+  - component: {fileID: 829525544}
+  m_Layer: 0
+  m_Name: XPSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &829525543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829525542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 604.83673, y: 18.1754, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829525544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829525542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1e81fc11fb9904d917d331950b9fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xpPrefab: {fileID: 1678234980513184399, guid: 8291428a690d21246a87cf05126df8cb, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1338,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.12454963, g: 0.4490565, b: 0.21235734, a: 0}
+  m_BackGroundColor: {r: 0.36566028, g: 0.5999999, b: 0.4277744, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1506,10 +1551,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
-      propertyPath: _projectileCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_healthBar
       value: 
       objectReference: {fileID: 150081735}
@@ -1520,14 +1561,6 @@ PrefabInstance:
     - target: {fileID: 1859925292015146826, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1859925292015146826, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4964875423215971353, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6117463327459892626, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1586,3 +1619,4 @@ SceneRoots:
   - {fileID: 396280296}
   - {fileID: 1162318173}
   - {fileID: 1463934678}
+  - {fileID: 829525543}

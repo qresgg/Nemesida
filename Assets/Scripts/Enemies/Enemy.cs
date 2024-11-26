@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private float speed = 2.0f;
     private float health, maxHealth;
     private Projectile playerProjectile;
+    private XPSpawner xp_spawner;
 
     private int _playerDamage = 2;
     private int _damage = 25;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         player = GameObject.Find("Player").GetComponent<Player>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
+        xp_spawner = GameObject.Find("XPSpawner").GetComponent<XPSpawner>();
         healthBar.UpdateHealthBar(health, maxHealth);
 
     }
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour
         {
             TakeDamage(_playerDamage);
             Destroy(other.gameObject);
+            xp_spawner.CollectDataAndSpawn(this.gameObject.transform.position);
         }
         if(other.tag == "Player")
         {
