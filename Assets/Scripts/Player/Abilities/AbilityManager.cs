@@ -33,7 +33,8 @@ public class AbilityManager : MonoBehaviour
         allAbilities = new List<Ability>
         {
             CreateAbility("Arcane Bolt", "Magical", 7.5f, "Shoots a damaging projectile at the closest enemy.", 1.2f, 2, 1200, 10, "arcane_bolt"),
-            CreateAbility("Stone", "Magical2", 5f, "21312", 2f, 5, 1200, 10, "stone")
+            CreateAbility("Stone", "Magical", 5f, "21312", 2f, 5, 1200, 10, "stone"),
+            CreateAbility("Chain Frost", "Magical", 60f, "Shoots a slow-moving projectile at the closest enemy, dealing damage.", 14f, 1, 800, 10, "chain_frost")
         };
     }
 

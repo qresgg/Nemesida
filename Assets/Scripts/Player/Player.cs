@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] P_HPBar player_healthBar;
     [SerializeField] P_XPBar player_xpBar;
     [SerializeField] P_XPLevel player_xpLevel;
+    AbilityPickerMenu _abilityPickerMenu;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -26,11 +27,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
+    [SerializeField] private string _innateAbilityCode = "arcane_bolt"; 
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _abilityPickerMenu = FindObjectOfType<AbilityPickerMenu>();
+        PostInnateAbility();
     }
 
     // Update is called once per frame
@@ -123,5 +127,9 @@ public class Player : MonoBehaviour
             xp_points -= 100;
             xp_level++;
         }
+    }
+    public void PostInnateAbility()
+    {
+        _abilityPickerMenu.GetInnateAbility(_innateAbilityCode);
     }
 }
