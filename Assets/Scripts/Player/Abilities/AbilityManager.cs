@@ -32,13 +32,13 @@ public class AbilityManager : MonoBehaviour
     {
         allAbilities = new List<Ability>
         {
-            CreateAbility("Arcane Bolt", "Magical", 7.5f, "Shoots a damaging projectile at the closest enemy.", 1.2f, 2, 1200, 10, "arcane_bolt"),
-            CreateAbility("Stone", "Magical", 5f, "21312", 2f, 5, 1200, 10, "stone"),
-            CreateAbility("Chain Frost", "Magical", 60f, "Shoots a slow-moving projectile at the closest enemy, dealing damage.", 14f, 1, 800, 10, "chain_frost")
+            CreateAbility("Arcane Bolt", "Magical", 7.5f, "Shoots a damaging projectile at the closest enemy.", 1.2f, 2, 1200, 10, "arcane_bolt", 3),
+            CreateAbility("Stone", "Magical", 5f, "21312", 2f, 5, 1200, 10, "stone", 2),
+            CreateAbility("Chain Frost", "Magical", 60f, "Shoots a slow-moving projectile at the closest enemy, dealing damage.", 14f, 1, 800, 10, "chain_frost", 1)
         };
     }
 
-    private Ability CreateAbility(string name, string damageType, float damageCount, string description, float cooldown, float projectileCount, float range, float duration, string code)
+    private Ability CreateAbility(string name, string damageType, float damageCount, string description, float cooldown, float projectileCount, float range, float duration, string code, int id)
     {
         GameObject abilityObject = new GameObject(name);
         Ability ability = abilityObject.AddComponent<Ability>();
@@ -51,12 +51,16 @@ public class AbilityManager : MonoBehaviour
         ability.abilityRange = range;
         ability.abilityDuration = duration;
         ability.abilityCode = code;
+        ability.abilityId = id;
 
         return ability;
     }
 
     private void PostOBJ()
     {
-        _abilityPickerMenu.GetOBJ(allAbilities);
+        if (_abilityPickerMenu != null)
+        {
+            _abilityPickerMenu.GetOBJ(allAbilities);
+        }
     }
 }

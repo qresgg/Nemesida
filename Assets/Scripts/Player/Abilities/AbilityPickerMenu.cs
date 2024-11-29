@@ -7,6 +7,14 @@ public class AbilityPickerMenu : MonoBehaviour
     private List<Ability> abilities = new List<Ability>();
     [SerializeField] private AbilityUI[] abilitySlots;
     private string _innerAbility;
+    private AbilityInventory _abilityInventory;
+    private Player _player;
+
+    private void Start()
+    {
+        _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
 
     public void GetOBJ(List<Ability> m_abilities)
     {
@@ -14,7 +22,7 @@ public class AbilityPickerMenu : MonoBehaviour
 
         ShuffleAbilities();
         DisplayAbilities();
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void GetInnateAbility(string get_innerAbility)
@@ -47,5 +55,15 @@ public class AbilityPickerMenu : MonoBehaviour
                 slotIndex++;
             }
         }
+    }
+    public void OpenAbilityPickerMenu()
+    {
+        this.gameObject.SetActive(true);
+        _player.PauseGame();
+    }
+    public void CloseAbilityPickerMenu()
+    {
+        this.gameObject.SetActive(false);
+        _player.ResumeGame();
     }
 }

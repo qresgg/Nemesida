@@ -13,5 +13,6 @@ public class Ability : MonoBehaviour
     public float abilityRange;
     public float abilityDuration;
     public string abilityCode;
+    public int abilityId;
 }
     

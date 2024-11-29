@@ -9,8 +9,17 @@ public class AbilityUI : MonoBehaviour
     [SerializeField] private TMP_Text abilityDescription;
     [SerializeField] private Button selectButton;
 
-    private Ability ability;
+    private AbilityInventory _abilityInventory;
+    private AbilityPickerMenu _abilityPickerMenu;
 
+    private Ability ability;
+    private int index = 0;
+
+    private void Start()
+    {
+        _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
+        _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
+    }
     public void SetAbility(Ability ability)
     {
         if (ability == null)
@@ -29,6 +38,8 @@ public class AbilityUI : MonoBehaviour
 
     private void SelectAbility()
     {
-        Debug.Log($"Ability {ability.abilityName} selected!");
+        index = ability.abilityId; 
+        _abilityInventory.AddAbility(index);
+        _abilityPickerMenu.CloseAbilityPickerMenu();
     }
 }

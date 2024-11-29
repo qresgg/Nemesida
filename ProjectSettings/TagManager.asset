@@ -8,14 +8,15 @@ TagManager:
   - Projectile
   - Camera
   - XP
+  - AbilityPicker
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - AbilityPicker
   - Water
   - UI
-  - 
+  - AbilityPicker
   - 
   - 
   - 

@@ -126,10 +126,19 @@ public class Player : MonoBehaviour
         {
             xp_points -= 100;
             xp_level++;
+            _abilityPickerMenu.OpenAbilityPickerMenu();
         }
     }
     public void PostInnateAbility()
     {
         _abilityPickerMenu.GetInnateAbility(_innateAbilityCode);
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
