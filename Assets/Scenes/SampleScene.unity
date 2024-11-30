@@ -400,6 +400,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 119030716}
+--- !u!114 &168706714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1755786181996352466, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+  m_PrefabInstance: {fileID: 2104127926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e568a271c7209db41bacf4a69b6ac231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &198758272
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +634,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 7039000745557889002, guid: 7163738090309234ca739cdcb526b1c9, type: 3}
   _player: {fileID: 1469668553}
   _enemyContainer: {fileID: 1162318172}
-  cam: {fileID: 1714434992}
+  cam: {fileID: 0}
   _spawnRadius: 10
   _isPlayerDead: 0
   _maxEnemies: 5
@@ -1979,6 +1990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46610b9acb6304e4eb15e3b563871859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _abilityPickerMenu: {fileID: 168706714}
 --- !u!1 &1425972924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,8 +2951,8 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 119195729}
-  - {fileID: 1714434991}
   - {fileID: 1915615950770702506}
+  - {fileID: 1714434991}
   - {fileID: 396280296}
   - {fileID: 1162318173}
   - {fileID: 1463934678}

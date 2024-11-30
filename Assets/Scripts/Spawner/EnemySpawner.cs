@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] Camera cam;
 
-    [SerializeField] float _spawnRadius = 10f;
+    [SerializeField] float _spawnRadius = 16f;
     [SerializeField] bool _isPlayerDead = false;
     [SerializeField] int _maxEnemies = 5;
     private int hpIncrease = 0;
@@ -20,33 +21,65 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-       cam = GameObject.Find("Camera").GetComponent<Camera>();
-       StartCoroutine(SpawnEnemyRoutine());
+        cam = GameObject.Find("Camera").GetComponent<Camera>();
+        StartCoroutine(SpawnEnemyRoutine());
     }
+
     private void Update()
     {
         timeSpentInGame += Time.deltaTime;
     }
+
     IEnumerator SpawnEnemyRoutine()
     {
-            while(!_isPlayerDead)
-            {
+        while (!_isPlayerDead)
+        {
             int currentEnemyCount = _enemyContainer.transform.childCount;
-                if (currentEnemyCount < _maxEnemies)
-                {
-                    SpawnEnemy();
-                }
+            if (currentEnemyCount < _maxEnemies)
+            {
+                SpawnEnemy();
+            }
             float currentIntervalSpawn = Mathf.Max(minSpawnInterval, IntervalSpawn - timeSpentInGame * 1.1f);
             yield return new WaitForSeconds(currentIntervalSpawn);
         }
     }
+
     void SpawnEnemy()
     {
-        Vector2 spawnPoint = Random.insideUnitCircle.normalized * _spawnRadius;
-        Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, 0) + new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
+        Vector3 spawnPosition = Vector3.zero;
+        int[] sides = new int[] { 0, 1, 2, 3 };
+        System.Random rng = new System.Random();
+        sides = sides.OrderBy(x => rng.Next()).ToArray(); // ѕерем≥шуЇмо масив
+
+        foreach (int side in sides)
+        {
+            float x = 0, y = 0;
+            switch (side)
+            {
+                case 0: // x = 14 to 19
+                    x = Random.Range(14f, 19f);
+                    y = Random.Range(-10f, 10f);
+                    break;
+                case 1: // x = -14 to -19
+                    x = Random.Range(-19f, -14f);
+                    y = Random.Range(-10f, 10f);
+                    break;
+                case 2: // y = 10 to 14
+                    x = Random.Range(-14f, 14f);
+                    y = Random.Range(10f, 14f);
+                    break;
+                case 3: // y = -10 to -14
+                    x = Random.Range(-14f, 14f);
+                    y = Random.Range(-14f, -10f);
+                    break;
+            }
+            spawnPosition = new Vector3(x, y, 0) + _player.transform.position;
+
+            break;
+        }
+
         GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
         newEnemy.transform.parent = _enemyContainer.transform;
-
 
         hpIncrease += 1;
         newEnemy.GetComponent<Enemy>().InitializeHP(hpIncrease);
