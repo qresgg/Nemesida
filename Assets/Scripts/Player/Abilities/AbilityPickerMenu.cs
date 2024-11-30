@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class AbilityPickerMenu : MonoBehaviour
     [SerializeField] private Transform abilityContainer;
     private List<Ability> abilities = new List<Ability>();
     [SerializeField] private AbilityUI[] abilitySlots;
-    private string _innerAbility;
+    private string _innateAbility;
     private AbilityInventory _abilityInventory;
     private Player _player;
 
@@ -19,15 +20,13 @@ public class AbilityPickerMenu : MonoBehaviour
     public void GetOBJ(List<Ability> m_abilities)
     {
         abilities = m_abilities;
-
         ShuffleAbilities();
         DisplayAbilities();
-        this.gameObject.SetActive(false);
     }
 
-    public void GetInnateAbility(string get_innerAbility)
+    public void GetInnateAbility(string get_innateAbility)
     {
-        _innerAbility = get_innerAbility;
+        _innateAbility = get_innateAbility;
     }
 
     private void ShuffleAbilities()
@@ -49,12 +48,17 @@ public class AbilityPickerMenu : MonoBehaviour
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (abilities[i].abilityCode != _innerAbility)
+            if (abilities[i].abilityCode != _innateAbility)
             {
                 abilitySlots[slotIndex].SetAbility(abilities[i]);
+                Debug.Log(abilities[i]);
                 slotIndex++;
             }
         }
+    }
+    public void SetActive(bool arg)
+    {
+        this.gameObject.SetActive(arg);
     }
     public void OpenAbilityPickerMenu()
     {

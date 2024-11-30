@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -35,6 +33,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _abilityPickerMenu = FindObjectOfType<AbilityPickerMenu>();
         PostInnateAbility();
+        _abilityPickerMenu.SetActive(false);
     }
 
     // Update is called once per frame

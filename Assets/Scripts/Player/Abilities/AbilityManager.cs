@@ -6,11 +6,11 @@ public class AbilityManager : MonoBehaviour
 {
     public static AbilityManager Instance { get; private set; }
     private List<Ability> allAbilities = new List<Ability>();
-    private AbilityPickerMenu _abilityPickerMenu;
+    [SerializeField] private AbilityPickerMenu _abilityPickerMenu;
 
     void Awake()
     {
-        if (Instance == null)
+        if (Instance == null)   
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -24,7 +24,6 @@ public class AbilityManager : MonoBehaviour
     void Start()
     {
         LoadAbilities();
-        _abilityPickerMenu = FindObjectOfType<AbilityPickerMenu>();
         PostOBJ();
     }
 
