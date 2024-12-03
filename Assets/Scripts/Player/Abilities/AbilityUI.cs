@@ -40,6 +40,6 @@ public class AbilityUI : MonoBehaviour
     {
         index = ability.abilityId; 
         _abilityInventory.AddAbility(index);
-        _abilityPickerMenu.CloseAbilityPickerMenu();
+        _abilityPickerMenu.SetActive(false);
     }
 }

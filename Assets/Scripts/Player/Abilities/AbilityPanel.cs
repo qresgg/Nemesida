@@ -8,7 +8,7 @@ public class AbilityInventory : MonoBehaviour
 
     void Start()
     {
-        // Ініціалізація слотів (заповніть масив через інспектор або програмно)
+
     }
 
     public void AddAbility(int abilityIndex)

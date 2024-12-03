@@ -49,26 +49,26 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         int[] sides = new int[] { 0, 1, 2, 3 };
         System.Random rng = new System.Random();
-        sides = sides.OrderBy(x => rng.Next()).ToArray(); // ѕерем≥шуЇмо масив
+        sides = sides.OrderBy(x => rng.Next()).ToArray();
 
         foreach (int side in sides)
         {
             float x = 0, y = 0;
             switch (side)
             {
-                case 0: // x = 14 to 19
+                case 0:
                     x = Random.Range(14f, 19f);
                     y = Random.Range(-10f, 10f);
                     break;
-                case 1: // x = -14 to -19
+                case 1: 
                     x = Random.Range(-19f, -14f);
                     y = Random.Range(-10f, 10f);
                     break;
-                case 2: // y = 10 to 14
+                case 2: 
                     x = Random.Range(-14f, 14f);
                     y = Random.Range(10f, 14f);
                     break;
-                case 3: // y = -10 to -14
+                case 3:
                     x = Random.Range(-14f, 14f);
                     y = Random.Range(-14f, -10f);
                     break;

@@ -19,10 +19,7 @@ public class AbilityManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
         LoadAbilities();
         PostOBJ();
     }
