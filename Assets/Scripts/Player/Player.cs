@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootInterval = 2.0f;
-    [SerializeField] private float _shootRadius = 15.0f;
     [SerializeField] public int _projectileCount = 1;
     private float _lastShootTime;
 
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
-    [SerializeField] private string _innateAbilityCode = "arcane_bolt";
+    [SerializeField] public string _innateAbilityCode = "arcane_bolt";
 
     [Header("Abilities")]
     [SerializeField] private bool _IsOrbital;
@@ -37,11 +36,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-
-        // Initialize the Spirits system
-        InitializeSpirits();
-
-        PostInnateAbility();
         _abilityPickerMenu.SetActive(false);
     }
 
@@ -54,12 +48,6 @@ public class Player : MonoBehaviour
             _lastShootTime = Time.fixedTime;
         }
         XPLevel();
-
-        // Update the Spirits system
-        if (_IsOrbital)
-        {
-            UpdateSpirits();
-        }
     }
 
     void Movement()
@@ -71,49 +59,23 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _shootRadius);
-        List<Collider> enemies = new List<Collider>();
-
-        foreach (var hitCollider in hitColliders)
+        if (this.transform.childCount <= _projectileCount - 1)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            for (int i = 0; i < _projectileCount; i++)
             {
-                enemies.Add(hitCollider);
-            }
-        }
-
-        for (int i = 0; i < _projectileCount; i++)
-        {
-            if (enemies.Count > 0)
-            {
-                Collider closestEnemy = null;
-                float closestDistance = Mathf.Infinity;
-                Vector3 playerPosition = transform.position;
-
-                foreach (Collider enemy in enemies)
+                GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+                Projectile projectileScript = projectile.GetComponent<Projectile>();
+                projectile.transform.SetParent(transform);
+                projectileScript.totalProjectiles = _projectileCount;
+                projectileScript.index = i;
+                if (_IsDirect)
                 {
-                    float distanceToPlayer = Vector3.Distance(playerPosition, enemy.transform.position);
-                    if (distanceToPlayer < closestDistance)
-                    {
-                        closestDistance = distanceToPlayer;
-                        closestEnemy = enemy;
-                    }
+                    projectileScript.SetShootingMode(Projectile.ShootingMode.Direct);
                 }
-
-                if (closestEnemy != null)
+                if (_IsOrbital)
                 {
-                    enemies.Remove(closestEnemy);
-                    GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
-                    Projectile projectileScript = projectile.GetComponent<Projectile>();
-                    if (_IsDirect)
-                    {
-                        projectileScript.SetTarget(closestEnemy.transform);
-                        projectileScript.SetShootingMode(Projectile.ShootingMode.Direct);
-                    }
-                    if (_IsOrbital)
-                    {
-                        projectileScript.SetShootingMode(Projectile.ShootingMode.Orbit);
-                    }
+                    projectileScript.SetShootingMode(Projectile.ShootingMode.Orbit);
+                    projectile.tag = "Orbital";
                 }
             }
         }
@@ -156,39 +118,6 @@ public class Player : MonoBehaviour
             xp_level++;
             Debug.Log("Ability picker menu opened.");
             _abilityPickerMenu.SetActive(true);
-        }
-    }
-
-    public void PostInnateAbility()
-    {
-        _abilityPickerMenu.GetInnateAbility(_innateAbilityCode);
-    }
-
-    // Spirits system initialization
-    private void InitializeSpirits()
-    {
-        float angleStep = 360f / _projectileCount;
-        spirits = new GameObject[_projectileCount];
-        angles = new float[_projectileCount];
-
-        for (int i = 0; i < _projectileCount; i++)
-        {
-            angles[i] = i * angleStep;
-            spirits[i] = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
-            Projectile spiritScript = spirits[i].GetComponent<Projectile>();
-            spiritScript.SetShootingMode(Projectile.ShootingMode.Orbit);
-        }
-    }
-
-    // Update the position of Spirits
-    private void UpdateSpirits()
-    {
-        for (int i = 0; i < _projectileCount; i++)
-        {
-            angles[i] += orbitSpeed * Time.deltaTime;
-            float x = Mathf.Cos(angles[i] * Mathf.Deg2Rad) * orbitRadius;
-            float y = Mathf.Sin(angles[i] * Mathf.Deg2Rad) * orbitRadius;
-            spirits[i].transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
         }
     }
 }

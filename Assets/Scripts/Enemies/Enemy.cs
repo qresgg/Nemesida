@@ -35,7 +35,11 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Projectile")
+        if (other.tag == "Orbital")
+        {
+            TakeDamage(_playerDamage);
+        }
+        if (other.tag == "Projectile")
         {
             TakeDamage(_playerDamage);
             Destroy(other.gameObject);

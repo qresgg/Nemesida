@@ -11,6 +11,7 @@ public class AbilityUI : MonoBehaviour
 
     private AbilityInventory _abilityInventory;
     private AbilityPickerMenu _abilityPickerMenu;
+    private GameManager _gameManager;
 
     private Ability ability;
     private int index = 0;
@@ -19,6 +20,7 @@ public class AbilityUI : MonoBehaviour
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void SetAbility(Ability ability)
     {
@@ -41,5 +43,6 @@ public class AbilityUI : MonoBehaviour
         index = ability.abilityId; 
         _abilityInventory.AddAbility(index);
         _abilityPickerMenu.SetActive(false);
+        _gameManager.ResumeGame();
     }
 }

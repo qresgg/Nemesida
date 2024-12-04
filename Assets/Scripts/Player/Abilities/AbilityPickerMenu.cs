@@ -18,6 +18,13 @@ public class AbilityPickerMenu : MonoBehaviour
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        _innateAbility = _player._innateAbilityCode;
+        Debug.Log(_innateAbility);
+
+        ShuffleAbilities();
+        DisplayAbilities();
+        _gameManager.PauseGame();
     }
     private void Awake()
     {
@@ -31,14 +38,6 @@ public class AbilityPickerMenu : MonoBehaviour
     public void GetOBJ(List<Ability> m_abilities)
     {
         abilities = m_abilities;
-        ShuffleAbilities();
-        DisplayAbilities();
-    }
-
-    public string GetInnateAbility(string get_innateAbility)
-    {
-        _innateAbility = get_innateAbility;
-        return _innateAbility;
     }
 
     private void ShuffleAbilities()
@@ -60,10 +59,11 @@ public class AbilityPickerMenu : MonoBehaviour
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (abilities[i].abilityCode != GetInnateAbility(_innateAbility))
+            if (abilities[i].abilityCode != _innateAbility)
             {
                 abilitySlots[slotIndex].SetAbility(abilities[i]);
                 Debug.Log($"Ability added to slot {slotIndex}: {abilities[i].abilityCode}");
+                Debug.Log(_innateAbility);
                 slotIndex++;
             }
             else

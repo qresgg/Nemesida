@@ -9,22 +9,32 @@ public class Projectile : MonoBehaviour
     }
 
     public ShootingMode currentMode = ShootingMode.Direct;
-    public float speed = 10.0f;
+    private float speed = 10.0f;
+    private float shootRadius = 15.0f;
+
     private Transform target;
     private Transform player;
     private Player _player;
-    public float orbitRadius = 2.0f;
-    public float orbitSpeed = 1.0f;
-    public int index;
-    public int totalProjectiles;
-    private float initialAngle;
 
+    private float orbitRadius = 2.0f;
+    private float orbitSpeed = 5.0f;
+    private float currentAngle = 0.0f;
+
+    public int totalProjectiles;
+    public int index;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        float angleStep = 360f / totalProjectiles;
+        FindClosestEnemy();
+
+        if (currentMode == ShootingMode.Orbit)
+        {
+            float angleStep = 360f / totalProjectiles;
+            currentAngle += Mathf.Deg2Rad * angleStep * index;
+            InvokeRepeating("ToggleActive", 5f, 5f);
+        }
     }
 
     public void SetTarget(Transform newTarget)
@@ -64,13 +74,43 @@ public class Projectile : MonoBehaviour
 
     void OrbitShooting()
     {
-        //need to make new method
-        float currentAngle = orbitSpeed;
+        float angleStep = 360f / totalProjectiles;
+        currentAngle += Time.deltaTime * orbitSpeed;
         float x = player.position.x + Mathf.Cos(currentAngle) * orbitRadius;
         float y = player.position.y + Mathf.Sin(currentAngle) * orbitRadius;
         Vector3 newPosition = new Vector3(x, y, player.position.z);
 
         transform.position = newPosition;
+    }
+
+    private void ToggleActive()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    private void FindClosestEnemy()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, shootRadius);
+        Collider closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Enemy"))
+            {
+                float distanceToPlayer = Vector3.Distance(transform.position, hitCollider.transform.position);
+                if (distanceToPlayer < closestDistance)
+                {
+                    closestDistance = distanceToPlayer;
+                    closestEnemy = hitCollider;
+                }
+            }
+        }
+
+        if (closestEnemy != null)
+        {
+            SetTarget(closestEnemy.transform);
+        }
     }
 
     public void DestroyProjectile()
