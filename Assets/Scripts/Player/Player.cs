@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
-    [SerializeField] public string _innateAbilityCode = "arcane_bolt";
+    [SerializeField] public string _innateAbilityCode = "jobm";
 
     [Header("Abilities")]
     [SerializeField] private bool _IsOrbital;

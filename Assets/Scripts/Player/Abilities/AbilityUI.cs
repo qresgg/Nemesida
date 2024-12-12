@@ -31,8 +31,8 @@ public class AbilityUI : MonoBehaviour
         }
 
         this.ability = ability;
-        abilityName.text = ability.abilityName;
-        abilityDescription.text = ability.abilityDescription;
+        abilityName.text = ability.Name;
+        abilityDescription.text = ability.Description;
 
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(SelectAbility);
@@ -40,7 +40,7 @@ public class AbilityUI : MonoBehaviour
 
     private void SelectAbility()
     {
-        index = ability.abilityId; 
+        index = ability.Id; 
         _abilityInventory.AddAbility(index);
         _abilityPickerMenu.SetActive(false);
         _gameManager.ResumeGame();

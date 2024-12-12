@@ -1,18 +1,44 @@
 using UnityEngine;
 using System;
 
-[Serializable]
-public class Ability : MonoBehaviour
+public interface Ability
 {
-    public string abilityName;
-    public string abilityDamageType;
-    public float abilityDamageCount;
-    public string abilityDescription;
-    public float abilityCooldown;
-    public float abilityProjectileCount;
-    public float abilityRange;
-    public float abilityDuration;
-    public string abilityCode;
-    public int abilityId;
+    string Name { get; } 
+    string DamageType { get; }
+    float DamageCount { get; }
+    string Description { get; }
+    float Cooldown { get; }
+    int ProjectileCount { get; }
+    float Range { get; }
+    float Duration { get; }
+    string Code { get; }
+    int Id { get; }
 }
-    
+
+class ArcaneBolt : MonoBehaviour, Ability
+{
+    public string Name { get; } = "ArcaneBolt";
+    public string DamageType { get; } = "Magical";
+    public float DamageCount { get; } = 25f;
+    public string Description { get; } = "Shoots a damaging projectile at the closest enemy.";
+    public float Cooldown { get; } = 2.5f;
+    public int ProjectileCount { get; } = 3;
+    public float Range { get; } = 10f;
+    public float Duration { get; } = 99f;
+    public string Code { get; } = "arcane_bolt";
+    public int Id { get; } = 01;
+}
+
+class OrbitalSpirits : MonoBehaviour, Ability
+{
+    public string Name { get; } = "Orbital Spirits";
+    public string DamageType { get; } = "Magical";
+    public float DamageCount { get; } = 15f;
+    public string Description { get; } = "Spirits are spinning around player.";
+    public float Cooldown { get; } = 5f;
+    public int ProjectileCount { get; } = 3;
+    public float Range { get; } = 2f;
+    public float Duration { get; } = 5f;
+    public string Code { get; } = "orbital_spirits";
+    public int Id { get; } = 02;
+}

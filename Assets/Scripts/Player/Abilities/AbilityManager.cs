@@ -14,27 +14,22 @@ public class AbilityManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadAbilities();
+            PostOBJ();
         }
         else
         {
             Destroy(gameObject);
         }
-
-        LoadAbilities();
-        PostOBJ();
     }
 
     private void LoadAbilities()
     {
-        allAbilities = new List<Ability>
-        {
-            CreateAbility("Arcane Bolt", "Magical", 7.5f, "Shoots a damaging projectile at the closest enemy.", 1.2f, 2, 1200, 10, "arcane_bolt", 3),
-            CreateAbility("Stone", "Magical", 5f, "21312", 2f, 5, 1200, 10, "stone", 2),
-            CreateAbility("Chain Frost", "Magical", 60f, "Shoots a slow-moving projectile at the closest enemy, dealing damage.", 14f, 1, 800, 10, "chain_frost", 1)
-        };
+        allAbilities.Add(new ArcaneBolt()); 
+        allAbilities.Add(new OrbitalSpirits());
     }
 
-    private Ability CreateAbility(string name, string damageType, float damageCount, string description, float cooldown, float projectileCount, float range, float duration, string code, int id)
+    /*private Ability CreateAbility(string name, string damageType, float damageCount, string description, float cooldown, float projectileCount, float range, float duration, string code, int id)
     {
         GameObject abilityObject = new GameObject(name);
         Ability ability = abilityObject.AddComponent<Ability>();
@@ -50,7 +45,7 @@ public class AbilityManager : MonoBehaviour
         ability.abilityId = id;
 
         return ability;
-    }
+    }*/
 
     private void PostOBJ()
     {

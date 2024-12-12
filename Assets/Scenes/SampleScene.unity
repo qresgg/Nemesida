@@ -1839,7 +1839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.64705884, g: 0.6509804, b: 0.64705884, a: 0}
+  m_Color: {r: 0.64705884, g: 0.6509804, b: 0.64705884, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2363,6 +2363,7 @@ MonoBehaviour:
   - {fileID: 502430504}
   - {fileID: 1802507765}
   - {fileID: 707432564}
+  - {fileID: 316252844}
 --- !u!1 &1463934677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,6 +3356,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 948525188}
+    - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_xpBar
       value: 
       objectReference: {fileID: 1626560986}
@@ -3374,6 +3379,10 @@ PrefabInstance:
       propertyPath: _abilityPickerMenu
       value: 
       objectReference: {fileID: 168706714}
+    - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
+      propertyPath: _innateAbilityCode
+      value: gg
+      objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_healthCount
       value: 

@@ -55,19 +55,23 @@ public class AbilityPickerMenu : MonoBehaviour
 
     private void DisplayAbilities()
     {
+        HashSet<string> displayedAbilities = new HashSet<string>();
+
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (abilities[i].abilityCode != _innateAbility)
+            abilities.RemoveAll(ability => ability.Code == _innateAbility);
+            if (abilities[i].Code != _innateAbility)
             {
                 abilitySlots[slotIndex].SetAbility(abilities[i]);
-                Debug.Log($"Ability added to slot {slotIndex}: {abilities[i].abilityCode}");
+                Debug.Log($"Ability added to slot {slotIndex}: {abilities[i].Code}");
                 Debug.Log(_innateAbility);
+                displayedAbilities.Add(abilities[i].Code);
                 slotIndex++;
             }
             else
             {
-                Debug.Log($"Skipped innate ability: {abilities[i].abilityCode}");
+                Debug.Log($"Skipped innate ability: {abilities[i].Code}");
             }
         }
 
