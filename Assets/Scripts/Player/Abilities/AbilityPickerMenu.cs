@@ -24,7 +24,6 @@ public class AbilityPickerMenu : MonoBehaviour
 
         ShuffleAbilities();
         DisplayAbilities();
-        _gameManager.PauseGame();
     }
     private void Awake()
     {

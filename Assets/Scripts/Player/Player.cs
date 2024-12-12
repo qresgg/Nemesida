@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] P_XPBar player_xpBar;
     [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
+    GameManager _gameManager;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu.SetActive(false);
     }
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
             _lastShootTime = Time.fixedTime;
         }
         XPLevel();
+
     }
 
     void Movement()
@@ -117,7 +119,13 @@ public class Player : MonoBehaviour
             xp_points -= 100;
             xp_level++;
             Debug.Log("Ability picker menu opened.");
-            _abilityPickerMenu.SetActive(true);
+            OpenAbilityPickerMenu();
         }
+    }
+
+    private void OpenAbilityPickerMenu()
+    {
+        _abilityPickerMenu.SetActive(true);
+        _gameManager.PauseGame();
     }
 }
