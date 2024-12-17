@@ -1,17 +1,22 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityPickerMenu : MonoBehaviour
 {
     public static AbilityPickerMenu Instance { get; private set; }
-    [SerializeField] private Transform abilityContainer;
+
     private List<Ability> abilities = new List<Ability>();
+    private HashSet<string> pickedAbilityCodes = new HashSet<string>();
+
+    [SerializeField] private Transform abilityContainer;
     [SerializeField] private AbilityUI[] abilitySlots;
+
     private string _innateAbility;
     private AbilityInventory _abilityInventory;
     private Player _player;
     private GameManager _gameManager;
+
+    [SerializeField] private bool isFirstCall = true;
 
     private void Start()
     {
@@ -20,17 +25,22 @@ public class AbilityPickerMenu : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         _innateAbility = _player._innateAbilityCode;
-        Debug.Log(_innateAbility);
 
-        ShuffleAbilities();
         DisplayAbilities();
     }
+
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            ShuffleAbilities();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -39,7 +49,7 @@ public class AbilityPickerMenu : MonoBehaviour
         abilities = m_abilities;
     }
 
-    private void ShuffleAbilities()
+    public void ShuffleAbilities()
     {
         System.Random random = new System.Random();
         int n = abilities.Count;
@@ -53,33 +63,42 @@ public class AbilityPickerMenu : MonoBehaviour
         }
     }
 
-    private void DisplayAbilities()
+    public void AddPickedAbility(string pickedAbility)
     {
-        HashSet<string> displayedAbilities = new HashSet<string>();
+        if (!pickedAbilityCodes.Contains(pickedAbility))
+        {
+            pickedAbilityCodes.Add(pickedAbility);
+            Debug.Log($"Ability '{pickedAbility}' has been added to the picked abilities.");
+        }
+    }
+
+    public void DisplayAbilities()
+    {
+        abilities.RemoveAll(ability => ability.Code == _innateAbility);
 
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            abilities.RemoveAll(ability => ability.Code == _innateAbility);
-            if (abilities[i].Code != _innateAbility)
+            if (isFirstCall || !pickedAbilityCodes.Contains(abilities[i].Code))
             {
                 abilitySlots[slotIndex].SetAbility(abilities[i]);
-                Debug.Log($"Ability added to slot {slotIndex}: {abilities[i].Code}");
-                Debug.Log(_innateAbility);
-                displayedAbilities.Add(abilities[i].Code);
                 slotIndex++;
-            }
-            else
-            {
-                Debug.Log($"Skipped innate ability: {abilities[i].Code}");
             }
         }
 
-        Debug.Log("DisplayAbilities method completed.");
+        if (isFirstCall)
+        {
+            isFirstCall = false;
+            Debug.Log("First call of DisplayAbilities completed.");
+        }
     }
 
     public void SetActive(bool arg)
     {
         this.gameObject.SetActive(arg);
+        if (arg)
+        {
+            DisplayAbilities();
+        }
     }
 }

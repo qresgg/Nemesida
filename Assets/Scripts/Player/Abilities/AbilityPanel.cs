@@ -8,7 +8,6 @@ public class AbilityInventory : MonoBehaviour
 
     void Start()
     {
-
     }
 
     public void AddAbility(int abilityIndex)

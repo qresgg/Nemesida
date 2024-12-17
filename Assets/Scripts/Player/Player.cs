@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
     GameManager _gameManager;
+    Ability _abilities;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
-    [SerializeField] public string _innateAbilityCode = "jobm";
+    [SerializeField] public string _innateAbilityCode = "arcane_bolt";
 
     [Header("Abilities")]
     [SerializeField] private bool _IsOrbital;
