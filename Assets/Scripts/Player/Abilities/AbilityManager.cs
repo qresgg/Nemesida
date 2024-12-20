@@ -25,9 +25,9 @@ public class AbilityManager : MonoBehaviour
 
     private void LoadAbilities()
     {
-        allAbilities.Add(new ArcaneBolt()); 
-        allAbilities.Add(new OrbitalSpirits());
-        allAbilities.Add(new Copy());
+        allAbilities.Add(new Fireball()); 
+        allAbilities.Add(new OrbitalSpheres());
+        allAbilities.Add(new Whirligig());
     }
 
     private void PostOBJ()

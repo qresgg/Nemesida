@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
     GameManager _gameManager;
-    Ability _abilities;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -16,7 +17,6 @@ public class Player : MonoBehaviour
     private Rigidbody _rb;
 
     [Header("Shooting")]
-    [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootInterval = 2.0f;
     [SerializeField] public int _projectileCount = 1;
     private float _lastShootTime;
@@ -28,11 +28,8 @@ public class Player : MonoBehaviour
     [SerializeField] public string _innateAbilityCode = "arcane_bolt";
 
     [Header("Abilities")]
-    [SerializeField] private bool _IsOrbital;
-    [SerializeField] private bool _IsDirect;
-
-    private GameObject[] spirits;
-    private float[] angles;
+    public GameObject[] _abilityPrefabs;
+    private List<string> activeAbilities = new List<string> { "fireball" };
 
     void Start()
     {
@@ -50,7 +47,6 @@ public class Player : MonoBehaviour
             _lastShootTime = Time.fixedTime;
         }
         XPLevel();
-
     }
 
     void Movement()
@@ -62,37 +58,29 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        if (this.transform.childCount <= _projectileCount - 1)
+        for (int i = 0; i < _projectileCount; i++)
         {
-            for (int i = 0; i < _projectileCount; i++)
+            if (IsAbilityActive("fireball"))
             {
-                GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
-                Projectile projectileScript = projectile.GetComponent<Projectile>();
-                projectile.transform.SetParent(transform);
-                projectileScript.totalProjectiles = _projectileCount;
-                projectileScript.index = i;
-                if (_IsDirect)
-                {
-                    projectileScript.SetShootingMode(Projectile.ShootingMode.Direct);
-                }
-                if (_IsOrbital)
-                {
-                    projectileScript.SetShootingMode(Projectile.ShootingMode.Orbit);
-                    projectile.tag = "Orbital";
-                }
+                GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
+                Debug.Log("FIREBALL ADDED");
+            }
+            if (IsAbilityActive("orbital_spheres"))
+            {
+                GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
+                Debug.Log("ORBITAL SPHERES ADDED");
             }
         }
-    }
-
-    public void Death()
-    {
-        Destroy(this.gameObject);
     }
 
     public void TakeDamage(float damage)
     {
         _health -= damage;
         UpdateHealthUI();
+        if (_health <= 0)
+        {
+            Death();
+        }
     }
 
     private void UpdateHealthUI()
@@ -128,5 +116,15 @@ public class Player : MonoBehaviour
     {
         _abilityPickerMenu.SetActive(true);
         _gameManager.PauseGame();
+    }
+
+    private bool IsAbilityActive(string abilityName)
+    {
+        return activeAbilities.Contains(abilityName);
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

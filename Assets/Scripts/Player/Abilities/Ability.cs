@@ -15,43 +15,43 @@ public interface Ability
     int Id { get; }
 }
 
-class ArcaneBolt : MonoBehaviour, Ability
+class Fireball : MonoBehaviour, Ability
 {
-    public string Name { get; } = "ArcaneBolt";
+    public string Name { get; } = "Fireball";
     public string DamageType { get; } = "Magical";
     public float DamageCount { get; } = 25f;
-    public string Description { get; } = "Shoots a damaging projectile at the closest enemy.";
+    public string Description { get; } = "Shoots a damaging fireball at the closest enemy.";
     public float Cooldown { get; } = 2.5f;
     public int ProjectileCount { get; } = 3;
     public float Range { get; } = 10f;
     public float Duration { get; } = 99f;
-    public string Code { get; set;  } = "arcane_bolt";
+    public string Code { get; set;  } = "fireball";
     public int Id { get; } = 1;
 }
 
-class OrbitalSpirits : MonoBehaviour, Ability
+class OrbitalSpheres : MonoBehaviour, Ability
 {
-    public string Name { get; } = "Orbital Spirits";
+    public string Name { get; } = "Orbital Spheres";
     public string DamageType { get; } = "Magical";
     public float DamageCount { get; } = 15f;
-    public string Description { get; } = "Spirits are spinning around player.";
+    public string Description { get; } = "Spheres are spinning around player.";
     public float Cooldown { get; } = 5f;
     public int ProjectileCount { get; } = 3;
     public float Range { get; } = 2f;
     public float Duration { get; } = 5f;
-    public string Code { get; set; } = "orbital_spirits";
+    public string Code { get; set; } = "orbital_spheres";
     public int Id { get; } = 2;
 }
-class Copy : MonoBehaviour, Ability
+class Whirligig : MonoBehaviour, Ability
 {
-    public string Name { get; } = "12321";
-    public string DamageType { get; } = "Magical";
+    public string Name { get; } = "Whirligig";
+    public string DamageType { get; } = "Physical";
     public float DamageCount { get; } = 15f;
-    public string Description { get; } = "Spirits are spinning around player.";
+    public string Description { get; } = "Uses whirligig around player";
     public float Cooldown { get; } = 5f;
     public int ProjectileCount { get; } = 3;
     public float Range { get; } = 2f;
     public float Duration { get; } = 5f;
-    public string Code { get; set; } = "brit";
+    public string Code { get; set; } = "whirligig";
     public int Id { get; } = 3;
 }
