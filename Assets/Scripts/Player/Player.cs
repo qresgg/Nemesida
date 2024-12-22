@@ -29,7 +29,10 @@ public class Player : MonoBehaviour
 
     [Header("Abilities")]
     public GameObject[] _abilityPrefabs;
-    private List<string> activeAbilities = new List<string> { "fireball" };
+    private List<string> activeAbilities = new List<string> { "fireball" , "orbital_spheres" };
+
+    [Header("Container")]
+    [SerializeField] GameObject SpheresContainer;
 
     void Start()
     {
@@ -67,8 +70,12 @@ public class Player : MonoBehaviour
             }
             if (IsAbilityActive("orbital_spheres"))
             {
-                GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
-                Debug.Log("ORBITAL SPHERES ADDED");
+                if (SpheresContainer.transform.childCount < _projectileCount)
+                {
+                    GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
+                    orbitalSphere.transform.SetParent(SpheresContainer.transform);
+                    Debug.Log("ORBITAL SPHERES ADDED");
+                }
             }
         }
     }
