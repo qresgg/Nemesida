@@ -10,6 +10,7 @@ TagManager:
   - XP
   - AbilityPicker
   - Orbital
+  - SpheresContainer
   layers:
   - Default
   - TransparentFX
