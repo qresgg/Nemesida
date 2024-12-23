@@ -5,7 +5,7 @@
 
     public class AbilityUI : MonoBehaviour
     {
-        [SerializeField] private Image abilityImage;
+        [SerializeField] private Image abilitySprite;
         [SerializeField] private TMP_Text abilityName;
         [SerializeField] private TMP_Text abilityDescription;
         [SerializeField] private Button selectButton;
@@ -16,8 +16,6 @@
 
         Ability m_ability;
 
-        private int index = 0;
-
         private void Start()
         {
             _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
@@ -25,18 +23,30 @@
             _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
 
-        public void SetAbility(Ability ability)
+    public void SetAbility(Ability ability)
+    {
+        m_ability = ability;
+
+        Sprite sprite = Resources.Load<Sprite>(ability.IconPath);
+
+        if (sprite == null)
         {
-            m_ability = ability;
-
-            abilityName.text = ability.Name;
-            abilityDescription.text = ability.Description;
-
-            selectButton.onClick.RemoveAllListeners();
-            selectButton.onClick.AddListener(() => SelectAbility(ability));
+            Debug.LogError($"Спрайт не знайдено за шляхом: {ability.IconPath}");
+        }
+        else
+        {
+            abilitySprite.sprite = sprite;
         }
 
-        private void SelectAbility(Ability ability)
+        abilityName.text = ability.Name;
+        abilityDescription.text = ability.Description;
+
+        selectButton.onClick.RemoveAllListeners();
+        selectButton.onClick.AddListener(() => SelectAbility(ability));
+    }
+
+
+    private void SelectAbility(Ability ability)
         {
             _abilityInventory.AddAbility(ability.Id);
             _abilityPickerMenu.SetActive(false);

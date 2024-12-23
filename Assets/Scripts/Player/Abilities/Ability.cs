@@ -13,6 +13,7 @@ public interface Ability
     float Duration { get; }
     string Code { get; set;  }
     int Id { get; }
+    public string IconPath { get; }
 }
 
 class Fireball : MonoBehaviour, Ability
@@ -27,6 +28,7 @@ class Fireball : MonoBehaviour, Ability
     public float Duration { get; } = 99f;
     public string Code { get; set;  } = "fireball";
     public int Id { get; } = 1;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/Fireball.png";
 }
 
 class OrbitalSpheres : MonoBehaviour, Ability
@@ -41,6 +43,7 @@ class OrbitalSpheres : MonoBehaviour, Ability
     public float Duration { get; } = 5f;
     public string Code { get; set; } = "orbital_spheres";
     public int Id { get; } = 2;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/OrbitalSpheres.aseprite";
 }
 class Whirligig : MonoBehaviour, Ability
 {
@@ -54,4 +57,5 @@ class Whirligig : MonoBehaviour, Ability
     public float Duration { get; } = 5f;
     public string Code { get; set; } = "whirligig";
     public int Id { get; } = 3;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/Whirligig";
 }

@@ -935,6 +935,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f4bed9166cefd44851144b1573212c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &505777317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4671994522001083802, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+  m_PrefabInstance: {fileID: 2104127926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &655155775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +1985,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196009536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+  m_PrefabInstance: {fileID: 2104127926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1204116583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,6 +2771,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7484f7e48acf1a4aa5b04e42f684284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1759746526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+  m_PrefabInstance: {fileID: 2104127926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1781389476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,10 +3211,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5471698
       objectReference: {fileID: 0}
+    - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 904956707430461910, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2027881523911180368, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: abilitySprite
+      value: 
+      objectReference: {fileID: 1759746526}
     - target: {fileID: 2177135631299039741, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3234,6 +3283,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248006208536430307, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: abilitySprite
+      value: 
+      objectReference: {fileID: 505777317}
     - target: {fileID: 3758692392319273771, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_SizeDelta.x
       value: -593.0712
@@ -3330,6 +3383,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.00061035156
       objectReference: {fileID: 0}
+    - target: {fileID: 7808863828396955117, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: abilitySprite
+      value: 
+      objectReference: {fileID: 1196009536}
     - target: {fileID: 8676252803689041017, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_SizeDelta.x
       value: -593.07117
@@ -3425,7 +3482,7 @@ PrefabInstance:
       objectReference: {fileID: 168706714}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: _innateAbilityCode
-      value: fireball
+      value: 121
       objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_healthCount
