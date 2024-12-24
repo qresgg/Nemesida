@@ -1641,7 +1641,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054170765}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2408,9 +2408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce77091dd93bbed4fb00eb177c49de20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityImages:
-  - {fileID: 21300000, guid: 91339a60e3f8b0a4f9db4bf1d66a3ccb, type: 3}
-  - {fileID: 21300000, guid: 00ea96b6532677641922f1351601d6ca, type: 3}
   slots:
   - {fileID: 1082322929}
   - {fileID: 502430504}
@@ -3212,6 +3209,14 @@ PrefabInstance:
       value: 0.5471698
       objectReference: {fileID: 0}
     - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5386104162529959166, guid: 1711feefb3f28824aa2a722acf907f8c, type: 3}
+    - target: {fileID: 553609650020620498, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -3367,6 +3372,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4671994522001083802, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671994522001083802, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5386104162529959166, guid: 1711feefb3f28824aa2a722acf907f8c, type: 3}
     - target: {fileID: 5170280034554016473, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_Name
       value: AbilityPickerMenu
@@ -3382,6 +3395,26 @@ PrefabInstance:
     - target: {fileID: 5278466614785002613, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.00061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5386104162529959166, guid: 1711feefb3f28824aa2a722acf907f8c, type: 3}
+    - target: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483666060708833915, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7808863828396955117, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: abilitySprite

@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 64
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638705148088966957
+  platformSettingsDirtyTick: 638705964515789633
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -130,9 +130,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 100
-      height: 100
-    spriteID: 868db0d7844d64d4d9d7ca92543da4ae
+      width: 64
+      height: 64
+    spriteID: 88a93019f57545747bdd7cd0a3df58b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,7 +141,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: Fireball
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 64
+      height: 64
+    spriteID: 4f473cd196a7c234ab181f93cfc80742
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     guid: -521780937
@@ -156,9 +176,9 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 100
-        height: 100
-      spriteId: 868db0d7844d64d4d9d7ca92543da4ae
+        width: 64
+        height: 64
+      spriteId: 88a93019f57545747bdd7cd0a3df58b1
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -213,4 +233,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 100, y: 100}
+  canvasSize: {x: 64, y: 64}
