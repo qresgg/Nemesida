@@ -7,11 +7,11 @@ public interface Ability
     string DamageType { get; }
     int DamageCount { get; }
     string Description { get; }
-    float Cooldown { get; }
+    //float Cooldown { get; }
     int ProjectileSpeed { get; }
-    int ProjectileCount { get; set; }
-    float Range { get; }
-    float Duration { get; }
+    //int ProjectileCount { get; set; }
+    //float Range { get; }
+    //float Duration { get; }
     string Code { get; set;  }
     int Id { get; }
     public string IconPath { get; }
@@ -43,7 +43,6 @@ class OrbitalSpheres : MonoBehaviour, Ability
     public int ProjectileSpeed { get; } = 5;
     public int ProjectileCount { get; set; } = 1;
     public float Radius { get; } = 2.5f;
-    public float Range { get; } = 2f;
     public float Duration { get; } = 5f;
     public string Code { get; set; } = "orbital_spheres";
     public int Id { get; } = 2;

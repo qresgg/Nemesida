@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     [Header("Abilities")]
     public GameObject[] _abilityPrefabs;
-    private List<string> activeAbilities = new List<string> { "fireball" , "orbital_spheres" };
+    private List<string> activeAbilities;
 
     [Header("Container")]
     [SerializeField] GameObject SpheresContainer;
@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu.SetActive(false);
+
+        activeAbilities = new List<string> { _innateAbilityCode, "orbital_spheres"};
     }
 
     void FixedUpdate()
