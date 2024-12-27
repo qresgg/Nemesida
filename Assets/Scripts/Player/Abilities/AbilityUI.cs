@@ -27,15 +27,7 @@ public class AbilityUI : MonoBehaviour
     {
         m_ability = ability;
 
-        Sprite sprite = Resources.Load<Sprite>(ability.IconPath);
-        if (sprite != null)
-        {
-            abilitySprite.sprite = sprite;
-        }
-        else
-        {
-            Debug.LogError($"Спрайт не знайдено за шляхом: {ability.IconPath}");
-        }
+        abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
 
         abilityName.text = ability.Name;
         abilityDescription.text = ability.Description;

@@ -5,19 +5,12 @@ using UnityEngine;
 public class FireballActivation : MonoBehaviour
 {
     private Transform target;
-    private float speed = 10f;
-    private float shootRadius = 15.0f;
+
+    private Fireball Fireball;
 
     public void Start()
     {
-        if (target != null)
-        {
-            Debug.Log("Ціль знайдено: " + target.name);
-        }
-        else
-        {
-            Debug.Log("Ціль не знайдено");
-        }
+        Fireball = new Fireball();
     }
     private void Update()
     {
@@ -29,22 +22,22 @@ public class FireballActivation : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
-            this.transform.position += direction * speed * Time.deltaTime;
+            this.transform.position += direction * Fireball.ProjectileSpeed * Time.deltaTime;
 
-            Debug.Log("Рухаюсь до цілі: " + target.name + ", дистанція: " + Vector3.Distance(transform.position, target.position));
+            //Debug.Log("Рухаюсь до цілі: " + target.name + ", дистанція: " + Vector3.Distance(transform.position, target.position));
 
             if (Vector3.Distance(transform.position, target.position) < 0.1f)
             {
-                Debug.Log("Ціль вражено, об'єкт знищено");
+                //Debug.Log("Ціль вражено, об'єкт знищено");
                 Destroy(gameObject);
             }
         }
         else
         {
-            Debug.Log("Ціль відсутня або знищена, повторний пошук");
+            //Debug.Log("Ціль відсутня або знищена, повторний пошук");
             if (target == null)
             {
-                Debug.Log("Ціль відсутня, об'єкт знищено");
+                //Debug.Log("Ціль відсутня, об'єкт знищено");
                 Destroy(gameObject);
             }
         }
@@ -52,7 +45,7 @@ public class FireballActivation : MonoBehaviour
 
     public void FindClosestEnemy()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, shootRadius);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Fireball.Range);
         Collider closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
@@ -72,6 +65,15 @@ public class FireballActivation : MonoBehaviour
         if (closestEnemy != null)
         {
             target = closestEnemy.transform;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().TakeDamage(Fireball.DamageCount);
+            Destroy(this.gameObject);
         }
     }
 }

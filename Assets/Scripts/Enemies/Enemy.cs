@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private Projectile playerProjectile;
     private XPSpawner xp_spawner;
 
+
     private int _playerDamage = 2;
     private int _damage = 25;
 
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        maxHealth = 100;
         health = maxHealth;
         player = GameObject.Find("Player").GetComponent<Player>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
@@ -28,6 +30,10 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
+        Movement();
+    }
+    void Movement()
+    {
         Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
 
@@ -35,15 +41,6 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Orbital")
-        {
-            TakeDamage(_playerDamage);
-        }
-        if (other.tag == "Projectile")
-        {
-            TakeDamage(_playerDamage);
-            Destroy(other.gameObject);
-        }
         if(other.tag == "Player")
         {
             AttackPlayer(_damage);
@@ -55,7 +52,7 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
         xp_spawner.CollectDataAndSpawn(this.gameObject.transform.position);
     }
-    void TakeDamage(float damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
         healthBar.UpdateHealthBar(health, maxHealth);
@@ -66,8 +63,8 @@ public class Enemy : MonoBehaviour
     }
     public void InitializeHP(int initialHP)
     {
-        health = initialHP;
-        maxHealth = initialHP;
+        health += initialHP;
+        maxHealth += initialHP;
     }
     public void AttackPlayer(int damage)
     {
