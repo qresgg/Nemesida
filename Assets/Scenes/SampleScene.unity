@@ -3503,7 +3503,7 @@ PrefabInstance:
       objectReference: {fileID: 382171330}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: _projectileCount
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_healthBar
@@ -3515,7 +3515,7 @@ PrefabInstance:
       objectReference: {fileID: 168706714}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: _innateAbilityCode
-      value: 121
+      value: fireball
       objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: player_healthCount

@@ -27,7 +27,6 @@ class Fireball : MonoBehaviour, Ability
     public int ProjectileSpeed { get; } = 10;
     public int ProjectileCount { get; set; } = 1;
     public float Range { get; } = 10f;
-    public float Duration { get; } = 99f;
     public string Code { get; set;  } = "fireball";
     public int Id { get; } = 1;
     public string IconPath { get; } = "Images/UI/AbilityIcons/Fireball";

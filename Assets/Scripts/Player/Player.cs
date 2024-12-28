@@ -1,6 +1,6 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class Player : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] private float _shootInterval = 2.0f;
-    [SerializeField] public int _projectileCount = 1;
-    private float _lastShootTime;
+    [SerializeField] private int _projectileCount;
+    private float _lastShootTimeFireball;
 
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
@@ -31,8 +31,11 @@ public class Player : MonoBehaviour
     public GameObject[] _abilityPrefabs;
     private List<string> activeAbilities;
 
+    private Fireball Fireball;
+    private OrbitalSpheres OrbitalSpheres;
+
     [Header("Container")]
-    [SerializeField] GameObject SpheresContainer;
+    [SerializeField] public GameObject SpheresContainer;
 
     void Start()
     {
@@ -40,17 +43,18 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu.SetActive(false);
 
-        activeAbilities = new List<string> { _innateAbilityCode, "orbital_spheres"};
+        activeAbilities = new List<string> { _innateAbilityCode, "orbital_spheres" };
+
+        Fireball = new Fireball();
+        OrbitalSpheres = new OrbitalSpheres();
+
+        StartCoroutine(ManageOrbitalSphere());
     }
 
     void FixedUpdate()
     {
         Movement();
-        if (Time.fixedTime > _lastShootTime + _shootInterval)
-        {
-            Shoot();
-            _lastShootTime = Time.fixedTime;
-        }
+        Shoot();
         XPLevel();
     }
 
@@ -63,22 +67,47 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        for (int i = 0; i < _projectileCount; i++)
+        if (Time.time > _lastShootTimeFireball + _shootInterval)
         {
             if (IsAbilityActive("fireball"))
             {
-                GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
-                Debug.Log("FIREBALL ADDED");
+                for (int i = 0; i < _projectileCount; i++)
+                {
+                    GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
+                    Debug.Log("FIREBALL ADDED");
+                }
+                _lastShootTimeFireball = Time.time;
             }
+        }
+    }
+    IEnumerator ManageOrbitalSphere()
+    {
+        while (true)
+        {
             if (IsAbilityActive("orbital_spheres"))
             {
-                if (SpheresContainer.transform.childCount < _projectileCount)
+                for (int i = 0; i < _projectileCount; i++)
                 {
-                    GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
-                    orbitalSphere.transform.SetParent(SpheresContainer.transform);
-                    Debug.Log("ORBITAL SPHERES ADDED");
+                    if (SpheresContainer.transform.childCount < _projectileCount)
+                    {
+                        GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
+                        orbitalSphere.transform.SetParent(SpheresContainer.transform);
+                        Debug.Log("ORBITAL SPHERES ADDED");
+                    }
                 }
+                yield return new WaitForSeconds(5);
+
+                ClearChildren(SpheresContainer.transform);
+
+                yield return new WaitForSeconds(5);
             }
+        }
+    }
+    private void ClearChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 
@@ -136,4 +165,9 @@ public class Player : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public int GetActiveProjectileCount()
+    {
+        return SpheresContainer.transform.childCount;
+    }
+
 }
