@@ -41,7 +41,7 @@ class OrbitalSpheres : MonoBehaviour, Ability
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
     public int ProjectileCount { get; set; } = 1;
-    public float Radius { get; } = 2.5f;
+    public float Radius { get; } = 2f;
     public float Duration { get; } = 5f;
     public string Code { get; set; } = "orbital_spheres";
     public int Id { get; } = 2;

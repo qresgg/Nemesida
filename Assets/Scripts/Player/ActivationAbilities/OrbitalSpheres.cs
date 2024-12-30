@@ -25,7 +25,7 @@ public class OrbitalSpheresActivation : MonoBehaviour
             if (activeProjectileCount > 0)
             {
                 float angleStep = 360f / activeProjectileCount;
-                currentAngle += Time.deltaTime * OrbitalSpheres.ProjectileSpeed * 15;
+                currentAngle += Time.deltaTime * OrbitalSpheres.ProjectileSpeed * 30;
 
                 for (int i = 0; i < activeProjectileCount; i++)
                 {

@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     private EnemySpawner enemySpawner;
     private float speed = 2.0f;
     private float health, maxHealth;
-    private Projectile playerProjectile;
     private XPSpawner xp_spawner;
 
 
