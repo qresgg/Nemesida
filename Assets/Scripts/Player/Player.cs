@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
     {
         Movement();
         Shoot();
-        XPLevel();
     }
 
     void Movement()
@@ -130,9 +129,9 @@ public class Player : MonoBehaviour
     public void TakeXP(float xp)
     {
         xp_points += xp;
+        XPLevel();
         UpdateXPUI();
     }
-
     private void UpdateXPUI()
     {
         player_xpBar.UpdateXP(xp_points);

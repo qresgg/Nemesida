@@ -14,6 +14,7 @@ public class AbilityUI : MonoBehaviour
     private AbilityPickerMenu _abilityPickerMenu;
     private GameManager _gameManager;
 
+    private List<Ability> _abilitiesDisplayed = new List<Ability>();
     Ability m_ability;
 
     private void Start()
@@ -21,28 +22,48 @@ public class AbilityUI : MonoBehaviour
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Debug.Log("ABILITYUI STARTED");
     }
 
     public void SetAbility(Ability ability)
     {
-        m_ability = ability;
+        if (ability == null)
+        {
+            abilitySprite.sprite = Resources.Load<Sprite>("Images/UI/AbilityIcons/OrbitalSpheres/default");
 
-        abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
+            abilityName.text = "DEF";
+            abilityDescription.text = "DEF";
+            selectButton.onClick.RemoveAllListeners();
+            selectButton.onClick.AddListener(() => CloseAbilityPickerMenu());
+        }
 
-        abilityName.text = ability.Name;
-        abilityDescription.text = ability.Description;
+        else
+        {
+            abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
 
-        selectButton.onClick.RemoveAllListeners();
-        selectButton.onClick.AddListener(() => SelectAbility(ability));
+            abilityName.text = ability.Name;
+            abilityDescription.text = ability.Description;
+
+            selectButton.onClick.RemoveAllListeners();
+            selectButton.onClick.AddListener(() => SelectAbility(ability));
+
+            Debug.Log(ability.Code);
+            //_abilitiesDisplayed.Add(ability);
+        }
     }
 
     private void SelectAbility(Ability ability)
     {
         _abilityInventory.AddAbility(ability);
-        _abilityPickerMenu.SetActive(false);
-        _gameManager.ResumeGame();
+        CloseAbilityPickerMenu();
 
         Debug.Log($"Гравець обрав здатність: {ability.Name}");
         _abilityPickerMenu.AddPickedAbility(ability.Code);
+    }
+
+    private void CloseAbilityPickerMenu()
+    {
+        _abilityPickerMenu.SetActive(false);
+        _gameManager.ResumeGame();
     }
 }

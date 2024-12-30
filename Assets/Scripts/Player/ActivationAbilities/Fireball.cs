@@ -29,8 +29,6 @@ public class FireballActivation : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        /* КОД ДЛЯ СТАНА ВЕНГИ - else { //Debug.Log("Ціль відсутня або знищена, повторний пошук"); if (target == null) { //Debug.Log("Ціль відсутня, об'єкт знищено"); Destroy(gameObject); } }*/
     }
 
     public void FindRandomOrClosestEnemy()

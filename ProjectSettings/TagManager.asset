@@ -11,6 +11,7 @@ TagManager:
   - AbilityPicker
   - Orbital
   - SpheresContainer
+  - PickupZone
   layers:
   - Default
   - TransparentFX

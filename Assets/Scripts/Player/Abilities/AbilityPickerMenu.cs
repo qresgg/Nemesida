@@ -85,6 +85,10 @@ public class AbilityPickerMenu : MonoBehaviour
                 slotIndex++;
             }
         }
+        for (int i = slotIndex; i < abilitySlots.Length; i++) 
+        { 
+            abilitySlots[i].SetAbility(null); 
+        }
 
         if (isFirstCall)
         {

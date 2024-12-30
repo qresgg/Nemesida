@@ -42,7 +42,7 @@ public class OrbitalSpheresActivation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Enemy>().TakeDamage(OrbitalSpheres.DamageCount);
         }
