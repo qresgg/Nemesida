@@ -14,9 +14,6 @@ public class AbilityUI : MonoBehaviour
     private AbilityPickerMenu _abilityPickerMenu;
     private GameManager _gameManager;
 
-    private List<Ability> _abilitiesDisplayed = new List<Ability>();
-    Ability m_ability;
-
     private void Start()
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();

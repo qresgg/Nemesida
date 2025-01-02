@@ -46,7 +46,7 @@ public class FireballActivation : MonoBehaviour
 
         if (potentialTargets.Count > 0)
         {
-            int choice = Random.Range(0, 2); // Рандомно вибираємо 0 або 1
+            int choice = Random.Range(0, 2); // rand 0 or 1
             if (choice == 0)
             {
                 target = AssignClosestTarget(potentialTargets);

@@ -10,7 +10,6 @@ public class Camera : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
