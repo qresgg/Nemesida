@@ -13,11 +13,13 @@ public class AbilityUI : MonoBehaviour
     private AbilityInventory _abilityInventory;
     private AbilityPickerMenu _abilityPickerMenu;
     private GameManager _gameManager;
+    private Player _player;
 
     private void Start()
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         Debug.Log("ABILITYUI STARTED");
     }
@@ -51,7 +53,9 @@ public class AbilityUI : MonoBehaviour
 
     private void SelectAbility(Ability ability)
     {
-        _abilityInventory.AddAbility(ability);
+        _abilityInventory.AddAbility(ability); // add to UI Inventory
+        _player.AddAbilityToActiveList(ability.Code);
+
         CloseAbilityPickerMenu();
 
         Debug.Log($"Гравець обрав здатність: {ability.Name}");

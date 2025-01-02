@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu.SetActive(false);
 
-        activeAbilities = new List<string> { _innateAbilityCode, "orbital_spheres" };
+        activeAbilities = new List<string> { _innateAbilityCode };
 
         Fireball = new Fireball();
         OrbitalSpheres = new OrbitalSpheres();
@@ -100,7 +100,17 @@ public class Player : MonoBehaviour
 
                 yield return new WaitForSeconds(5);
             }
+            else
+            {
+                yield return null;
+            }
         }
+        
+    }
+    public void AddAbilityToActiveList(string abilityCode)
+    {
+        activeAbilities.Add(abilityCode);
+        StartCoroutine(ManageOrbitalSphere());
     }
     private void ClearChildren(Transform parent)
     {
