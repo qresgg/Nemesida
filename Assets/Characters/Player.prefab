@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4964875423215971353}
   - component: {fileID: -4418772527002342040}
   - component: {fileID: 2056920077287346638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -125,15 +125,14 @@ MonoBehaviour:
   player_xpLevel: {fileID: 0}
   _abilityPickerMenu: {fileID: 0}
   _speed: 3.5
-  _projectilePrefab: {fileID: 5474094192073658127, guid: cbe9f03a43ea49f409aa90a0b27b6f5b, type: 3}
   _shootInterval: 2
   _projectileCount: 2
   _health: 100
   xp_points: 0
   xp_level: 1
   _innateAbilityCode: arcane_bolt
-  _IsOrbital: 0
-  _IsDirect: 0
+  _abilityPrefabs: []
+  SpheresContainer: {fileID: 0}
 --- !u!54 &2056920077287346638
 Rigidbody:
   m_ObjectHideFlags: 0

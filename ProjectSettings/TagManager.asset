@@ -16,11 +16,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - AbilityPicker
+  - Enemy
   - Water
   - UI
+  - Player
   - AbilityPicker
-  - 
   - 
   - 
   - 

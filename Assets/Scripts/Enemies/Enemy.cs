@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player player;
-    private EnemySpawner enemySpawner;
-    private float speed = 2.0f;
+    Player player;
+    EnemySpawner enemySpawner;
+    XPSpawner xp_spawner;
+    [SerializeField] EnemyHealthBar healthBar;
+
+    [Header("Movement")]
+    [SerializeField] private float speed = 2.0f;
+
+    [Header("Health")]
     private float health, maxHealth;
-    private XPSpawner xp_spawner;
 
+    private bool _isPlayerColliding = false;
 
+    [Header("Damage")]
     private int _playerDamage = 2;
     private int _damage = 25;
-
-    [SerializeField] EnemyHealthBar healthBar;
 
     private void Start()
     {
@@ -25,7 +30,6 @@ public class Enemy : MonoBehaviour
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         xp_spawner = GameObject.Find("XPSpawner").GetComponent<XPSpawner>();
         healthBar.UpdateHealthBar(health, maxHealth);
-
     }
     void Update()
     {
@@ -38,14 +42,35 @@ public class Enemy : MonoBehaviour
 
         transform.position += direction * speed * Time.deltaTime;
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            AttackPlayer(_damage);
+            _isPlayerColliding = true;
+            Debug.Log("COLLIDING = TRUE");
+            StartCoroutine(HitCoroutine());
         }
     }
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            Debug.Log("COLLIDING = FALSE");
+            _isPlayerColliding = false;
+        }
+    }
+
+    IEnumerator HitCoroutine()
+    {
+        while (_isPlayerColliding)
+        {
+            AttackPlayer(_damage);
+            Debug.Log("HIT DETECTED");
+            yield return new WaitForSeconds(0.5f);
+        }
+      
+    }
+
     void Die()
     {
         Destroy(this.gameObject);
