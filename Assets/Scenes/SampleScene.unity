@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -357.90723, y: 0, z: -292.0829, w: 0}
+  m_margin: {x: -332.99042, y: 0, z: -267.3292, w: -18.39752}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3830,6 +3830,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7231518349379125419, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.x
+      value: -7.607292
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231518349379125419, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.z
+      value: -8.321571
+      objectReference: {fileID: 0}
     - target: {fileID: 7335685643747646979, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3873,6 +3881,22 @@ PrefabInstance:
     - target: {fileID: 8401879898998160663, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419097951875883825, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.x
+      value: -26.891212
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419097951875883825, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.z
+      value: -29.034027
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491287690413528978, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.x
+      value: -7.3317337
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491287690413528978, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
+      propertyPath: m_margin.z
+      value: -8.368584
       objectReference: {fileID: 0}
     - target: {fileID: 8531947659299270506, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
       propertyPath: m_Layer
@@ -3985,7 +4009,7 @@ PrefabInstance:
       objectReference: {fileID: 1755786181996352466, guid: 865a7643856fbe84a8ae3589a322ffb6, type: 3}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: _abilityPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: _abilityPrefabs.Array.data[0]
@@ -3995,6 +4019,10 @@ PrefabInstance:
       propertyPath: _abilityPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 7072956498969242089, guid: fdd3470ef9973604ab63451a1de2a3e1, type: 3}
+    - target: {fileID: -4418772527002342040, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
+      propertyPath: _abilityPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3686419432675306881, guid: 0f513d75af71d5848b5e05f2dc5c221a, type: 3}
     - target: {fileID: 1859925292015146826, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_Name
       value: Player

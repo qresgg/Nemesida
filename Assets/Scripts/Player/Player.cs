@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private float _shootInterval = 2.0f;
     [SerializeField] private int _projectileCount;
-    private float _lastShootTimeFireball;
+    private float _lastFireball;
+    private float _lastWhirligig;
 
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
 
     private Fireball Fireball;
     private OrbitalSpheres OrbitalSpheres;
+    private Whirligig Whirligig;
 
     [Header("Container")]
     [SerializeField] public GameObject SpheresContainer;
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
 
         Fireball = new Fireball();
         OrbitalSpheres = new OrbitalSpheres();
+        Whirligig = new Whirligig();
 
         StartCoroutine(ManageOrbitalSphere());
     }
@@ -66,19 +69,34 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        if (Time.time > _lastShootTimeFireball + _shootInterval)
+        IsAbilityChecker();
+    }
+    void IsAbilityChecker()
+    {
+        if (IsAbilityActive("fireball"))
         {
-            if (IsAbilityActive("fireball"))
+            if (Time.time > _lastFireball + Fireball.Cooldown)
             {
                 for (int i = 0; i < _projectileCount; i++)
                 {
                     GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
                     Debug.Log("FIREBALL ADDED");
                 }
-                _lastShootTimeFireball = Time.time;
+                _lastFireball = Time.time;
+            }
+        }
+        if (IsAbilityActive("whirligig"))
+        {
+            if (Time.time > _lastWhirligig + Whirligig.Cooldown)
+            {
+                GameObject whirligig = Instantiate(_abilityPrefabs[2], transform.position, _abilityPrefabs[2].transform.rotation);
+                Debug.Log("WHIRLIGIG ADDED");
+                whirligig.transform.SetParent(this.transform);
+                _lastWhirligig = Time.time;
             }
         }
     }
+
     IEnumerator ManageOrbitalSphere()
     {
         while (true)
