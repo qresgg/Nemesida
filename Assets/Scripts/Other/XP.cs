@@ -20,8 +20,11 @@ public class XP : MonoBehaviour
 
     void Update()
     {
-        Vector3 direction = (_player.transform.position - transform.position).normalized; 
-        this.transform.position += direction * 5 * Time.deltaTime;
+        if (_isAttractive)
+        {
+            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            this.transform.position += direction * 5 * Time.deltaTime;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
