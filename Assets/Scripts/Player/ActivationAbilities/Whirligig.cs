@@ -6,7 +6,11 @@ public class WhirligigActivation : MonoBehaviour
 {
     Whirligig Whirligig;
     Player _player;
-    float recoveryTime = 0.6f;
+
+    private bool isActive = true;
+
+    private HashSet<Collider> enemiesInTrigger = new HashSet<Collider>();
+    private Dictionary<Collider, float> enemyLastHitTime = new Dictionary<Collider, float>();
 
     void Start()
     {
@@ -20,25 +24,71 @@ public class WhirligigActivation : MonoBehaviour
     private void Update()
     {
         transform.position = _player.transform.position;
+
+        if (isActive)
+        {
+            List<Collider> enemiesToDamage = new List<Collider>();
+
+            foreach (var enemyCollider in enemiesInTrigger)
+            {
+                if (enemyCollider != null && enemyCollider.CompareTag("Enemy"))
+                {
+                    if (!enemyLastHitTime.ContainsKey(enemyCollider) || Time.time - enemyLastHitTime[enemyCollider] >= Whirligig.Cooldown)
+                    {
+                        enemiesToDamage.Add(enemyCollider);
+                    }
+                }
+            }
+
+            foreach (var enemyCollider in enemiesToDamage)
+            {
+                Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(Whirligig.DamageCount);
+                    enemy.ApplyImpulseAndRecover(Whirligig.PushForce, Whirligig.RecoveryTime, transform.position);
+                    enemyLastHitTime[enemyCollider] = Time.time;
+                }
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(Whirligig.DamageCount);
-                enemy.ApplyImpulseAndRecover(Whirligig.PushForce, recoveryTime, transform.position);
-            }
+            enemiesInTrigger.Add(other);
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            enemiesInTrigger.Remove(other);
+            enemyLastHitTime.Remove(other);
+        }
+    }
+
+    public int GetDamage()
+    {
+        return Whirligig.DamageCount;
+    }
+
+    public float GetRecoveryTime()
+    {
+        return Whirligig.RecoveryTime;
+    }
+
+    public float GetPushForce()
+    {
+        return Whirligig.PushForce;
     }
 
     IEnumerator DestroyCoroutine()
     {
         yield return new WaitForSeconds(Whirligig.Duration);
+        isActive = false;
         Destroy(gameObject);
     }
 }
-

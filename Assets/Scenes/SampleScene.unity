@@ -774,7 +774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 382171331}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Spheres
   m_TagString: SpheresContainer
   m_Icon: {fileID: 0}
@@ -2778,7 +2778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1652307365}
   - component: {fileID: 1652307366}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: PickupZone
   m_TagString: PickupZone
   m_Icon: {fileID: 0}
@@ -3937,7 +3937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859925292015146826, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4964875423215971353, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       propertyPath: m_IsTrigger

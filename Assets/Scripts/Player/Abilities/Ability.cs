@@ -57,7 +57,8 @@ class Whirligig : MonoBehaviour, Ability
     public int ProjectileSpeed { get; } = 0;
     public float Radius { get; } = 3f;
     public float Duration { get; } = 0.8f;
-    public float PushForce { get; } = 3f;
+    public float PushForce { get; } = 15f;
+    public float RecoveryTime { get;  } = 0.3f;
     public string Code { get; set; } = "whirligig";
     public int Id { get; } = 3;
     public string IconPath { get; } = "Images/UI/AbilityIcons/Whirligig";

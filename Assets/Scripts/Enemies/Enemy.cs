@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     EnemySpawner enemySpawner;
     XPSpawner xp_spawner;
     [SerializeField] EnemyHealthBar healthBar;
+    Whirligig Whirligig;
 
     [Header("Movement")]
     [SerializeField] private float speed = 2.0f;
@@ -34,6 +35,8 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         healthBar.UpdateHealthBar(health, maxHealth);
+
+        Whirligig = new Whirligig();
     }
 
     void Update()
@@ -56,13 +59,13 @@ public class Enemy : MonoBehaviour
     {
         Vector3 pushDirection = transform.position - position;
         rb.AddForce(pushDirection.normalized * pushForce, ForceMode.Impulse);
+        isPushed = true;
 
         StartCoroutine(RecoverMovement(recoveryTime));
     }
 
     private IEnumerator RecoverMovement(float recoveryTime)
     {
-        isPushed = true;
         yield return new WaitForSeconds(recoveryTime);
 
         rb.velocity = Vector3.zero;

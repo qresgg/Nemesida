@@ -12,6 +12,7 @@ TagManager:
   - Orbital
   - SpheresContainer
   - PickupZone
+  - Whirligig
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - Enemy
   - Water
   - UI
-  - Player
+  - Whirligig
   - AbilityPicker
-  - 
+  - Player
   - 
   - 
   - 
