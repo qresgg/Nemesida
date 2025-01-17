@@ -12,19 +12,17 @@ public class AbilityInventory : MonoBehaviour
 
     Player _player;
     GameManager _gameManager;
+    AbilityManager _abilityManager;
 
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _abilityManager = GameObject.Find("AbilityManager").GetComponent<AbilityManager>();
 
+        abilitiesList = _abilityManager.GetAbilityList();
         InnateAbilityBookSlot();
     }
-    public void GetOBJ(List<Ability> abilities)
-    {
-        abilitiesList = abilities;
-    }
-
     public void AddAbility(Ability ability)
     {
         for (int i = 1; i < slots.Length; i++)
@@ -57,10 +55,12 @@ public class AbilityInventory : MonoBehaviour
 
     private void InnateAbilityBookSlot()
     {
+        Debug.Log("IA BOOKSLOT");
         _innateAbility = _gameManager.GetInnateAbilityCode();
         Sprite sprite = GetSpriteByAbilityCode(_innateAbility);
         if (sprite != null)
         {
+            Debug.Log("SPRITE 0");
             slots[0].sprite = sprite;
         }
     }

@@ -7,6 +7,7 @@ public class AbilityManager : MonoBehaviour
 {
     public static AbilityManager Instance { get; private set; }
     private List<Ability> allAbilities = new List<Ability>();
+    private List<Ability> abilitiesFiltered = new List<Ability>();
     [SerializeField] private AbilityPickerMenu _abilityPickerMenu;
 
     private string _innateAbility;
@@ -22,7 +23,6 @@ public class AbilityManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAbilities();
-            PostOBJ();
         }
         else
         {
@@ -36,7 +36,6 @@ public class AbilityManager : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         _innateAbility = _gameManager.GetInnateAbilityCode();
-        _abilityInventory.GetOBJ(allAbilities);
     }
     private void LoadAbilities()
     {
@@ -44,14 +43,24 @@ public class AbilityManager : MonoBehaviour
         allAbilities.Add(new OrbitalSpheres());
         allAbilities.Add(new Whirligig());
     }
-
+    public List<Ability> GetAbilityList()
+    {
+        return allAbilities;
+    }
+    public List<Ability> GetAbilityListFiltered()
+    {
+        abilitiesFiltered = new List<Ability>(allAbilities);
+        abilitiesFiltered.RemoveAll(ability => ability.Code == _innateAbility);
+        return abilitiesFiltered;
+    }
     private void PostOBJ()
     {
-        List<Ability> abilities = allAbilities;
-        abilities.RemoveAll(ability => ability.Code == _innateAbility);
+        abilitiesFiltered = new List<Ability>(allAbilities);
+
+        abilitiesFiltered.RemoveAll(ability => ability.Code == _innateAbility);
         if (_abilityPickerMenu != null)
         {
-            _abilityPickerMenu.GetOBJ(abilities);
+            _abilityPickerMenu.GetOBJ(abilitiesFiltered);
         }
     }
 }

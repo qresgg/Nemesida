@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638705936327215054
+  platformSettingsDirtyTick: 638726740058318396
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: eb598128404a73c42998fa96458bf2d2
+    spriteID: dc91eb351ce47d84cb53ae7a1ac37ca1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: OrbitalSpheres
+  - name: OrbitalSpheres_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: a57b1ddcf5c304e419f75024b09da3c2
+    spriteID: 5405cd8e3bcd3e74b8cf884a2c529888
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,7 +178,7 @@ ScriptedImporter:
         y: 0
         width: 128
         height: 128
-      spriteId: eb598128404a73c42998fa96458bf2d2
+      spriteId: dc91eb351ce47d84cb53ae7a1ac37ca1
     linkedCells: []
     parentIndex: -1
   platformSettings:

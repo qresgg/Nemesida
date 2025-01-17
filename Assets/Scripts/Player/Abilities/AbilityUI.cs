@@ -29,7 +29,7 @@ public class AbilityUI : MonoBehaviour
     {
         if (ability == null)
         {
-            abilitySprite.sprite = Resources.Load<Sprite>("Images/UI/AbilityIcons/OrbitalSpheres/default");
+            abilitySprite.sprite = Resources.Load<Sprite>("Images/UI/AbilityIcons/default");
 
             abilityName.text = "DEF";
             abilityDescription.text = "DEF";
@@ -67,5 +67,9 @@ public class AbilityUI : MonoBehaviour
     {
         _abilityPickerMenu.SetActive(false);
         _gameManager.ResumeGame();
+    }
+    private void DefaultSprite()
+    {
+        this.abilitySprite.sprite = Resources.Load<Sprite>("Images/UI/AbilityIcons/default");
     }
 }

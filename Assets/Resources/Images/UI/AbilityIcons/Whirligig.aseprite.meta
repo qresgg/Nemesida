@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638708412971014393
+  platformSettingsDirtyTick: 638726740184189623
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: ac8efbefdd7e21e4886646d853c9f576
+    spriteID: 8a95efefa6aabb34eafa68c593bdade8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Whirligig
+  - name: Whirligig_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: d455764dccf4b184a809bf1d0aba5660
+    spriteID: 46882b0ae8ce24d4584b7c8d5cde3269
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,7 +178,7 @@ ScriptedImporter:
         y: 0
         width: 128
         height: 128
-      spriteId: ac8efbefdd7e21e4886646d853c9f576
+      spriteId: 8a95efefa6aabb34eafa68c593bdade8
     linkedCells: []
     parentIndex: -1
   platformSettings:
