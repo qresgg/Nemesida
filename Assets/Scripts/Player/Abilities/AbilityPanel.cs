@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,19 +10,15 @@ public class AbilityInventory : MonoBehaviour
     private List<Ability> abilitiesList = new List<Ability>();
     private string _innateAbility;
 
-    Player player;
+    Player _player;
+    GameManager _gameManager;
 
-    private void Start()
+    void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        _innateAbility = player._innateAbilityCode;
-
-            Sprite sprite = GetSpriteByAbilityCode(_innateAbility); 
-            if (sprite != null) 
-            { 
-                slots[0].sprite = sprite; 
-            } 
+        InnateAbilityBookSlot();
     }
     public void GetOBJ(List<Ability> abilities)
     {
@@ -48,12 +46,22 @@ public class AbilityInventory : MonoBehaviour
     {
         foreach (Ability ability in abilitiesList)
         {
-            if(ability.Code == abilityCode)
+            if (ability.Code == abilityCode)
             {
                 Debug.Log(ability.IconPath);
                 return Resources.Load<Sprite>(ability.IconPath);
             }
         }
         return null;
+    }
+
+    private void InnateAbilityBookSlot()
+    {
+        _innateAbility = _gameManager.GetInnateAbilityCode();
+        Sprite sprite = GetSpriteByAbilityCode(_innateAbility);
+        if (sprite != null)
+        {
+            slots[0].sprite = sprite;
+        }
     }
 }

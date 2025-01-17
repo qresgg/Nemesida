@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
-    [SerializeField] public string _innateAbilityCode = "fireball";
 
     [Header("Abilities")]
     public GameObject[] _abilityPrefabs;
@@ -45,12 +45,12 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu.SetActive(false);
 
+        string _innateAbilityCode = _gameManager.GetInnateAbilityCode();
         activeAbilities = new List<string> { _innateAbilityCode };
 
         Fireball = new Fireball();
         OrbitalSpheres = new OrbitalSpheres();
         Whirligig = new Whirligig();
-
         StartCoroutine(ManageOrbitalSphere());
     }
 

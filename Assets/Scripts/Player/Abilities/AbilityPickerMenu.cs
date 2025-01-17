@@ -24,24 +24,10 @@ public class AbilityPickerMenu : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        _innateAbility = _player._innateAbilityCode;
+        _innateAbility = _gameManager.GetInnateAbilityCode();
 
+        ShuffleAbilities();
         DisplayAbilities();
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            ShuffleAbilities();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void GetOBJ(List<Ability> m_abilities)
@@ -74,8 +60,6 @@ public class AbilityPickerMenu : MonoBehaviour
 
     public void DisplayAbilities()
     {
-        abilities.RemoveAll(ability => ability.Code == _innateAbility);
-
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {

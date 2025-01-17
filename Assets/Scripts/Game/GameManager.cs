@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private string _innateAbilityCode;
     public void PauseGame()
     {
         Debug.Log("Game paused.");
@@ -12,5 +13,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game resumed.");
         Time.timeScale = 1;
+    }
+    
+    public string GetInnateAbilityCode()
+    {
+        return _innateAbilityCode;
     }
 }
