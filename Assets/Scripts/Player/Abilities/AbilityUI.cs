@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class AbilityUI : MonoBehaviour
 {
+    [SerializeField] private TMP_Text IsNewAbility;
     [SerializeField] private Image abilitySprite;
     [SerializeField] private TMP_Text abilityName;
     [SerializeField] private TMP_Text abilityDescription;
@@ -35,9 +36,9 @@ public class AbilityUI : MonoBehaviour
             selectButton.onClick.RemoveAllListeners();
             selectButton.onClick.AddListener(() => CloseAbilityPickerMenu());
         }
-
         else
         {
+            IsNewAbility.text = ability.IsNewAbility ? "new ability!" : $"level 1";
             abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
 
             abilityName.text = ability.Name;

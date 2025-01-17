@@ -4,6 +4,7 @@ using System;
 public interface Ability
 {
     string Name { get; } 
+    bool IsNewAbility { get; }
     string DamageType { get; }
     int DamageCount { get; }
     string Description { get; }
@@ -20,6 +21,7 @@ public interface Ability
 class Fireball : MonoBehaviour, Ability
 {
     public string Name { get; } = "Fireball";
+    public bool IsNewAbility { get; } = true;
     public string DamageType { get; } = "Magical";
     public int DamageCount { get; } = 25;
     public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
@@ -35,6 +37,7 @@ class Fireball : MonoBehaviour, Ability
 class OrbitalSpheres : MonoBehaviour, Ability
 {
     public string Name { get; } = "Orbital Spheres";
+    public bool IsNewAbility { get; } = true;
     public string DamageType { get; } = "Magical";
     public int DamageCount { get; } = 15;
     public string Description { get; } = "SMysterious spheres orbit around the player, causing damage to any enemies that come into contact with them.";
@@ -50,6 +53,7 @@ class OrbitalSpheres : MonoBehaviour, Ability
 class Whirligig : MonoBehaviour, Ability
 {
     public string Name { get; } = "Whirligig";
+    public bool IsNewAbility { get; } = true;
     public string DamageType { get; } = "Physical";
     public int DamageCount { get; } = 50;
     public string Description { get; } = "The player surrounds themselves with a spinning sawblade, which damages enemies and pushes them away upon contact.";
