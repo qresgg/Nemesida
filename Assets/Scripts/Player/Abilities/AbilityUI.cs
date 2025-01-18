@@ -29,7 +29,7 @@ public class AbilityUI : MonoBehaviour
     {
         if (ability == null)
         {
-            abilitySprite.sprite = Resources.Load<Sprite>("Images/UI/AbilityIcons/default");
+            DefaultSprite();
 
             abilityName.text = "DEF";
             abilityDescription.text = "DEF";
@@ -38,7 +38,7 @@ public class AbilityUI : MonoBehaviour
         }
         else
         {
-            IsNewAbility.text = ability.IsNewAbility ? "new ability!" : $"level 1";
+            IsNewAbility.text = ability.IsNewAbility ? "new ability!" : $"Level: {ability.AbilityLevel.Level}";
             abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
 
             abilityName.text = ability.Name;
@@ -56,11 +56,15 @@ public class AbilityUI : MonoBehaviour
     {
         _abilityInventory.AddAbility(ability); // add to UI Inventory
         _player.AddAbilityToActiveList(ability.Code);
+        ability.UpgradeAbility();
 
         CloseAbilityPickerMenu();
 
         Debug.Log($"Гравець обрав здатність: {ability.Name}");
-        _abilityPickerMenu.AddPickedAbility(ability.Code);
+        if(ability.AbilityLevel.Level <= 5)
+        {
+            _abilityPickerMenu.AddPickedAbility(ability.Code);
+        }
     }
 
     private void CloseAbilityPickerMenu()
