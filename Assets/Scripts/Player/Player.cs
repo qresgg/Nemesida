@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
                 for (int i = 0; i < _projectileCount; i++)
                 {
                     GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
-                    Debug.Log("FIREBALL ADDED");
+                    //Debug.Log("FIREBALL ADDED");
                 }
                 _lastFireball = Time.time;
             }
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
             if (Time.time > _lastWhirligig + Whirligig.Cooldown)
             {
                 GameObject whirligig = Instantiate(_abilityPrefabs[2], transform.position, _abilityPrefabs[2].transform.rotation);
-                Debug.Log("WHIRLIGIG ADDED");
+                //Debug.Log("WHIRLIGIG ADDED");
                 whirligig.transform.SetParent(this.transform);
                 _lastWhirligig = Time.time;
             }
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
                     {
                         GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
                         orbitalSphere.transform.SetParent(SpheresContainer.transform);
-                        Debug.Log("ORBITAL SPHERES ADDED");
+                        //Debug.Log("ORBITAL SPHERES ADDED");
                     }
                 }
                 yield return new WaitForSeconds(5);

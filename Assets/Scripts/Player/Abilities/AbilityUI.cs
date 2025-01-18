@@ -42,7 +42,7 @@ public class AbilityUI : MonoBehaviour
             abilitySprite.sprite = Resources.Load<Sprite>(ability.IconPath);
 
             abilityName.text = ability.Name;
-            abilityDescription.text = ability.Description;
+            abilityDescription.text = ability.Info;
 
             selectButton.onClick.RemoveAllListeners();
             selectButton.onClick.AddListener(() => SelectAbility(ability));
