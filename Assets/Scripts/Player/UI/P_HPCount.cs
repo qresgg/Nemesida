@@ -6,21 +6,19 @@ using TMPro;
 public class P_HPCount : MonoBehaviour
 {
     [SerializeField] TMP_Text m_healthCount;
-    P_HPBar player_HPBar;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] TMP_Text m_healthRegen;
+    P_HPController _hpController;
+
+    float maxHealth = 0;
+    private void Start()
     {
-        player_HPBar = GameObject.Find("P_HPBar").GetComponent<P_HPBar>();
+        _hpController = GameObject.Find("HP").GetComponent<P_HPController>();
+        maxHealth = _hpController.GetMaxHP();
+
+        m_healthCount.text = maxHealth + " / " + maxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void UpdateHealth(float health)
     {
-        m_healthCount.text = health.ToString(); 
+        m_healthCount.text = health.ToString() + " / " + maxHealth; 
     }
 }

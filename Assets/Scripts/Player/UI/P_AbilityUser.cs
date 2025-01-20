@@ -87,7 +87,7 @@ public class P_AbilityUser : MonoBehaviour
                     }
                 }
                 abilitiesDictionary.TryGetValue("orbital_spheres", out int orbitalSpheresID);
-                _abilityUICooldowns.SetCooldown(orbitalSpheresID, OrbitalSpheres.Cooldown, "orbital_spheres", OrbitalSpheres.Duration);
+                _abilityUICooldowns.SetCooldown(orbitalSpheresID, OrbitalSpheres.Cooldown, "orbital_spheres");
 
                 _orbitalSpheresDurationCounter = OrbitalSpheres.Duration;
             }

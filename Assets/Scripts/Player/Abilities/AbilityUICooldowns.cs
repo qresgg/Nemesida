@@ -31,7 +31,7 @@ public class AbilityUICooldowns : MonoBehaviour
         }
     }
 
-    public void SetCooldown(int index, float cooldownTime, string code, float durationTime = 0f)
+    public void SetCooldown(int index, float cooldownTime, string code)
     {
         if (index >= 0 && index < cooldownSlot.Length)
         {
@@ -40,7 +40,7 @@ public class AbilityUICooldowns : MonoBehaviour
         }
     }
 
-    private IEnumerator CooldownTimer(int index, float cooldownTime, string code, float durationTime = 0f)
+    private IEnumerator CooldownTimer(int index, float cooldownTime, string code)
     {
         if(code != "orbital_spheres")
         {
@@ -52,13 +52,13 @@ public class AbilityUICooldowns : MonoBehaviour
                 yield return null;
             }
         } else {
-            float remainingTimeOS = cooldownTime;
+            float remainingTime = cooldownTime;
             cooldownSlot[index].enabled = false;
             yield return new WaitForSeconds(cooldownTime);
-            while (remainingTimeOS > 0)
+            while (remainingTime > 0)
             {
-                remainingTimeOS -= Time.deltaTime;
-                cooldownText[index].text = remainingTimeOS.ToString("F1") + "s";
+                remainingTime -= Time.deltaTime;
+                cooldownText[index].text = remainingTime.ToString("F1") + "s";
                 cooldownSlot[index].enabled = true;
                 yield return null;
             }

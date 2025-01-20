@@ -5,8 +5,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] P_HPCount player_healthCount;
-    [SerializeField] P_HPBar player_healthBar;
+    [SerializeField] P_HPController _hpController;
     [SerializeField] P_XPBar player_xpBar;
     [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
@@ -27,7 +26,9 @@ public class Player : MonoBehaviour
     float _orbitalSpheresCooldownCounter;
 
     [Header("Stats")]
-    [SerializeField] private float _health = 100f;
+    [SerializeField] private float _maxHealth = 0;
+    [SerializeField] private float _healthRegeneration = 0.1f;
+    [SerializeField] private float _currentHealth = 0;
     [SerializeField] private int xp_points = 0;
 
     private Fireball Fireball;
@@ -44,6 +45,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _hpController = GameObject.Find("HP").GetComponent<P_HPController>();
+
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        HealthManager();
         Movement();
         Shoot();
     }
@@ -66,28 +71,16 @@ public class Player : MonoBehaviour
         Vector3 newPosition = _rb.position + _input * _speed * Time.fixedDeltaTime;
         _rb.MovePosition(newPosition);
     }
-
+    void HealthManager()
+    {
+        _currentHealth = _hpController.GetCurrentHP();
+        _maxHealth = _hpController.GetMaxHP();
+    }
     void Shoot()
     {
         player_abilityUser.ManageFireballActivator();
         player_abilityUser.ManageOrbitalSphereActivator();
         player_abilityUser.ManageWhirligigActivator();
-    }
-
-    public void TakeDamage(float damage)
-    {
-        _health -= damage;
-        UpdateHealthUI();
-        if (_health <= 0)
-        {
-            Death();
-        }
-    }
-
-    private void UpdateHealthUI()
-    {
-        player_healthCount.UpdateHealth(_health);
-        player_healthBar.UpdateHealth(_health);
     }
     public int GetXP()
     {
