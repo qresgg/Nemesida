@@ -83,7 +83,7 @@ class OrbitalSpheres : ScriptableObject, Ability
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
     public int DamageCount { get; } = 15;
-    public string Description { get; } = "SMysterious spheres orbit around the player, causing damage to any enemies that come into contact with them.";
+    public string Description { get; } = "Orbital spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
     public int ProjectileCount { get; set; } = 1;

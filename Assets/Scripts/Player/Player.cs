@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] P_XPBar player_xpBar;
     [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
+
     GameManager _gameManager;
+    AbilityUICooldowns _abilityUICooldowns;
 
     [Header("Movement")]
     private Vector3 _input;
@@ -18,40 +20,39 @@ public class Player : MonoBehaviour
     private Rigidbody _rb;
 
     [Header("Shooting")]
-    [SerializeField] private float _shootInterval = 2.0f;
     [SerializeField] private int _projectileCount;
     private float _lastFireball;
     private float _lastWhirligig;
+    float _orbitalSpheresDurationCounter;
+    float _orbitalSpheresCooldownCounter;
 
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
     [SerializeField] private float xp_points = 0f;
     [SerializeField] private int xp_level = 1;
 
-    [Header("Abilities")]
-    public GameObject[] _abilityPrefabs;
-    private List<string> activeAbilities;
-
     private Fireball Fireball;
     private OrbitalSpheres OrbitalSpheres;
     private Whirligig Whirligig;
 
+    public bool _isEnemyNearby = false;
+
     [Header("Container")]
     [SerializeField] public GameObject SpheresContainer;
+
+    P_AbilityUser player_abilityUser;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
+        player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
         _abilityPickerMenu.SetActive(false);
-
-        string _innateAbilityCode = _gameManager.GetInnateAbilityCode();
-        activeAbilities = new List<string> { _innateAbilityCode };
 
         Fireball = new Fireball();
         OrbitalSpheres = new OrbitalSpheres();
         Whirligig = new Whirligig();
-        StartCoroutine(ManageOrbitalSphere());
     }
 
     void FixedUpdate()
@@ -69,73 +70,9 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        IsAbilityChecker();
-    }
-    void IsAbilityChecker()
-    {
-        if (IsAbilityActive("fireball"))
-        {
-            if (Time.time > _lastFireball + Fireball.Cooldown)
-            {
-                for (int i = 0; i < _projectileCount; i++)
-                {
-                    GameObject fireball = Instantiate(_abilityPrefabs[0], transform.position, Quaternion.identity);
-                    //Debug.Log("FIREBALL ADDED");
-                }
-                _lastFireball = Time.time;
-            }
-        }
-        if (IsAbilityActive("whirligig"))
-        {
-            if (Time.time > _lastWhirligig + Whirligig.Cooldown)
-            {
-                GameObject whirligig = Instantiate(_abilityPrefabs[2], transform.position, _abilityPrefabs[2].transform.rotation);
-                //Debug.Log("WHIRLIGIG ADDED");
-                whirligig.transform.SetParent(this.transform);
-                _lastWhirligig = Time.time;
-            }
-        }
-    }
-
-    IEnumerator ManageOrbitalSphere()
-    {
-        while (true)
-        {
-            if (IsAbilityActive("orbital_spheres"))
-            {
-                for (int i = 0; i < _projectileCount; i++)
-                {
-                    if (SpheresContainer.transform.childCount < _projectileCount)
-                    {
-                        GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.position, Quaternion.identity);
-                        orbitalSphere.transform.SetParent(SpheresContainer.transform);
-                        //Debug.Log("ORBITAL SPHERES ADDED");
-                    }
-                }
-                yield return new WaitForSeconds(5);
-
-                ClearChildren(SpheresContainer.transform);
-
-                yield return new WaitForSeconds(5);
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-        
-    }
-    public void AddAbilityToActiveList(string abilityCode)
-    {
-        activeAbilities.Add(abilityCode);
-        StartCoroutine(ManageOrbitalSphere());
-    }
-    private void ClearChildren(Transform parent)
-    {
-        foreach (Transform child in parent)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+        player_abilityUser.ManageFireballActivator();
+        player_abilityUser.ManageOrbitalSphereActivator();
+        player_abilityUser.ManageWhirligigActivator();
     }
 
     public void TakeDamage(float damage)
@@ -181,11 +118,6 @@ public class Player : MonoBehaviour
     {
         _abilityPickerMenu.SetActive(true);
         _gameManager.PauseGame();
-    }
-
-    private bool IsAbilityActive(string abilityName)
-    {
-        return activeAbilities.Contains(abilityName);
     }
 
     public void Death()

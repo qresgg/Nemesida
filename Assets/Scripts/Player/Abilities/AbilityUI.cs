@@ -15,11 +15,14 @@ public class AbilityUI : MonoBehaviour
     private AbilityPickerMenu _abilityPickerMenu;
     private GameManager _gameManager;
     private Player _player;
+    private P_AbilityUser player_abilityUser;
 
     private void Start()
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
+        player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
+
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         Debug.Log("ABILITYUI STARTED");
@@ -55,8 +58,8 @@ public class AbilityUI : MonoBehaviour
     private void SelectAbility(Ability ability)
     {
         _abilityInventory.AddAbility(ability); // add to UI Inventory
-        _player.AddAbilityToActiveList(ability.Code);
-        ability.UpgradeAbility();
+        player_abilityUser.AddAbilityToActiveList(ability.Code); // add to player AbilityUser
+        ability.UpgradeAbility(); // upgrade level
 
         CloseAbilityPickerMenu();
 
