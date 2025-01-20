@@ -91,6 +91,7 @@ public class AbilityPickerMenu : MonoBehaviour
         if (arg)
         {
             DisplayAbilities();
+            ShuffleAbilities();
         }
     }
 }

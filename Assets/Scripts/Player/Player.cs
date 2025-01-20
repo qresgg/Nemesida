@@ -28,8 +28,7 @@ public class Player : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float _health = 100f;
-    [SerializeField] private float xp_points = 0f;
-    [SerializeField] private int xp_level = 1;
+    [SerializeField] private int xp_points = 0;
 
     private Fireball Fireball;
     private OrbitalSpheres OrbitalSpheres;
@@ -90,34 +89,17 @@ public class Player : MonoBehaviour
         player_healthCount.UpdateHealth(_health);
         player_healthBar.UpdateHealth(_health);
     }
-
-    public void TakeXP(float xp)
+    public int GetXP()
     {
-        xp_points += xp;
-        XPLevel();
-        UpdateXPUI();
+        return xp_points;
     }
-    private void UpdateXPUI()
+    public void TakeXP(int takenXP)
     {
-        player_xpBar.UpdateXP(xp_points);
-        player_xpLevel.UpdateXPLevel(xp_level);
-    }
-
-    private void XPLevel()
-    {
+        xp_points += takenXP;
         if (xp_points >= 100)
         {
-            xp_points -= 100;
-            xp_level++;
-            Debug.Log("Ability picker menu opened.");
             OpenAbilityPickerMenu();
         }
-    }
-
-    private void OpenAbilityPickerMenu()
-    {
-        _abilityPickerMenu.SetActive(true);
-        _gameManager.PauseGame();
     }
 
     public void Death()
@@ -128,5 +110,9 @@ public class Player : MonoBehaviour
     {
         return SpheresContainer.transform.childCount;
     }
-
+    public void OpenAbilityPickerMenu()
+    {
+        _abilityPickerMenu.SetActive(true);
+        _gameManager.PauseGame();
+    }
 }
