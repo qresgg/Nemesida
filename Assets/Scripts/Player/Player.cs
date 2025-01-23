@@ -6,8 +6,6 @@ using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] P_HPController _hpController;
-    [SerializeField] P_XPBar player_xpBar;
-    [SerializeField] P_XPLevel player_xpLevel;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
 
     GameManager _gameManager;

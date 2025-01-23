@@ -48,7 +48,8 @@ public class AbilityUICooldowns : MonoBehaviour
             while (remainingTime > 0)
             {
                 remainingTime -= Time.deltaTime;
-                cooldownText[index].text = remainingTime.ToString("F1") + "s";
+                cooldownText[index].text = remainingTime + "s";
+                //cooldownText[index].text = Mathf.Ceil(remainingTime) + "s";
                 yield return null;
             }
         } else {
@@ -58,7 +59,8 @@ public class AbilityUICooldowns : MonoBehaviour
             while (remainingTime > 0)
             {
                 remainingTime -= Time.deltaTime;
-                cooldownText[index].text = remainingTime.ToString("F1") + "s";
+                cooldownText[index].text = remainingTime + "s";
+                //cooldownText[index].text = Mathf.Ceil(remainingTime) + "s";
                 cooldownSlot[index].enabled = true;
                 yield return null;
             }

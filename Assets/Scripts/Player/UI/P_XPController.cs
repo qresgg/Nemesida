@@ -1,11 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class P_XPBar : MonoBehaviour
+public class P_XPController : MonoBehaviour
 {
+    [SerializeField] TMP_Text m_XPLevel;
     [SerializeField] Slider xpSlider;
-    P_XPLevel xpLevel;
+
     Player _player;
     GameManager _gameManager;
     AbilityPickerMenu _abilityPickerMenu;
@@ -18,8 +21,6 @@ public class P_XPBar : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
-
-        xpLevel = GameObject.Find("P_XPLVL").GetComponent<P_XPLevel>();
     }
 
     void Update()
@@ -32,6 +33,8 @@ public class P_XPBar : MonoBehaviour
     {
         totalXP = _player.GetXP();
         xpSlider.value = (totalXP % 100) / 100f;
+
+        m_XPLevel.text = xp_level.ToString();
     }
 
     void XPChecker()
@@ -41,9 +44,5 @@ public class P_XPBar : MonoBehaviour
         {
             xp_level = new_level;
         }
-    }
-    public int GetXPLevel()
-    {
-        return xp_level;
     }
 }
