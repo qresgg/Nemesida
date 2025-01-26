@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; set; }
+
     [SerializeField] private string _innateAbilityCode;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
     public bool _abilityPickerMenuOpened = false;
 
     private Queue<System.Action> abilityPickerQueue = new Queue<Action>();
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     private void Start()
     {

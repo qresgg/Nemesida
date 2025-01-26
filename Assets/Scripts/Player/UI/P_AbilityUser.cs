@@ -9,7 +9,6 @@ public class P_AbilityUser : MonoBehaviour
     private Whirligig Whirligig;
 
     AbilityUICooldowns _abilityUICooldowns;
-    GameManager _gameManager;
 
     [Header("Shooting")]
     [SerializeField] private int _projectileCount;
@@ -37,8 +36,7 @@ public class P_AbilityUser : MonoBehaviour
 
 
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        string _innateAbilityCode = _gameManager.GetInnateAbilityCode();
+        string _innateAbilityCode = GameManager.Instance.GetInnateAbilityCode();
         activeAbilities = new List<string> { _innateAbilityCode };
     }
 

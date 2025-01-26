@@ -13,7 +13,6 @@ public class AbilityUI : MonoBehaviour
 
     private AbilityInventory _abilityInventory;
     private AbilityPickerMenu _abilityPickerMenu;
-    private GameManager _gameManager;
     private Player _player;
     private P_AbilityUser player_abilityUser;
 
@@ -24,7 +23,6 @@ public class AbilityUI : MonoBehaviour
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         Debug.Log("ABILITYUI STARTED");
     }
 
@@ -38,7 +36,7 @@ public class AbilityUI : MonoBehaviour
             abilityDescription.text = "DEF";
             IsNewAbility.text = "DEF";
             selectButton.onClick.RemoveAllListeners();
-            selectButton.onClick.AddListener(() => _gameManager.CloseAbilityPickerMenu());
+            selectButton.onClick.AddListener(() => GameManager.Instance.CloseAbilityPickerMenu());
         }
         else
         {
@@ -62,7 +60,7 @@ public class AbilityUI : MonoBehaviour
         player_abilityUser.AddAbilityToActiveList(ability.Code); // add to player AbilityUser
         ability.UpgradeAbility(); // upgrade level
 
-        _gameManager.CloseAbilityPickerMenu();
+        GameManager.Instance.CloseAbilityPickerMenu();
     }
     private void DefaultSprite()
     {

@@ -10,7 +10,6 @@ public class P_XPController : MonoBehaviour
     [SerializeField] Slider xpSlider;
 
     Player _player;
-    GameManager _gameManager;
     AbilityPickerMenu _abilityPickerMenu;
 
     [Header("XP Settings")]
@@ -21,7 +20,6 @@ public class P_XPController : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -46,7 +44,7 @@ public class P_XPController : MonoBehaviour
             xp_level = new_level;
             for (int i = 0; i < difference; i++)
             {
-                _gameManager.LevelUp();
+                GameManager.Instance.LevelUp();
             }
         }
     }

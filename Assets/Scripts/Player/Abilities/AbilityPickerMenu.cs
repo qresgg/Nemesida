@@ -25,7 +25,6 @@ public class AbilityPickerMenu : MonoBehaviour
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _abilityManager = GameObject.Find("AbilityManager").GetComponent <AbilityManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         _innateAbility = _gameManager.GetInnateAbilityCode();
         abilities = _abilityManager.GetAbilityListFiltered();

@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] P_HPController _hpController;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
 
-    GameManager _gameManager;
     AbilityUICooldowns _abilityUICooldowns;
 
     [Header("Movement")]
@@ -16,18 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 3.5f;
     private Rigidbody _rb;
 
-    [Header("Shooting")]
-    [SerializeField] private int _projectileCount;
-    private float _lastFireball;
-    private float _lastWhirligig;
-    float _orbitalSpheresDurationCounter;
-    float _orbitalSpheresCooldownCounter;
-
     [Header("Stats")]
-    [SerializeField] private float _maxHealth = 0;
-    [SerializeField] private float _healthRegeneration = 0.1f;
-    [SerializeField] private float _currentHealth = 0;
-    [SerializeField] private int xp_points = 0;
+    private float _maxHealth = 0;
+    private float _currentHealth = 0;
 
     private Fireball Fireball;
     private OrbitalSpheres OrbitalSpheres;
@@ -46,7 +36,6 @@ public class Player : MonoBehaviour
 
         _hpController = GameObject.Find("HP").GetComponent<P_HPController>();
 
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
         _abilityPickerMenu.SetActive(false);

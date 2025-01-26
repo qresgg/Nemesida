@@ -14,7 +14,6 @@ public class AbilityManager : MonoBehaviour
 
     private AbilityInventory _abilityInventory;
     private Player _player;
-    private GameManager _gameManager;
 
     void Awake()
     {
@@ -33,9 +32,8 @@ public class AbilityManager : MonoBehaviour
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        _innateAbility = _gameManager.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
     }
     private void LoadAbilities()
     {
