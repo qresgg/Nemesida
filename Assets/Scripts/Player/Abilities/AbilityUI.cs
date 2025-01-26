@@ -36,8 +36,9 @@ public class AbilityUI : MonoBehaviour
 
             abilityName.text = "DEF";
             abilityDescription.text = "DEF";
+            IsNewAbility.text = "DEF";
             selectButton.onClick.RemoveAllListeners();
-            selectButton.onClick.AddListener(() => CloseAbilityPickerMenu());
+            selectButton.onClick.AddListener(() => _gameManager.CloseAbilityPickerMenu());
         }
         else
         {
@@ -61,19 +62,7 @@ public class AbilityUI : MonoBehaviour
         player_abilityUser.AddAbilityToActiveList(ability.Code); // add to player AbilityUser
         ability.UpgradeAbility(); // upgrade level
 
-        CloseAbilityPickerMenu();
-
-        Debug.Log($"Гравець обрав здатність: {ability.Name}");
-        if(ability.AbilityLevel.Level <= 5)
-        {
-            _abilityPickerMenu.AddPickedAbility(ability.Code);
-        }
-    }
-
-    private void CloseAbilityPickerMenu()
-    {
-        _abilityPickerMenu.SetActive(false);
-        _gameManager.ResumeGame();
+        _gameManager.CloseAbilityPickerMenu();
     }
     private void DefaultSprite()
     {

@@ -58,6 +58,7 @@ public class AbilityManager : MonoBehaviour
         abilitiesFiltered = new List<Ability>(allAbilities);
 
         abilitiesFiltered.RemoveAll(ability => ability.Code == _innateAbility);
+        abilitiesFiltered.RemoveAll(ability => ability.AbilityLevel.Level == 5);
         if (_abilityPickerMenu != null)
         {
             _abilityPickerMenu.GetOBJ(abilitiesFiltered);

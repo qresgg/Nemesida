@@ -67,7 +67,7 @@ public class AbilityPickerMenu : MonoBehaviour
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (true) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
+            if (abilities[i].AbilityLevel.Level != 8) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
             {
                 abilitySlots[slotIndex].SetAbility(abilities[i]);
                 slotIndex++;
@@ -90,8 +90,8 @@ public class AbilityPickerMenu : MonoBehaviour
         this.gameObject.SetActive(arg);
         if (arg)
         {
-            DisplayAbilities();
             ShuffleAbilities();
+            DisplayAbilities();
         }
     }
 }

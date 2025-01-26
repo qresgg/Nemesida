@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    Player player;
+    Player _player;
     EnemySpawner enemySpawner;
     XPSpawner xp_spawner;
     [SerializeField] EnemyHealthBar healthBar;
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
 
         hpController = GameObject.Find("HP").GetComponent<P_HPController>();
-        player = GameObject.Find("Player").GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         xp_spawner = GameObject.Find("XPSpawner").GetComponent<XPSpawner>();
 
@@ -50,10 +50,14 @@ public class Enemy : MonoBehaviour
     {
         if (!isPushed)
         {
-            Vector3 direction = player.transform.position - transform.position;
+            Vector3 direction = _player.transform.position - transform.position;
             direction.Normalize();
 
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
+        }
+        if (health <= 0)
+        {
+            Die();
         }
     }
 
@@ -102,7 +106,6 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-
     void Die()
     {
         Destroy(this.gameObject);
@@ -113,10 +116,6 @@ public class Enemy : MonoBehaviour
     {
         health -= damageAmount;
         healthBar.UpdateHealthBar(health, maxHealth);
-        if (health <= 0)
-        {
-            Die();
-        }
     }
 
     public void InitializeHP(int initialHP)
@@ -127,7 +126,7 @@ public class Enemy : MonoBehaviour
 
     public void AttackPlayer(int damage)
     {
-        if (player != null)
+        if (_player != null)
         {
             hpController.TakeDamage(damage);
         }

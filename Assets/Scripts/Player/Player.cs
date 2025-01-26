@@ -80,19 +80,6 @@ public class Player : MonoBehaviour
         player_abilityUser.ManageOrbitalSphereActivator();
         player_abilityUser.ManageWhirligigActivator();
     }
-    public int GetXP()
-    {
-        return xp_points;
-    }
-    public void TakeXP(int takenXP)
-    {
-        xp_points += takenXP;
-        if (xp_points >= 100)
-        {
-            OpenAbilityPickerMenu();
-        }
-    }
-
     public void Death()
     {
         Destroy(gameObject);
@@ -100,10 +87,5 @@ public class Player : MonoBehaviour
     public int GetActiveProjectileCount()
     {
         return SpheresContainer.transform.childCount;
-    }
-    public void OpenAbilityPickerMenu()
-    {
-        _abilityPickerMenu.SetActive(true);
-        _gameManager.PauseGame();
     }
 }

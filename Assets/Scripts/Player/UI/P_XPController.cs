@@ -13,14 +13,15 @@ public class P_XPController : MonoBehaviour
     GameManager _gameManager;
     AbilityPickerMenu _abilityPickerMenu;
 
-    float totalXP = 0;
-    int xp_level = 1;
+    [Header("XP Settings")]
+    [SerializeField] float totalXP = 0;
+    [SerializeField] int xp_level = 1;
+    [SerializeField] int xp_multiplier;
 
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
     }
 
     void Update()
@@ -31,7 +32,6 @@ public class P_XPController : MonoBehaviour
 
     void XPLogic()
     {
-        totalXP = _player.GetXP();
         xpSlider.value = (totalXP % 100) / 100f;
 
         m_XPLevel.text = xp_level.ToString();
@@ -42,7 +42,21 @@ public class P_XPController : MonoBehaviour
         int new_level = Mathf.FloorToInt(totalXP / 100) + 1;
         if (new_level > xp_level)
         {
+            int difference = new_level - xp_level;
             xp_level = new_level;
+            for (int i = 0; i < difference; i++)
+            {
+                _gameManager.LevelUp();
+            }
         }
+    }
+    public void TakeXP(int takenXP)
+    {
+        totalXP += takenXP;
+    }
+
+    public int GetXPMultiplier()
+    {
+        return xp_multiplier;
     }
 }

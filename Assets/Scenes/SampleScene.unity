@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 517429776}
   - component: {fileID: 517429777}
   m_Layer: 5
-  m_Name: HP
+  m_Name: HP_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1207,11 +1207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2973650424987897816, guid: 7e153909e87765244837abb32005ffad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145.8
+      value: 144.6
       objectReference: {fileID: 0}
     - target: {fileID: 2973650424987897816, guid: 7e153909e87765244837abb32005ffad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 6.6
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2973650424987897816, guid: 7e153909e87765244837abb32005ffad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2000,6 +2000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _innateAbilityCode: fireball
+  _abilityPickerMenu: {fileID: 168706714}
+  _abilityPickerMenuOpened: 0
 --- !u!114 &1023757001 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8967647126634793568, guid: 7e153909e87765244837abb32005ffad, type: 3}
@@ -3450,7 +3452,7 @@ GameObject:
   - component: {fileID: 1699223693}
   - component: {fileID: 1699223694}
   m_Layer: 5
-  m_Name: XP
+  m_Name: XP_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3491,6 +3493,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_XPLevel: {fileID: 1217158365}
   xpSlider: {fileID: 1679774988}
+  totalXP: 0
+  xp_level: 1
+  xp_multiplier: 1
 --- !u!1 &1714434988
 GameObject:
   m_ObjectHideFlags: 0
