@@ -68,6 +68,7 @@ class Fireball : ScriptableObject, Ability
     {
         IsNewAbility = false;
         AbilityLevel.LevelUp(this);
+        //UpdateAbilityStats();
     }
     public void SetNewAbility(bool value)
     {
@@ -75,6 +76,27 @@ class Fireball : ScriptableObject, Ability
     }
 
     public AbilityLevel AbilityLevel { get; private set; } = new AbilityLevel(1);
+
+    /* private void UpdateAbilityStats()
+    {
+        switch (AbilityLevel.Level)
+        {
+            case 2:
+                DamageCount = 60;
+                Cooldown = 2.8f;
+                Radius = 3.2f;
+                Duration = 0.9f;
+                break;
+            case 3:
+                DamageCount = 70;
+                Cooldown = 2.6f;
+                Radius = 3.4f;
+                Duration = 1.0f;
+                break;
+            default:
+                break;
+        }
+    }*/
 }
 
 class OrbitalSpheres : ScriptableObject, Ability
@@ -138,7 +160,43 @@ class Whirligig : ScriptableObject, Ability
         return $"{DamageType} Damage: {DamageCount}\n" +
             $"Cooldown: {Cooldown}\n" +
             $"Duration: {Duration}\n" +
+            $"Push Force: {PushForce}\n" +
             $"Radius: {Radius}";
+    }
+    public void UpgradeAbility()
+    {
+        IsNewAbility = false;
+        AbilityLevel.LevelUp(this);
+    }
+    public void SetNewAbility(bool value)
+    {
+        IsNewAbility = value;
+    }
+
+    public AbilityLevel AbilityLevel { get; private set; } = new AbilityLevel(1);
+}
+
+class RicochetStone : ScriptableObject, Ability
+{
+    public string Name { get; } = "Ricochet Stone";
+    public bool IsNewAbility { get; set; } = true;
+    public string DamageType { get; } = "Physical";
+    public int DamageCount { get; } = 25;
+    public string Description { get; } = "A powerful stone that bounces off surfaces, striking multiple enemies in its path. Use it strategically to hit several targets with a single throw.";
+    public float Cooldown { get; } = 2.8f;
+    public int ProjectileSpeed { get; } = 10;
+    public float Range { get; } = 10f;
+    public string Code { get; set; } = "ricochet_stone";
+    public int Id { get; } = 4;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/RicochetStone";
+    public string Info => FormatInfo();
+
+    private string FormatInfo()
+    {
+        return $"{DamageType} Damage: {DamageCount}\n" +
+            $"Cooldown: {Cooldown}\n" +
+            $"Projectile Speed: {ProjectileSpeed}\n" +
+            $"Range: {Range}";
     }
     public void UpgradeAbility()
     {

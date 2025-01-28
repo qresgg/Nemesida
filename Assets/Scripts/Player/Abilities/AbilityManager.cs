@@ -40,6 +40,7 @@ public class AbilityManager : MonoBehaviour
         allAbilities.Add(new Fireball()); 
         allAbilities.Add(new OrbitalSpheres());
         allAbilities.Add(new Whirligig());
+        allAbilities.Add(new RicochetStone());
     }
     public List<Ability> GetAbilityList()
     {

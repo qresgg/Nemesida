@@ -7,17 +7,18 @@ public class P_AbilityUser : MonoBehaviour
     private Fireball Fireball;
     private OrbitalSpheres OrbitalSpheres;
     private Whirligig Whirligig;
+    private RicochetStone RicochetStone;
 
     AbilityUICooldowns _abilityUICooldowns;
 
     [Header("Shooting")]
     [SerializeField] private int _projectileCount;
+
     private float _lastFireball;
     private float _lastWhirligig;
+    private float _lastRicochetStone;
     float _orbitalSpheresDurationCounter;
     float _orbitalSpheresCooldownCounter;
-
-    public bool _isEnemyNearby = false;
 
     [Header("Abilities")]
     public GameObject[] _abilityPrefabs;
@@ -33,6 +34,7 @@ public class P_AbilityUser : MonoBehaviour
         Fireball = new Fireball();
         OrbitalSpheres = new OrbitalSpheres();
         Whirligig = new Whirligig();
+        RicochetStone = new RicochetStone();
 
 
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
@@ -47,8 +49,7 @@ public class P_AbilityUser : MonoBehaviour
     {
         if (IsAbilityActive("fireball"))
         {
-            IsEnemyNearby(Fireball.Range);
-            if (_isEnemyNearby)
+            if (IsEnemyNearby(Fireball.Range))
             {
                 if (Time.time > _lastFireball + Fireball.Cooldown)
                 {
@@ -76,16 +77,15 @@ public class P_AbilityUser : MonoBehaviour
             {
                 for (int i = 0; i < _projectileCount; i++)
                 {
-                    Debug.Log("Perevirka");
+                    //Debug.Log("Perevirka");
                     if (SpheresContainer.transform.childCount < _projectileCount)
                     {
                         GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.parent.position, Quaternion.identity);
                         orbitalSphere.transform.SetParent(SpheresContainer.transform);
-                        Debug.Log("ORBITAL SPHERES ADDED");
+                        //Debug.Log("ORBITAL SPHERES ADDED");
                     }
                 }
-                abilitiesDictionary.TryGetValue("orbital_spheres", out int orbitalSpheresID);
-                _abilityUICooldowns.SetCooldown(orbitalSpheresID, OrbitalSpheres.Cooldown, "orbital_spheres");
+                SetUICooldown("orbital_spheres", OrbitalSpheres.Cooldown);
 
                 _orbitalSpheresDurationCounter = OrbitalSpheres.Duration;
             }
@@ -129,6 +129,30 @@ public class P_AbilityUser : MonoBehaviour
     {
         ManageWhirligig();
     }
+    private void ManageRicochetStone()
+    {
+        if(IsAbilityActive("ricochet_stone"))
+        {
+            if (IsEnemyNearby(RicochetStone.Range))
+            {
+                if (Time.time > _lastRicochetStone + RicochetStone.Cooldown)
+                {
+                    for (int i = 0; i < _projectileCount; i++)
+                    {
+                        GameObject ricochetStone = Instantiate(_abilityPrefabs[3], transform.parent.position, Quaternion.identity);
+                        //Debug.Log("RICOCHETSTONE ADDED");
+                    }
+                    _lastRicochetStone = Time.time;
+
+                    SetUICooldown("ricochet_stone", RicochetStone.Cooldown);
+                }
+            }
+        }
+    }
+    public void ManageRicochetStoneActivator()
+    {
+        ManageRicochetStone();
+    }
 
     private bool IsAbilityActive(string abilityName)
     {
@@ -151,10 +175,10 @@ public class P_AbilityUser : MonoBehaviour
         {
             if (hitcollider.CompareTag("Enemy"))
             {
-                return _isEnemyNearby = true;
+                return true;
             }
         }
-        return _isEnemyNearby = false;
+        return false;
     }
 
     public void AddAbilityToActiveList(string abilityCode)
@@ -167,5 +191,9 @@ public class P_AbilityUser : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+    }
+    public int GetActiveProjectileCount()
+    {
+        return SpheresContainer.transform.childCount;
     }
 }

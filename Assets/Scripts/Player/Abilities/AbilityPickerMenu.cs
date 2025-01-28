@@ -23,10 +23,10 @@ public class AbilityPickerMenu : MonoBehaviour
     private void Start()
     {
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
-        _abilityManager = GameObject.Find("AbilityManager").GetComponent <AbilityManager>();
+        _abilityManager = GameObject.Find("AbilityManager").GetComponent<AbilityManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
 
-        _innateAbility = _gameManager.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
         abilities = _abilityManager.GetAbilityListFiltered();
 
         ShuffleAbilities();

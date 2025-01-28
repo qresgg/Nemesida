@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] P_HPController _hpController;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
 
-    AbilityUICooldowns _abilityUICooldowns;
-
     [Header("Movement")]
     private Vector3 _input;
     [SerializeField] private float _speed = 3.5f;
@@ -19,15 +17,6 @@ public class Player : MonoBehaviour
     private float _maxHealth = 0;
     private float _currentHealth = 0;
 
-    private Fireball Fireball;
-    private OrbitalSpheres OrbitalSpheres;
-    private Whirligig Whirligig;
-
-    public bool _isEnemyNearby = false;
-
-    [Header("Container")]
-    [SerializeField] public GameObject SpheresContainer;
-
     P_AbilityUser player_abilityUser;
 
     void Start()
@@ -35,14 +24,8 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
 
         _hpController = GameObject.Find("HP").GetComponent<P_HPController>();
-
-        _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
         _abilityPickerMenu.SetActive(false);
-
-        Fireball = new Fireball();
-        OrbitalSpheres = new OrbitalSpheres();
-        Whirligig = new Whirligig();
     }
 
     void FixedUpdate()
@@ -68,13 +51,10 @@ public class Player : MonoBehaviour
         player_abilityUser.ManageFireballActivator();
         player_abilityUser.ManageOrbitalSphereActivator();
         player_abilityUser.ManageWhirligigActivator();
+        player_abilityUser.ManageRicochetStoneActivator();
     }
     public void Death()
     {
         Destroy(gameObject);
-    }
-    public int GetActiveProjectileCount()
-    {
-        return SpheresContainer.transform.childCount;
     }
 }

@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dce64580356bd944acd308e2229bd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _innateAbilityCode: fireball
+  _innateAbilityCode: ricochet_stone
   _abilityPickerMenu: {fileID: 168706714}
   _abilityPickerMenuOpened: 0
 --- !u!114 &1023757001 stripped
@@ -3708,6 +3708,7 @@ MonoBehaviour:
   - {fileID: 7259487098733937534, guid: 97ab0ed4a09c4f64db2a5ea272c89f3b, type: 3}
   - {fileID: 7072956498969242089, guid: fdd3470ef9973604ab63451a1de2a3e1, type: 3}
   - {fileID: 3686419432675306881, guid: 0f513d75af71d5848b5e05f2dc5c221a, type: 3}
+  - {fileID: 3643722954343175321, guid: 00a2cb51f054bde4ab819b2bfd39d78f, type: 3}
   SpheresContainer: {fileID: 382171330}
 --- !u!4 &1733457745
 Transform:
@@ -4090,7 +4091,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908221601}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1908221604
 Camera:
   m_ObjectHideFlags: 0
