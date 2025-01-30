@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string _innateAbilityCode;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
+
+    [Header("Game Changer")]
+    [SerializeField] private int _damageMultiplier = 1;
+    
     public bool _abilityPickerMenuOpened = false;
 
     private Queue<System.Action> abilityPickerQueue = new Queue<Action>();
@@ -70,5 +74,9 @@ public class GameManager : MonoBehaviour
     {
         _abilityPickerMenu.SetActive(false);
         ResumeGame();
+    }
+    public int GetDamageMultiplier()
+    {
+        return _damageMultiplier;
     }
 }

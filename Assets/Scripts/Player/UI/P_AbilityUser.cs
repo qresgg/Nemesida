@@ -36,7 +36,6 @@ public class P_AbilityUser : MonoBehaviour
         Whirligig = new Whirligig();
         RicochetStone = new RicochetStone();
 
-
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         string _innateAbilityCode = GameManager.Instance.GetInnateAbilityCode();
         activeAbilities = new List<string> { _innateAbilityCode };

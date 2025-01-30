@@ -130,16 +130,16 @@ public class RicochetStoneActivation : MonoBehaviour
         for (int i = 0; i < targetsToSpawn; i++)
         {
             Transform newTarget = AssignRandomTarget(potentialTargets);
-            potentialTargets.Remove(newTarget); // Ensure no duplicate targets
+            potentialTargets.Remove(newTarget);
 
             GameObject newRicochetStone = Instantiate(this.gameObject);
-            newRicochetStone.transform.localScale = this.transform.localScale * 0.5f; // Make it half the size
+            newRicochetStone.transform.localScale = this.transform.localScale * 0.5f; 
             var ricochetStoneActivation = newRicochetStone.GetComponent<RicochetStoneActivation>();
 
             ricochetStoneActivation.target = newTarget;
             ricochetStoneActivation.parentEnemy = parentEnemy;
             ricochetStoneActivation.hitEnemies.Add(newTarget);
-            ricochetStoneActivation.hasReduced = true; // Mark the new stone as already reduced
+            ricochetStoneActivation.hasReduced = true;
             ricochetStoneActivation.currentDamage /= 2;
         }
     }

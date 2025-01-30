@@ -47,7 +47,7 @@ class Fireball : ScriptableObject, Ability
     public string Name { get; } = "Fireball";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 25;
+    public int DamageCount { get; } = 25 * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
     public float Cooldown { get; } = 2.5f;
     public int ProjectileSpeed { get; } = 10;
@@ -104,7 +104,7 @@ class OrbitalSpheres : ScriptableObject, Ability
     public string Name { get; } = "Orbital Spheres";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 15;
+    public int DamageCount { get; } = 15 * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "Orbital spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
@@ -142,7 +142,7 @@ class Whirligig : ScriptableObject, Ability
     public string Name { get; } = "Whirligig";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public int DamageCount { get; } = 50;
+    public int DamageCount { get; } = 50 * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "The player surrounds themselves with a spinning sawblade, which damages enemies and pushes them away upon contact.";
     public float Cooldown { get; } = 3f;
     public int ProjectileSpeed { get; } = 0;
@@ -181,7 +181,7 @@ class RicochetStone : ScriptableObject, Ability
     public string Name { get; } = "Ricochet Stone";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public int DamageCount { get; } = 25;
+    public int DamageCount { get; } = 20 * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "A powerful stone that bounces off surfaces, striking multiple enemies in its path. Use it strategically to hit several targets with a single throw.";
     public float Cooldown { get; } = 2.8f;
     public int ProjectileSpeed { get; } = 10;

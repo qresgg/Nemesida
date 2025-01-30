@@ -18,12 +18,18 @@ public class FireballActivation : MonoBehaviour
         Shoot();
     }
 
-    public void Shoot()
+    void Shoot()
     {
         if (target != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
+
+            // Õ¿—“–Œ… ¿ ƒÀﬂ ‘≈…— “” ‘≈…— « “¿–√≈“ŒÃ
+            transform.LookAt(target);
             this.transform.position += direction * Fireball.ProjectileSpeed * Time.deltaTime;
+            Quaternion rotation = Quaternion.LookRotation(direction); 
+            rotation *= Quaternion.Euler(90, 0, 90);
+            transform.rotation = rotation;
         }
         else
         {
@@ -31,7 +37,8 @@ public class FireballActivation : MonoBehaviour
         }
     }
 
-    public void FindRandomOrClosestEnemy()
+
+    void FindRandomOrClosestEnemy()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Fireball.Range);
         List<Transform> potentialTargets = new List<Transform>();
@@ -89,5 +96,10 @@ public class FireballActivation : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage(Fireball.DamageCount);
             Destroy(this.gameObject);
         }
+    }
+
+    public float GetCooldown()
+    {
+        return Fireball.Cooldown;
     }
 }

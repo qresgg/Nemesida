@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.siccity.gltfutility": {
+      "version": "file:C:/Users/manga/Downloads/GLTFUtility-master/GLTFUtility-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
