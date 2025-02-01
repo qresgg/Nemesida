@@ -42,31 +42,23 @@ public class AbilityUICooldowns : MonoBehaviour
 
     private IEnumerator CooldownTimer(int index, float cooldownTime, string code)
     {
-        if(code != "orbital_spheres")
+        float remainingTime = cooldownTime;
+
+        if (code == "plasma_spheres")
         {
-            float remainingTime = cooldownTime;
-            while (remainingTime > 0)
-            {
-                remainingTime -= Time.deltaTime;
-                cooldownText[index].text = remainingTime.ToString("F1") + "s";
-                //cooldownText[index].text = Mathf.Ceil(remainingTime) + "s";
-                yield return null;
-            }
-        } else {
-            float remainingTime = cooldownTime;
             cooldownSlot[index].enabled = false;
             yield return new WaitForSeconds(cooldownTime);
-            while (remainingTime > 0)
-            {
-                remainingTime -= Time.deltaTime;
-                cooldownText[index].text = remainingTime.ToString("F1") + "s";
-                //cooldownText[index].text = Mathf.Ceil(remainingTime) + "s";
-                cooldownSlot[index].enabled = true;
-                yield return null;
-            }
+            cooldownSlot[index].enabled = true;
+        }
+        while (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+            cooldownText[index].text = remainingTime.ToString("F1") + "s";
+            yield return null;
         }
 
         cooldownSlot[index].enabled = false;
         cooldownText[index].text = "";
     }
+
 }

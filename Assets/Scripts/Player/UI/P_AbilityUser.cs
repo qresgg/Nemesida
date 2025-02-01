@@ -89,7 +89,7 @@ public class P_AbilityUser : MonoBehaviour
                         //Debug.Log("plasmaSphere ADDED");
                     }
                 }
-                SetUICooldown("orbital_spheres", PlasmaSpheres.Cooldown);
+                SetUICooldown("plasma_spheres", PlasmaSpheres.Cooldown);
 
                 _plasmaSpheresDurationCounter = PlasmaSpheres.Duration;
             }
