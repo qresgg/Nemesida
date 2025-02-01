@@ -5,10 +5,12 @@ using UnityEngine;
 public class P_AbilityUser : MonoBehaviour
 {
     private Fireball Fireball;
-    private OrbitalSpheres OrbitalSpheres;
+    private PlasmaSpheres PlasmaSpheres;
     private Whirligig Whirligig;
     private RicochetStone RicochetStone;
+    private LaserBeam LaserBeam;
 
+    Player _player;
     AbilityUICooldowns _abilityUICooldowns;
 
     [Header("Shooting")]
@@ -17,8 +19,9 @@ public class P_AbilityUser : MonoBehaviour
     private float _lastFireball;
     private float _lastWhirligig;
     private float _lastRicochetStone;
-    float _orbitalSpheresDurationCounter;
-    float _orbitalSpheresCooldownCounter;
+    private float _lastLaserBeam;
+    float _plasmaSpheresDurationCounter;
+    float _plasmaSpheresCooldownCounter;
 
     [Header("Abilities")]
     public GameObject[] _abilityPrefabs;
@@ -32,10 +35,12 @@ public class P_AbilityUser : MonoBehaviour
     void Start()
     {
         Fireball = new Fireball();
-        OrbitalSpheres = new OrbitalSpheres();
+        PlasmaSpheres = new PlasmaSpheres();
         Whirligig = new Whirligig();
         RicochetStone = new RicochetStone();
+        LaserBeam = new LaserBeam();
 
+        _player = GameObject.Find("Player").GetComponent<Player>();
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         string _innateAbilityCode = GameManager.Instance.GetInnateAbilityCode();
         activeAbilities = new List<string> { _innateAbilityCode };
@@ -68,44 +73,44 @@ public class P_AbilityUser : MonoBehaviour
     {
         ManageFireball();
     }
-    private void ManageOrbitalSphere()
+    private void ManagePlasmaSpheres()
     {
-        if (IsAbilityActive("orbital_spheres"))
+        if (IsAbilityActive("plasma_spheres"))
         {
-            if (_orbitalSpheresDurationCounter <= 0 && _orbitalSpheresCooldownCounter <= 0)
+            if (_plasmaSpheresDurationCounter <= 0 && _plasmaSpheresCooldownCounter <= 0)
             {
                 for (int i = 0; i < _projectileCount; i++)
                 {
                     //Debug.Log("Perevirka");
                     if (SpheresContainer.transform.childCount < _projectileCount)
                     {
-                        GameObject orbitalSphere = Instantiate(_abilityPrefabs[1], transform.parent.position, Quaternion.identity);
-                        orbitalSphere.transform.SetParent(SpheresContainer.transform);
-                        //Debug.Log("ORBITAL SPHERES ADDED");
+                        GameObject plasmaSphere = Instantiate(_abilityPrefabs[1], transform.parent.position, Quaternion.identity);
+                        plasmaSphere.transform.SetParent(SpheresContainer.transform);
+                        //Debug.Log("plasmaSphere ADDED");
                     }
                 }
-                SetUICooldown("orbital_spheres", OrbitalSpheres.Cooldown);
+                SetUICooldown("orbital_spheres", PlasmaSpheres.Cooldown);
 
-                _orbitalSpheresDurationCounter = OrbitalSpheres.Duration;
+                _plasmaSpheresDurationCounter = PlasmaSpheres.Duration;
             }
-            if (_orbitalSpheresDurationCounter > 0)
+            if (_plasmaSpheresDurationCounter > 0)
             {
-                _orbitalSpheresDurationCounter -= Time.deltaTime;
-                if (_orbitalSpheresDurationCounter <= 0)
+                _plasmaSpheresDurationCounter -= Time.deltaTime;
+                if (_plasmaSpheresDurationCounter <= 0)
                 {
                     ClearChildren(SpheresContainer.transform);
-                    _orbitalSpheresCooldownCounter = OrbitalSpheres.Cooldown;
+                    _plasmaSpheresCooldownCounter = PlasmaSpheres.Cooldown;
                 }
             }
         }
-        if (_orbitalSpheresCooldownCounter > 0)
+        if (_plasmaSpheresCooldownCounter > 0)
         {
-            _orbitalSpheresCooldownCounter -= Time.deltaTime;
+            _plasmaSpheresCooldownCounter -= Time.deltaTime;
         }
     }
-    public void ManageOrbitalSphereActivator()
+    public void ManagePlasmaSpheresActivator()
     {
-        ManageOrbitalSphere();
+        ManagePlasmaSpheres();
     }
 
     private void ManageWhirligig()
@@ -151,6 +156,25 @@ public class P_AbilityUser : MonoBehaviour
     public void ManageRicochetStoneActivator()
     {
         ManageRicochetStone();
+    }
+    private void ManageLaserBeam()
+    {
+        if(IsAbilityActive("laser_beam"))
+        {
+            if (Time.time > _lastLaserBeam + LaserBeam.Cooldown)
+            {
+                Vector3 spawnPosition = _player.transform.position;
+
+                GameObject laserBeam = Instantiate(_abilityPrefabs[4], transform.parent.position, Quaternion.identity);
+                _lastLaserBeam = Time.time;
+
+                SetUICooldown("laser_beam", LaserBeam.Cooldown);
+            }
+        }
+    }
+    public void ManageLaserBeamActivator()
+    {
+        ManageLaserBeam();
     }
 
     private bool IsAbilityActive(string abilityName)

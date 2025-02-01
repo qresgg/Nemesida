@@ -38,9 +38,10 @@ public class AbilityManager : MonoBehaviour
     private void LoadAbilities()
     {
         allAbilities.Add(new Fireball()); 
-        allAbilities.Add(new OrbitalSpheres());
+        allAbilities.Add(new PlasmaSpheres());
         allAbilities.Add(new Whirligig());
         allAbilities.Add(new RicochetStone());
+        allAbilities.Add(new LaserBeam());
     }
     public List<Ability> GetAbilityList()
     {

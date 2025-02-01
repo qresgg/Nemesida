@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 036804d13d589ff498be939a2b696d5f
+guid: e4ba3ea882aaaf449a9824c9ec7fd5bd
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638726740107627878
+  platformSettingsDirtyTick: 638738839835619379
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fireball
+  - name: LaserBeam
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -130,9 +130,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 64
-      height: 64
-    spriteID: 273db28121de3b74fb38c94dc4a6a3c8
+      width: 128
+      height: 128
+    spriteID: 4bd4a8b7a18d03e4fbd623ea33200231
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,9 +142,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Fireball_0
+  - name: LaserBeam_0
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: b2baaa8a841377e4c9493df607683ed9
+    spriteID: 731228cadb842d8498ac69eed2c986f3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,13 +164,13 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -521780937
-    name: Fireball
+    guid: 45922274
+    name: LaserBeam
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fireball
+    - name: LaserBeam
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -178,7 +178,7 @@ ScriptedImporter:
         y: 0
         width: 128
         height: 128
-      spriteId: 273db28121de3b74fb38c94dc4a6a3c8
+      spriteId: 4bd4a8b7a18d03e4fbd623ea33200231
     linkedCells: []
     parentIndex: -1
   platformSettings:

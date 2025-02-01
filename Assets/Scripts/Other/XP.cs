@@ -47,7 +47,7 @@ public class XP : MonoBehaviour
 
         //Debug.Log("XP TAKED 1 TIME");
         _xpTaken = true;
-        xp_points *= player_XPController.GetXPMultiplier();
+        xp_points *= GameManager.Instance.GetXPMultiplier();
         player_XPController.TakeXP(xp_points);
         Destroy(this.gameObject);
     }

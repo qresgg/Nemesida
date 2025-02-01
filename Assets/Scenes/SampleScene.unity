@@ -717,12 +717,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382171330}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1469668559}
+  m_Father: {fileID: 874137613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &396280294
 GameObject:
@@ -1944,6 +1944,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &874137612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874137613}
+  m_Layer: 8
+  m_Name: AbilitiesContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874137613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874137612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 382171331}
+  m_Father: {fileID: 1469668559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &905573016 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 240417608682812747, guid: 7e153909e87765244837abb32005ffad, type: 3}
@@ -1999,9 +2031,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dce64580356bd944acd308e2229bd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _innateAbilityCode: fireball
+  _innateAbilityCode: laser_beam
   _abilityPickerMenu: {fileID: 168706714}
   _damageMultiplier: 5
+  _IsInvulnerability: 0
+  _xpMultiplier: 5
   _abilityPickerMenuOpened: 0
 --- !u!114 &1023757001 stripped
 MonoBehaviour:
@@ -3365,7 +3399,7 @@ GameObject:
   - component: {fileID: 1652307365}
   - component: {fileID: 1652307366}
   m_Layer: 8
-  m_Name: PickupZone
+  m_Name: P_PickupZone
   m_TagString: PickupZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3606,7 +3640,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.36566028, g: 0.5999999, b: 0.4277744, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3709,6 +3743,7 @@ MonoBehaviour:
   - {fileID: 7072956498969242089, guid: fdd3470ef9973604ab63451a1de2a3e1, type: 3}
   - {fileID: 3686419432675306881, guid: 0f513d75af71d5848b5e05f2dc5c221a, type: 3}
   - {fileID: 3643722954343175321, guid: 00a2cb51f054bde4ab819b2bfd39d78f, type: 3}
+  - {fileID: 5014642040772784597, guid: 9ced2b512ed790141b6efcc14e5e530a, type: 3}
   SpheresContainer: {fileID: 382171330}
 --- !u!4 &1733457745
 Transform:
@@ -4063,7 +4098,7 @@ GameObject:
   - component: {fileID: 1908221604}
   - component: {fileID: 1908221603}
   m_Layer: 8
-  m_Name: MiniMap
+  m_Name: P_MiniMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5086,7 +5121,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6117463327459892626, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 382171331}
+      addedObject: {fileID: 874137613}
     - targetCorrespondingSourceObject: {fileID: 6117463327459892626, guid: d1ce95456c3963e4cb3bbe15112d0927, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1652307365}
@@ -5199,11 +5234,11 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1714434991}
   - {fileID: 948525187}
   - {fileID: 705507995}
   - {fileID: 119195729}
   - {fileID: 1915615950770702506}
-  - {fileID: 1714434991}
   - {fileID: 396280296}
   - {fileID: 1162318173}
   - {fileID: 1463934678}

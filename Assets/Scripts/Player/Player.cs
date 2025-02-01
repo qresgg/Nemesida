@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
 
     [Header("Movement")]
+    private bool leftDirection = false;
+    private bool rightDirection = false;
     private Vector3 _input;
     [SerializeField] private float _speed = 3.5f;
     private Rigidbody _rb;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
     void Movement()
     {
         _input.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        rightDirection = !(leftDirection = (_input.x > 0 ? false : true));
         Vector3 newPosition = _rb.position + _input * _speed * Time.fixedDeltaTime;
         _rb.MovePosition(newPosition);
     }
@@ -49,12 +52,17 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         player_abilityUser.ManageFireballActivator();
-        player_abilityUser.ManageOrbitalSphereActivator();
+        player_abilityUser.ManagePlasmaSpheresActivator();
         player_abilityUser.ManageWhirligigActivator();
         player_abilityUser.ManageRicochetStoneActivator();
+        player_abilityUser.ManageLaserBeamActivator();
     }
     public void Death()
     {
         Destroy(gameObject);
+    }
+    public (bool, bool) GetMoveDirection()
+    {
+        return (leftDirection,  rightDirection);
     }
 }

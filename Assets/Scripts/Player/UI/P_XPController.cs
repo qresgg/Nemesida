@@ -52,9 +52,4 @@ public class P_XPController : MonoBehaviour
     {
         totalXP += takenXP;
     }
-
-    public int GetXPMultiplier()
-    {
-        return xp_multiplier;
-    }
 }

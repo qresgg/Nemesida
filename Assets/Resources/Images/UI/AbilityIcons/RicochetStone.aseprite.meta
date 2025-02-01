@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62df8acd71fb1f746a2ad1245eb540a8
+guid: e74cbcd4a2da0254baddca8010112676
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638726740058318396
+  platformSettingsDirtyTick: 638738809202039086
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: OrbitalSpheres
+  - name: RicochetStone
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: dc91eb351ce47d84cb53ae7a1ac37ca1
+    spriteID: c84bbfedab08bf8419b27bb39c0ed55d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: OrbitalSpheres_0
+  - name: RicochetStone_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: 5405cd8e3bcd3e74b8cf884a2c529888
+    spriteID: 420929f5772be47448a740fdb9ba20a4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,13 +164,13 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -1940288187
-    name: OrbitalSpheres
+    guid: -1079727756
+    name: RicochetStone
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: OrbitalSpheres
+    - name: RicochetStone
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -178,7 +178,7 @@ ScriptedImporter:
         y: 0
         width: 128
         height: 128
-      spriteId: dc91eb351ce47d84cb53ae7a1ac37ca1
+      spriteId: c84bbfedab08bf8419b27bb39c0ed55d
     linkedCells: []
     parentIndex: -1
   platformSettings:

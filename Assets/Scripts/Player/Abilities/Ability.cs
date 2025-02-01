@@ -13,7 +13,7 @@ public interface Ability
     //int ProjectileCount { get; set; }
     //float Range { get; }
     //float Duration { get; }
-    string Code { get; set;  }
+    string Code { get; }
     int Id { get; }
     public string IconPath { get; }
     string Info { get; }
@@ -51,9 +51,9 @@ class Fireball : ScriptableObject, Ability
     public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
     public float Cooldown { get; } = 2.5f;
     public int ProjectileSpeed { get; } = 10;
-    public int ProjectileCount { get; set; } = 1;
+    public int ProjectileCount { get; } = 1;
     public float Range { get; } = 10f;
-    public string Code { get; set;  } = "fireball";
+    public string Code { get;  } = "fireball";
     public int Id { get; } = 1;
     public string IconPath { get; } = "Images/UI/AbilityIcons/Fireball";
     public string Info => FormatInfo();
@@ -99,21 +99,21 @@ class Fireball : ScriptableObject, Ability
     }*/
 }
 
-class OrbitalSpheres : ScriptableObject, Ability
+class PlasmaSpheres : ScriptableObject, Ability
 {
-    public string Name { get; } = "Orbital Spheres";
+    public string Name { get; } = "Plasma Spheres";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
     public int DamageCount { get; } = 15 * GameManager.Instance.GetDamageMultiplier();
-    public string Description { get; } = "Orbital spheres orbit around the player, causing damage to any enemies that come into contact with them.";
+    public string Description { get; } = "Plasma spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
-    public int ProjectileCount { get; set; } = 1;
+    public int ProjectileCount { get; } = 1;
     public float Radius { get; } = 2f;
     public float Duration { get; } = 5f;
-    public string Code { get; set; } = "orbital_spheres";
+    public string Code { get; } = "plasma_spheres";
     public int Id { get; } = 2;
-    public string IconPath { get; } = "Images/UI/AbilityIcons/OrbitalSpheres";
+    public string IconPath { get; } = "Images/UI/AbilityIcons/PlasmaSpheres";
 
     public string Info => FormatInfo();
     
@@ -150,7 +150,7 @@ class Whirligig : ScriptableObject, Ability
     public float Duration { get; } = 0.8f;
     public float PushForce { get; } = 15f;
     public float RecoveryTime { get;  } = 0.3f;
-    public string Code { get; set; } = "whirligig";
+    public string Code { get; } = "whirligig";
     public int Id { get; } = 3;
     public string IconPath { get; } = "Images/UI/AbilityIcons/Whirligig";
     public string Info => FormatInfo();
@@ -182,7 +182,9 @@ class RicochetStone : ScriptableObject, Ability
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
     public int DamageCount { get; } = 20 * GameManager.Instance.GetDamageMultiplier();
-    public string Description { get; } = "A powerful stone that bounces off surfaces, striking multiple enemies in its path. Use it strategically to hit several targets with a single throw.";
+    public int FragmentsMaxCount { get; } = 3;
+    public string Description { get; } = "Upon striking an enemy, the stone shatters into smaller fragments, dealing additional damage to nearby foes.";
+    public int ProjectileCount { get; } = 1;
     public float Cooldown { get; } = 2.8f;
     public int ProjectileSpeed { get; } = 10;
     public float Range { get; } = 10f;
@@ -196,7 +198,46 @@ class RicochetStone : ScriptableObject, Ability
         return $"{DamageType} Damage: {DamageCount}\n" +
             $"Cooldown: {Cooldown}\n" +
             $"Projectile Speed: {ProjectileSpeed}\n" +
-            $"Range: {Range}";
+            $"Range: {Range}\n" +
+            $"Fragment Damage: {DamageCount / 2}\n" +
+            $"Fragments Max Count: {FragmentsMaxCount}";
+    }
+    public void UpgradeAbility()
+    {
+        IsNewAbility = false;
+        AbilityLevel.LevelUp(this);
+    }
+    public void SetNewAbility(bool value)
+    {
+        IsNewAbility = value;
+    }
+
+    public AbilityLevel AbilityLevel { get; private set; } = new AbilityLevel(1);
+}
+
+class LaserBeam : ScriptableObject, Ability
+{
+    public string Name { get; } = "Laser Beam";
+    public bool IsNewAbility { get; set; } = true;
+    public string DamageType { get; } = "Magical";
+    public int DamageCount { get; } = 100 * GameManager.Instance.GetDamageMultiplier();
+    public string Description { get; } = "This ability releases a powerful laser beam that pierces through enemies in its path, dealing massive damage and destroying obstacles.";
+    public int ProjectileCount { get; } = 1;
+    public float Cooldown { get; } = 2f;
+    public int ProjectileSpeed { get; } = 10;
+    public float Length { get; } = 10f;
+    public string Code { get; } = "laser_beam";
+    public int Id { get; } = 5;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/LaserBeam";
+    public string Info => FormatInfo();
+
+    private string FormatInfo()
+    {
+        return $"{DamageType} Damage: {DamageCount}\n" +
+            $"Cooldown: {Cooldown}\n" +
+            $"Projectile Speed: {ProjectileSpeed}\n" +
+            $"Length: {Length}\n" +
+            $"Fragment Damage: {DamageCount / 2}\n";
     }
     public void UpgradeAbility()
     {
