@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _damageMultiplier = 1; // x1
     [SerializeField] private bool _IsInvulnerability = false;
     [SerializeField] private int _xpMultiplier = 1; // x1
+    [SerializeField] private int _maxEnemyCount = 5;
 
 
     public bool _abilityPickerMenuOpened = false;
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game resumed.");
         Time.timeScale = 1;
     }
-    
+
     public string GetInnateAbilityCode()
     {
         return _innateAbilityCode;
@@ -85,5 +86,9 @@ public class GameManager : MonoBehaviour
     public int GetXPMultiplier()
     {
         return _xpMultiplier;
+    }
+    public int GetMaxEnemyCount()
+    {
+        return _maxEnemyCount;
     }
 }

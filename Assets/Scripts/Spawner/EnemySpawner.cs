@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         while (!_isPlayerDead)
         {
             int currentEnemyCount = _enemyContainer.transform.childCount;
-            if (currentEnemyCount < _maxEnemies)
+            if (currentEnemyCount < GameManager.Instance.GetMaxEnemyCount())
             {
                 SpawnEnemy();
             }

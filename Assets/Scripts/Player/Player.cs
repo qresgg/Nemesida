@@ -61,6 +61,22 @@ public class Player : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public void NewLevelImpulse()
+    {
+        Collider[] Colliders = Physics.OverlapSphere(transform.position, 5);
+
+        foreach (Collider collider in Colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                Enemy enemy = collider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.ApplyImpulseAndRecover(15f, 0.3f, transform.position);
+                }
+            }
+        }
+    }
     public (bool, bool) GetMoveDirection()
     {
         return (leftDirection,  rightDirection);

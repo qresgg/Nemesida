@@ -38,10 +38,11 @@ public class P_XPController : MonoBehaviour
     void XPChecker()
     {
         int new_level = Mathf.FloorToInt(totalXP / 100) + 1;
-        if (new_level > xp_level)
+        if (new_level > xp_level) // LVL UPING
         {
             int difference = new_level - xp_level;
             xp_level = new_level;
+            _player.NewLevelImpulse();
             for (int i = 0; i < difference; i++)
             {
                 GameManager.Instance.LevelUp();

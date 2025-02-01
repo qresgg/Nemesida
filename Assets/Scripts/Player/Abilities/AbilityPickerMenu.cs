@@ -6,7 +6,6 @@ public class AbilityPickerMenu : MonoBehaviour
     public static AbilityPickerMenu Instance { get; private set; }
 
     private List<Ability> abilities = new List<Ability>();
-    private HashSet<string> pickedAbilityCodes = new HashSet<string>();
 
     [SerializeField] private Transform abilityContainer;
     [SerializeField] private AbilityUI[] abilitySlots;
@@ -49,15 +48,6 @@ public class AbilityPickerMenu : MonoBehaviour
             Ability temp = abilities[i];
             abilities[i] = abilities[randomIndex];
             abilities[randomIndex] = temp;
-        }
-    }
-
-    public void AddPickedAbility(string pickedAbility)
-    {
-        if (!pickedAbilityCodes.Contains(pickedAbility))
-        {
-            pickedAbilityCodes.Add(pickedAbility);
-            Debug.Log($"Ability '{pickedAbility}' has been added to the picked abilities.");
         }
     }
 
