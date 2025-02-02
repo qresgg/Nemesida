@@ -15,11 +15,11 @@ public interface Ability
     //float Duration { get; }
     string Code { get; }
     int Id { get; }
-    public string IconPath { get; }
+    string IconPath { get; }
     string Info { get; }
 
-    public void UpgradeAbility();
-    public void SetNewAbility(bool value);
+    void UpgradeAbility();
+    void SetNewAbility(bool value);
     AbilityLevel AbilityLevel { get; }
 }
 

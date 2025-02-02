@@ -6,10 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
 
-    [SerializeField] private string _innateAbilityCode;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
 
     [Header("Game Changer")]
+    [SerializeField] private string _innateAbilityCode;
+    [SerializeField] private string _innateItemCode;
     [SerializeField] private int _damageMultiplier = 1; // x1
     [SerializeField] private bool _IsInvulnerability = false;
     [SerializeField] private int _xpMultiplier = 1; // x1
@@ -58,17 +59,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game paused.");
         Time.timeScale = 0;
     }
-
     public void ResumeGame()
     {
         Debug.Log("Game resumed.");
         Time.timeScale = 1;
     }
 
-    public string GetInnateAbilityCode()
-    {
-        return _innateAbilityCode;
-    }
+
     public void OpenAbilityPickerMenu()
     {
         _abilityPickerMenu.SetActive(true);
@@ -78,6 +75,30 @@ public class GameManager : MonoBehaviour
     {
         _abilityPickerMenu.SetActive(false);
         ResumeGame();
+    }
+    public void OpenItemPickerMenu()
+    {
+        ItemPickerMenu.Instance.SetActive(true);
+        PauseGame();
+    }
+    public void CloseItemPickerMenu()
+    {
+        _abilityPickerMenu.SetActive(false);
+        ResumeGame();
+    }
+
+
+
+
+
+
+
+
+
+
+    public string GetInnateAbilityCode()
+    {
+        return _innateAbilityCode;
     }
     public int GetDamageMultiplier()
     {

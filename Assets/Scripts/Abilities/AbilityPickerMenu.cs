@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class AbilityPickerMenu : MonoBehaviour
 {
-    public static AbilityPickerMenu Instance { get; private set; }
-
     private List<Ability> abilities = new List<Ability>();
 
     [SerializeField] private Transform abilityContainer;
@@ -14,7 +12,6 @@ public class AbilityPickerMenu : MonoBehaviour
 
     private AbilityInventory _abilityInventory;
     private Player _player;
-    private GameManager _gameManager;
     private AbilityManager _abilityManager;
 
     [SerializeField] private bool isFirstCall = true;
@@ -30,11 +27,6 @@ public class AbilityPickerMenu : MonoBehaviour
 
         ShuffleAbilities();
         DisplayAbilities();
-    }
-
-    public void GetOBJ(List<Ability> m_abilities)
-    {
-        abilities = m_abilities;
     }
 
     public void ShuffleAbilities()

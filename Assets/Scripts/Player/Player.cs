@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] P_HPController _hpController;
     [SerializeField] AbilityPickerMenu _abilityPickerMenu;
+    [SerializeField] ItemPickerMenu _itemPickerMenu;
 
     [Header("Movement")]
     private bool leftDirection = false;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         _hpController = GameObject.Find("HP").GetComponent<P_HPController>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
         _abilityPickerMenu.SetActive(false);
+        _itemPickerMenu.SetActive(false);
     }
 
     void FixedUpdate()
