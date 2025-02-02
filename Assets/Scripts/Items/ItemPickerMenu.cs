@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class ItemPickerMenu : MonoBehaviour
 {
-    public static ItemPickerMenu Instance { get; private set; }
-
     private List<Item> items = new List<Item>();
 
-    [SerializeField] private AbilityUI[] abilitySlots;
+    [SerializeField] private ItemUI[] itemSlots;
 
-    private string _innateItem;
+    private string _personalItem;
 
     Player _player;
     ItemManager _ItemManager;
@@ -21,8 +19,12 @@ public class ItemPickerMenu : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _ItemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
 
-        _innateItem = GameManager.Instance.GetInnateAbilityCode();
+        _personalItem = GameManager.Instance.GetPersonalItemCode();
         items = _ItemManager.GetItemListFiltered();
+        foreach (Item item in items )
+        {
+            Debug.Log(item.Code);
+        }
 
         ShuffleAbilities();
         DisplayAbilities();
@@ -45,17 +47,17 @@ public class ItemPickerMenu : MonoBehaviour
     public void DisplayAbilities()
     {
         int slotIndex = 0;
-        for (int i = 0; i < items.Count && slotIndex < abilitySlots.Length; i++)
+        for (int i = 0; i < items.Count && slotIndex < itemSlots.Length; i++)
         {
-            if (items[i].ItemLevel.Level != 4) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
+            if (items[i].ItemLevel.Level != 6) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
             {
-                //itemSlots[slotIndex].SetAbility(items[i]);
+                itemSlots[slotIndex].SetItem(items[i]);
                 slotIndex++;
             }
         }
-        for (int i = slotIndex; i < abilitySlots.Length; i++)
+        for (int i = slotIndex; i < itemSlots.Length; i++)
         {
-            abilitySlots[i].SetAbility(null);
+            itemSlots[i].SetItem(null);
         }
 
         if (isFirstCall)

@@ -13,6 +13,7 @@ TagManager:
   - SpheresContainer
   - PickupZone
   - Whirligig
+  - ItemOrb
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - UI
   - Whirligig
   - AbilityPicker
+  - ItemPicker
   - Player
-  - 
   - 
   - 
   - 

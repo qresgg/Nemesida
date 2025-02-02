@@ -7,9 +7,8 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance { get; private set; }
     private List<Item> allItems = new List<Item>();
     private List<Item> itemsFiltered = new List<Item>();
-    [SerializeField] private ItemPickerMenu _itemPickerMenu;
 
-    private string _innateItem;
+    private string _personalItem;
 
     private AbilityInventory _abilityInventory;
     private Player _player;
@@ -31,11 +30,12 @@ public class ItemManager : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
 
-        _innateItem = GameManager.Instance.GetInnateAbilityCode();
+        _personalItem = GameManager.Instance.GetPersonalItemCode();
     }
     private void LoadItems()
     {
         allItems.Add(new MagicQuiver());
+        allItems.Add(new Smth());
     }
     public List<Item> GetItemList()
     {
@@ -44,7 +44,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> GetItemListFiltered()
     {
         itemsFiltered = new List<Item>(allItems);
-        itemsFiltered.RemoveAll(ability => ability.Code == _innateItem);
+        itemsFiltered.RemoveAll(item => item.Code == _personalItem);
         return itemsFiltered;
     }
 }

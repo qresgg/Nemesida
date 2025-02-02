@@ -50,7 +50,6 @@ public class AbilityUI : MonoBehaviour
             selectButton.onClick.AddListener(() => SelectAbility(ability));
 
             Debug.Log(ability.Code);
-            //_abilitiesDisplayed.Add(ability);
         }
     }
 

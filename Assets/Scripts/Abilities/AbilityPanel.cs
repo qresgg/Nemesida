@@ -15,7 +15,6 @@ public class AbilityInventory : MonoBehaviour
     Dictionary<string, int> abilitiesDictionary = new Dictionary<string, int>();
 
     Player _player;
-    GameManager _gameManager;
     AbilityManager _abilityManager;
     AbilityUICooldowns _abilityUICooldowns;
     P_AbilityUser player_abilityUser;
@@ -23,7 +22,6 @@ public class AbilityInventory : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _abilityManager = GameObject.Find("AbilityManager").GetComponent<AbilityManager>();
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
@@ -78,7 +76,7 @@ public class AbilityInventory : MonoBehaviour
     }
     private void InnateAbilityBookSlot()
     {
-        _innateAbility = _gameManager.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
         Sprite sprite = GetSpriteByAbilityCode(_innateAbility);
         if (sprite != null)
         {
