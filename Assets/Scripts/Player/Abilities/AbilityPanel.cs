@@ -31,9 +31,13 @@ public class AbilityInventory : MonoBehaviour
         abilitiesList = _abilityManager.GetAbilityList();
         InnateAbilityBookSlot();
     }
+    private void Update()
+    {
+        AbilitySlotsInitializer();
+    }
     public void AddAbility(Ability ability)
     {
-        if (!activeAbilities.Contains(ability))
+        if (!abilitiesDictionary.ContainsKey(ability.Code))
         {
             for (int i = 1; i < slots.Length; i++)
             {
@@ -42,9 +46,11 @@ public class AbilityInventory : MonoBehaviour
                     Sprite sprite = Resources.Load<Sprite>(ability.IconPath);
                     if (sprite != null)
                     {
-                        slots[i].sprite = sprite;
-                        activeAbilities.Add(ability);
+                        Color newColor = slots[i].color;
+                        newColor.a = 0;
+                        slots[i].color = newColor;
 
+                        slots[i].sprite = sprite;
                         abilitiesDictionary.Add(ability.Code, i);
                         player_abilityUser.SetAbilityDictionary(abilitiesDictionary);
                     }
@@ -64,7 +70,7 @@ public class AbilityInventory : MonoBehaviour
         {
             if (ability.Code == abilityCode)
             {
-                Debug.Log(ability.IconPath);
+                //Debug.Log(ability.IconPath);
                 return Resources.Load<Sprite>(ability.IconPath);
             }
         }
@@ -78,6 +84,23 @@ public class AbilityInventory : MonoBehaviour
         {
             slots[0].sprite = sprite;
             abilitiesDictionary.Add(_innateAbility, 0);
+        }
+    }
+    private void AbilitySlotsInitializer()
+    {
+        foreach (Image img in slots)
+        {
+            Color newColor = img.color;
+            if (img.sprite == null)
+            {
+                newColor.a = 0;
+                img.color = newColor;
+            }
+            else
+            {
+                newColor.a = 1;
+                img.color = newColor;
+            }
         }
     }
 }

@@ -2036,6 +2036,7 @@ MonoBehaviour:
   _damageMultiplier: 5
   _IsInvulnerability: 0
   _xpMultiplier: 5
+  _maxEnemyCount: 10
   _abilityPickerMenuOpened: 0
 --- !u!114 &1023757001 stripped
 MonoBehaviour:
@@ -2691,6 +2692,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityPickerMenu: {fileID: 168706714}
+--- !u!1 &1361232704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361232705}
+  m_Layer: 5
+  m_Name: ItemPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1361232705
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361232704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005989584}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1372722692
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,6 +4366,7 @@ RectTransform:
   - {fileID: 1054170766}
   - {fileID: 1699223693}
   - {fileID: 517429776}
+  - {fileID: 1361232705}
   m_Father: {fileID: 1440811818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
