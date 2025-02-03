@@ -1,2 +1,2 @@
 # project-SEU
- ![Опис зображення](https://example.com/image.jpg)
+ ![Опис зображення](https://i.imgur.com/sU6qUYl.png)
