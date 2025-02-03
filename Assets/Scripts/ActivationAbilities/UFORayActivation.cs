@@ -32,7 +32,7 @@ public class UFORayActivation : MonoBehaviour
     }
     private void PickupZone()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 10); // RANGE
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, UFORay.Range); // RANGE
         List<Transform> potentialTargets = new List<Transform>();
 
         foreach (var hitCollider in hitColliders)

@@ -257,7 +257,7 @@ class UFORay : ScriptableObject, Ability
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
     public int DamageCount { get; } = 25 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
-    public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
+    public string Description { get; } = "A powerful beam descends from the spaceship, pulling enemies upward into the ship. This ability imediatelly kills any enemy.";
     public float Cooldown { get; } = 15f;
     public int ProjectileSpeed { get; } = 5;
     public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
@@ -268,9 +268,10 @@ class UFORay : ScriptableObject, Ability
     public string Info => FormatInfo();
     private string FormatInfo()
     {
-        return $"{DamageType} Damage: {DamageCount}\n" +
+        return $"{DamageType} Damage: ?UNLIMITED?\n" +
             $"Cooldown: {Cooldown}\n" +
-            $"Projectile Count: {ProjectileCount}\n";
+            $"Projectile Count: {ProjectileCount}\n" +
+            $"Lift Speed: {ProjectileSpeed}\n";
     }
 
     public void UpgradeAbility()
