@@ -51,6 +51,7 @@ public class ItemUI : MonoBehaviour
     private void SelectItem(Item item)
     {
         _itemInventory.AddItem(item); // add to UI Inventory
+        item.UseBonus();
         item.UpgradeItem(); // upgrade level
 
         GameManager.Instance.CloseItemPickerMenu();

@@ -15,6 +15,7 @@ public class P_AbilityUser : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] private int _projectileCount;
+    // Треба зробити щоб projectileCount не залежав від однієї змінної а від projectileCount обєкта
 
     private float _lastFireball;
     private float _lastWhirligig;
@@ -57,7 +58,7 @@ public class P_AbilityUser : MonoBehaviour
             {
                 if (Time.time > _lastFireball + Fireball.Cooldown)
                 {
-                    for (int i = 0; i < _projectileCount; i++)
+                    for (int i = 0; i < Fireball.ProjectileCount; i++)
                     {
                         GameObject fireball = Instantiate(_abilityPrefabs[0], transform.parent.position, Quaternion.identity);
                         //Debug.Log("FIREBALL ADDED");
@@ -79,10 +80,10 @@ public class P_AbilityUser : MonoBehaviour
         {
             if (_plasmaSpheresDurationCounter <= 0 && _plasmaSpheresCooldownCounter <= 0)
             {
-                for (int i = 0; i < _projectileCount; i++)
+                for (int i = 0; i < PlasmaSpheres.ProjectileCount; i++)
                 {
                     //Debug.Log("Perevirka");
-                    if (SpheresContainer.transform.childCount < _projectileCount)
+                    if (SpheresContainer.transform.childCount < PlasmaSpheres.ProjectileCount)
                     {
                         GameObject plasmaSphere = Instantiate(_abilityPrefabs[1], transform.parent.position, Quaternion.identity);
                         plasmaSphere.transform.SetParent(SpheresContainer.transform);
@@ -141,7 +142,7 @@ public class P_AbilityUser : MonoBehaviour
             {
                 if (Time.time > _lastRicochetStone + RicochetStone.Cooldown)
                 {
-                    for (int i = 0; i < _projectileCount; i++)
+                    for (int i = 0; i < RicochetStone.ProjectileCount; i++)
                     {
                         GameObject ricochetStone = Instantiate(_abilityPrefabs[3], transform.parent.position, Quaternion.identity);
                         //Debug.Log("RICOCHETSTONE ADDED");

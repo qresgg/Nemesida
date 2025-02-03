@@ -11,6 +11,7 @@ public interface Item
 
     void UpgradeItem();
     void SetNewItem(bool value);
+    void UseBonus();
     ItemLevel ItemLevel { get; }
 }
 
@@ -37,7 +38,9 @@ class MagicQuiver : ScriptableObject, Item
 {
     public string Name { get; } = "Magic Quiver";
     public bool IsNewItem { get; set; } = true;
-    public string Description { get; } = "";
+    public string Description { get; } = "Empowers your hero with the ability to launch additional projectiles, enhancing their offensive capabilities and allowing them to overwhelm enemies with a barrage of attacks.";
+    public int ProjectileCount { get; set; } = 1;
+    int ProjectileStep { get; } = 1;
     public string Code { get; } = "magic_quiver";
     public int Id { get; } = 1;
     public string IconPath { get; } = "Images/UI/ItemIcons/MagicQuiver";
@@ -54,7 +57,10 @@ class MagicQuiver : ScriptableObject, Item
     }
 
     public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
-
+    public void UseBonus()
+    {
+        P_Stats.Instance.SetProjectileCount(ProjectileStep);
+    }
     /* private void UpdateItemStats()
     {
         switch (ItemLevel.Level)
@@ -95,27 +101,8 @@ class Smth : ScriptableObject, Item
     {
         IsNewItem = value;
     }
-
-    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
-
-    /* private void UpdateItemStats()
+    public void UseBonus()
     {
-        switch (ItemLevel.Level)
-        {
-            case 2:
-                DamageCount = 60;
-                Cooldown = 2.8f;
-                Radius = 3.2f;
-                Duration = 0.9f;
-                break;
-            case 3:
-                DamageCount = 70;
-                Cooldown = 2.6f;
-                Radius = 3.4f;
-                Duration = 1.0f;
-                break;
-            default:
-                break;
-        }
-    }*/
+    }
+    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
