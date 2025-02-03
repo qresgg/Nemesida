@@ -106,10 +106,10 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-    void Die()
+    public void Die()
     {
         Destroy(this.gameObject);
-        xp_spawner.CollectDataAndSpawn(this.gameObject.transform.position);
+        xp_spawner.CollectDataAndSpawn(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0));
     }
 
     public void TakeDamage(int damageAmount)

@@ -9,18 +9,19 @@ public class P_AbilityUser : MonoBehaviour
     private Whirligig Whirligig;
     private RicochetStone RicochetStone;
     private LaserBeam LaserBeam;
+    private UFORay UFORay;
 
     Player _player;
     AbilityUICooldowns _abilityUICooldowns;
 
     [Header("Shooting")]
-    [SerializeField] private int _projectileCount;
-    // Треба зробити щоб projectileCount не залежав від однієї змінної а від projectileCount обєкта
+    private bool _isSpawnedUFO = false;
 
     private float _lastFireball;
     private float _lastWhirligig;
     private float _lastRicochetStone;
     private float _lastLaserBeam;
+    private float _lastUFORay;
     float _plasmaSpheresDurationCounter;
     float _plasmaSpheresCooldownCounter;
 
@@ -40,6 +41,7 @@ public class P_AbilityUser : MonoBehaviour
         Whirligig = new Whirligig();
         RicochetStone = new RicochetStone();
         LaserBeam = new LaserBeam();
+        UFORay = new UFORay();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
         _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
@@ -176,6 +178,23 @@ public class P_AbilityUser : MonoBehaviour
     public void ManageLaserBeamActivator()
     {
         ManageLaserBeam();
+    }
+
+    private void ManageUFORay()
+    {
+        if (IsAbilityActive("ufo_ray"))
+        {
+            if(!_isSpawnedUFO)
+            {
+                GameObject ufoSpawn = Instantiate(_abilityPrefabs[5], transform.parent.position, Quaternion.identity);
+                _isSpawnedUFO = true;
+            }
+
+        }
+    }
+    public void ManageUFORayActivator()
+    {
+        ManageUFORay();
     }
 
     private bool IsAbilityActive(string abilityName)

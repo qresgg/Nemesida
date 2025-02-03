@@ -42,6 +42,7 @@ public class AbilityManager : MonoBehaviour
         allAbilities.Add(new Whirligig());
         allAbilities.Add(new RicochetStone());
         allAbilities.Add(new LaserBeam());
+        allAbilities.Add(new UFORay());
     }
     public List<Ability> GetAbilityList()
     {

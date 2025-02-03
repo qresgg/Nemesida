@@ -224,6 +224,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &87191561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87191562}
+  m_Layer: 0
+  m_Name: XPs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87191562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87191561}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.025521865, y: -0.4186633, z: 5.4188714}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &107990271 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8967647126634793568, guid: 7e153909e87765244837abb32005ffad, type: 3}
@@ -4084,13 +4115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4ec645f70f8b446914c986aafca5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileCount: 1
   _abilityPrefabs:
   - {fileID: 7259487098733937534, guid: 97ab0ed4a09c4f64db2a5ea272c89f3b, type: 3}
   - {fileID: 7072956498969242089, guid: fdd3470ef9973604ab63451a1de2a3e1, type: 3}
   - {fileID: 3686419432675306881, guid: 0f513d75af71d5848b5e05f2dc5c221a, type: 3}
   - {fileID: 3643722954343175321, guid: 00a2cb51f054bde4ab819b2bfd39d78f, type: 3}
   - {fileID: 5014642040772784597, guid: 9ced2b512ed790141b6efcc14e5e530a, type: 3}
+  - {fileID: 2846233062440227433, guid: 28fd284451a4f1142a041373d73c9e0d, type: 3}
   SpheresContainer: {fileID: 382171330}
 --- !u!4 &1733457745
 Transform:
@@ -5755,6 +5786,7 @@ SceneRoots:
   - {fileID: 656066018}
   - {fileID: 917701420}
   - {fileID: 1915615950770702506}
-  - {fileID: 1162318173}
   - {fileID: 1463934678}
   - {fileID: 3214370966272383315}
+  - {fileID: 1162318173}
+  - {fileID: 87191562}

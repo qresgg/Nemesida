@@ -225,7 +225,7 @@ class LaserBeam : ScriptableObject, Ability
     public int ProjectileCount { get; } = 1; // покищо ні
     public float Cooldown { get; } = 2f;
     public int ProjectileSpeed { get; } = 10;
-    public float Length { get; } = 10f;
+    public float Length { get; } = 16f;
     public string Code { get; } = "laser_beam";
     public int Id { get; } = 5;
     public string IconPath { get; } = "Images/UI/AbilityIcons/LaserBeam";
@@ -236,8 +236,7 @@ class LaserBeam : ScriptableObject, Ability
         return $"{DamageType} Damage: {DamageCount}\n" +
             $"Cooldown: {Cooldown}\n" +
             $"Projectile Speed: {ProjectileSpeed}\n" +
-            $"Length: {Length}\n" +
-            $"Fragment Damage: {DamageCount / 2}\n";
+            $"Length: {Length}\n";
     }
     public void UpgradeAbility()
     {
@@ -250,4 +249,61 @@ class LaserBeam : ScriptableObject, Ability
     }
 
     public AbilityLevel AbilityLevel { get; private set; } = new AbilityLevel(1);
+}
+
+class UFORay : ScriptableObject, Ability
+{
+    public string Name { get; } = "?UFO? Ray";
+    public bool IsNewAbility { get; private set; } = true;
+    public string DamageType { get; } = "Magical";
+    public int DamageCount { get; } = 25 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
+    public float Cooldown { get; } = 15f;
+    public int ProjectileSpeed { get; } = 5;
+    public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
+    public float Range { get; } = 10f;
+    public string Code { get; } = "ufo_ray";
+    public int Id { get; } = 6;
+    public string IconPath { get; } = "Images/UI/AbilityIcons/UFORay";
+    public string Info => FormatInfo();
+    private string FormatInfo()
+    {
+        return $"{DamageType} Damage: {DamageCount}\n" +
+            $"Cooldown: {Cooldown}\n" +
+            $"Projectile Count: {ProjectileCount}\n";
+    }
+
+    public void UpgradeAbility()
+    {
+        IsNewAbility = false;
+        AbilityLevel.LevelUp(this);
+        //UpdateAbilityStats();
+    }
+    public void SetNewAbility(bool value)
+    {
+        IsNewAbility = value;
+    }
+
+    public AbilityLevel AbilityLevel { get; private set; } = new AbilityLevel(1);
+
+    /* private void UpdateAbilityStats()
+    {
+        switch (AbilityLevel.Level)
+        {
+            case 2:
+                DamageCount = 60;
+                Cooldown = 2.8f;
+                Radius = 3.2f;
+                Duration = 0.9f;
+                break;
+            case 3:
+                DamageCount = 70;
+                Cooldown = 2.6f;
+                Radius = 3.4f;
+                Duration = 1.0f;
+                break;
+            default:
+                break;
+        }
+    }*/
 }

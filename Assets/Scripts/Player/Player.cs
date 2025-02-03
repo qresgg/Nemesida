@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         player_abilityUser.ManageWhirligigActivator();
         player_abilityUser.ManageRicochetStoneActivator();
         player_abilityUser.ManageLaserBeamActivator();
+        player_abilityUser.ManageUFORayActivator();
     }
     public void Death()
     {
