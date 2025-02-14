@@ -35,6 +35,7 @@ public class ItemManager : MonoBehaviour
     private void LoadItems()
     {
         allItems.Add(new MagicQuiver());
+        allItems.Add(new Sirnycks());
         allItems.Add(new Smth());
     }
     public List<Item> GetItemList()

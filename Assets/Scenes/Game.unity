@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87191562}
   m_Layer: 0
-  m_Name: XPs
+  m_Name: XPContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,12 +248,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87191561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.025521865, y: -0.4186633, z: 5.4188714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -702.5243, y: -51.175327, z: 5.4188714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1176338146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &107990271 stripped
 MonoBehaviour:
@@ -2061,6 +2061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xpPrefab: {fileID: 1678234980513184399, guid: 8291428a690d21246a87cf05126df8cb, type: 3}
+  xp_container: {fileID: 87191561}
 --- !u!224 &835537489 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2973650424987897816, guid: 7e153909e87765244837abb32005ffad, type: 3}
@@ -2653,7 +2654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162318173}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: EnemyContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2667,12 +2668,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162318172}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -702.5498, y: -50.756664, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1176338146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1169327665 stripped
 MonoBehaviour:
@@ -2690,6 +2691,39 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2973650424987897816, guid: 7e153909e87765244837abb32005ffad, type: 3}
   m_PrefabInstance: {fileID: 661296141}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1176338145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176338146}
+  m_Layer: 0
+  m_Name: Containers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176338146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176338145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 702.5498, y: 50.756664, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 87191562}
+  - {fileID: 1162318173}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204116583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5785,8 +5819,7 @@ SceneRoots:
   - {fileID: 119195729}
   - {fileID: 656066018}
   - {fileID: 917701420}
+  - {fileID: 1176338146}
   - {fileID: 1915615950770702506}
   - {fileID: 1463934678}
   - {fileID: 3214370966272383315}
-  - {fileID: 1162318173}
-  - {fileID: 87191562}

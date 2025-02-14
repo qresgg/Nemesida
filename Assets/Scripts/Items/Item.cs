@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface Item
@@ -39,7 +41,6 @@ class MagicQuiver : ScriptableObject, Item
     public string Name { get; } = "Magic Quiver";
     public bool IsNewItem { get; set; } = true;
     public string Description { get; } = "Empowers your hero with the ability to launch additional projectiles, enhancing their offensive capabilities and allowing them to overwhelm enemies with a barrage of attacks.";
-    public int ProjectileCount { get; set; } = 1;
     int ProjectileStep { get; } = 1;
     public string Code { get; } = "magic_quiver";
     public int Id { get; } = 1;
@@ -81,6 +82,33 @@ class MagicQuiver : ScriptableObject, Item
                 break;
         }
     }*/
+
+}
+class Sirnycks : ScriptableObject, Item
+{
+    public string Name { get; } = "Sirnycks";
+    public bool IsNewItem { get; set; } = true;
+    public string Description { get; } = "Ignites to significantly boost magic damage. Essential for spellcasters who want to enhance their attack power and dominate their enemies with increased magical prowess.";
+    public int MagicDamageAmplifierStep { get; } = 25; 
+    public string Code { get; } = "sirnycks";
+    public int Id { get; } = 2;
+    public string IconPath { get; } = "Images/UI/ItemIcons/Sirnycks";
+
+    public void UpgradeItem()
+    {
+        IsNewItem = false;
+        ItemLevel.LevelUp(this);
+        //UpdateAbilityStats();
+    }
+    public void SetNewItem(bool value)
+    {
+        IsNewItem = value;
+    }
+    public void UseBonus()
+    {
+        P_Stats.Instance.SetMagicDamageAmplifier(MagicDamageAmplifierStep);
+    }
+    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
 class Smth : ScriptableObject, Item
 {

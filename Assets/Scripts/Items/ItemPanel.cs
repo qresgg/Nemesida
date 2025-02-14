@@ -23,7 +23,7 @@ public class ItemInventory : MonoBehaviour
         _itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
 
         itemsList = _itemManager.GetItemList();
-        InnateItemBookSlot();
+        //InnateItemBookSlot();
     }
     private void Update()
     {
@@ -33,7 +33,7 @@ public class ItemInventory : MonoBehaviour
     {
         if (!itemsDictionary.ContainsKey(item.Code))
         {
-            for (int i = 1; i < slots.Length; i++)
+            for (int i = 0; i < slots.Length; i++) // int i = 1 if i in future will do innate items
             {
                 if (slots[i].sprite == null)
                 {
@@ -70,7 +70,7 @@ public class ItemInventory : MonoBehaviour
         }
         return null;
     }
-    private void InnateItemBookSlot()
+    /*private void InnateItemBookSlot()
     {
         _innateItem = GameManager.Instance.GetPersonalItemCode();
         Sprite sprite = GetSpriteByItemCode(_innateItem);
@@ -79,7 +79,7 @@ public class ItemInventory : MonoBehaviour
             slots[0].sprite = sprite;
             itemsDictionary.Add(_innateItem, 0);
         }
-    }
+    }*/
     private void ItemSlotsInitializer()
     {
         foreach (Image img in slots)
