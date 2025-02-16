@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class P_Stats : MonoBehaviour
@@ -23,14 +24,15 @@ public class P_Stats : MonoBehaviour
     }
 
     // PROCENTS
-    [SerializeField] int MagicDamageAmplifier = 100;
-    [SerializeField] int PhysicDamageAmplifier = 100;
-    [SerializeField] int PushForceAmplifier = 100;
-    [SerializeField] int RadiusAmplifier = 100;
+    [SerializeField] float magicDamageAmplifier = 100;
+    [SerializeField] float physicDamageAmplifier = 100;
+    [SerializeField] float pushForceAmplifier = 100;
+    [SerializeField] float radiusAmplifier = 100;
 
     // NOT PROCENTS
-    [SerializeField] int ProjectileCount = 0;
-    [SerializeField] int MaxHealthPoints = 100;
+    [SerializeField] int projectileCount = 0;
+    [SerializeField] int maxHealthPoints = 100;
+    [SerializeField] float healthRegeneration = 0.25f;
 
     private void Awake()
     {
@@ -45,62 +47,43 @@ public class P_Stats : MonoBehaviour
         }
     }
 
-    public int GetMagicDamageAmplifier()
+    public float MagicDamageAmplifier
     {
-        return MagicDamageAmplifier / 100;
-    }
-    public void SetMagicDamageAmplifier(int value)
-    {
-        MagicDamageAmplifier += value;
+        get => magicDamageAmplifier / 100f;
+        set => magicDamageAmplifier += value;
     }
 
-
-    public int GetPhysicDamageAmplifier()
+    public float PhysicDamageAmplifier
     {
-        return PhysicDamageAmplifier / 100;
-    }
-    public void SetPhysicDamageAmplifier(int value)
-    {
-        PhysicDamageAmplifier += value;
+        get => physicDamageAmplifier / 100f;
+        set => physicDamageAmplifier += value;
     }
 
-
-    public int GetPushForceAmplifier()
+    public float PushForceAmplifier
     {
-        return MagicDamageAmplifier / 100;
-    }
-    public void SetPushForceAmplifier(int value)
-    {
-        PushForceAmplifier += value;
+        get => magicDamageAmplifier / 100f;
+        set => magicDamageAmplifier += value;
     }
 
-
-    public int GetRadiusAmplifier()
+    public float RadiusAmplifier
     {
-        return RadiusAmplifier / 100;
+        get => radiusAmplifier / 100f;
+        set => radiusAmplifier += value;
     }
-    public void SetRadiusAmplifier(int value)
+    public int ProjectileCount
     {
-        RadiusAmplifier += value;
+        get => projectileCount;
+        set => projectileCount += value;
     }
-
-
-    public int GetProjectileCount()
+    public int MaxHealthPoints
     {
-        return ProjectileCount;
-    }
-    public void SetProjectileCount(int value)
-    {
-        ProjectileCount += value;
+        get => maxHealthPoints;
+        set => maxHealthPoints += value;
     }
 
-
-    public int GetMaxHealthPoints()
+    public float HealthRegeneration
     {
-        return MaxHealthPoints;
-    }
-    public void SetMaxHealthPoints(int value)
-    {
-        MaxHealthPoints += value;
+        get => healthRegeneration;
+        set => healthRegeneration += value;
     }
 }

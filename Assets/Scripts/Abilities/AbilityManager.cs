@@ -34,6 +34,7 @@ public class AbilityManager : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
 
         _innateAbility = GameManager.Instance.GetInnateAbilityCode();
+        UpdateAbilityByCode(_innateAbility);
     }
     private void LoadAbilities()
     {
@@ -48,10 +49,27 @@ public class AbilityManager : MonoBehaviour
     {
         return allAbilities;
     }
-    public List<Ability> GetAbilityListFiltered()
+    private void UpdateAbilityByCode(string code)
     {
-        abilitiesFiltered = new List<Ability>(allAbilities);
-        abilitiesFiltered.RemoveAll(ability => ability.Code == _innateAbility);
-        return abilitiesFiltered;
+        Ability ability = FindAbilityByCode(code);
+        if (ability != null)
+        {
+            ability.UpgradeAbility();
+        }
+        else
+        {
+            Debug.LogWarning($"Ability with code {code} not found.");
+        }
+    }
+    private Ability FindAbilityByCode(string code)
+    {
+        foreach (Ability ability in allAbilities)
+        {
+            if (ability.Code == code)
+            {
+                return ability;
+            }
+        }
+        return null;
     }
 }

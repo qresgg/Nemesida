@@ -1125,8 +1125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be92baad86250084d8f8528d3c8242ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 0
   _healthRegeneration: 0.1
   m_healthCount: {fileID: 2041401526}
   m_healthRegen: {fileID: 1864078906}
@@ -2202,10 +2200,11 @@ MonoBehaviour:
   _itemPickerMenu: {fileID: 5188739920546942690}
   _innateAbilityCode: fireball
   _personalItemCode: kk
-  _damageMultiplier: 5
+  _damageMultiplier: 1
   _IsInvulnerability: 0
   _xpMultiplier: 5
   _maxEnemyCount: 10
+  allowedToSynchronize: 0
   _abilityPickerMenuOpened: 0
 --- !u!114 &1023757001 stripped
 MonoBehaviour:
@@ -3565,12 +3564,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21880adc5ba0acc4ebd8495e24ab8f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MagicDamageAmplifier: 100
-  PhysicDamageAmplifier: 100
-  PushForceAmplifier: 100
-  RadiusAmplifier: 100
-  ProjectileCount: 0
-  MaxHealthPoints: 100
+  magicDamageAmplifier: 100
+  physicDamageAmplifier: 100
+  pushForceAmplifier: 100
+  radiusAmplifier: 100
+  projectileCount: 0
+  maxHealthPoints: 100
+  healthRegeneration: 0.25
 --- !u!114 &1562595471 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4916807965278216906, guid: 6a051391b5736354fa26fe8d2c7ddcad, type: 3}

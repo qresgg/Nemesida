@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
         xp_spawner.CollectDataAndSpawn(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0));
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         healthBar.UpdateHealthBar(health, maxHealth);

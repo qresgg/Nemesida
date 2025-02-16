@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,11 +19,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _xpMultiplier = 1; // x1
     [SerializeField] private int _maxEnemyCount = 5;
 
+    [SerializeField] public bool allowedToSynchronize = false;
+
+    private int _maxAbilitiesCount = 5;
 
     public bool _abilityPickerMenuOpened = false;
 
     private Queue<System.Action> abilityPickerQueue = new Queue<Action>();
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(SynchronizeData());
     }
 
     private void Update()
@@ -65,7 +70,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-
     public void OpenAbilityPickerMenu()
     {
         _abilityPickerMenu.SetActive(true);
@@ -88,8 +92,23 @@ public class GameManager : MonoBehaviour
     }
 
 
+    private IEnumerator SynchronizeData()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            allowedToSynchronize = true;
+            Debug.Log("SYNC = TRUE");
+            yield return new WaitForFixedUpdate();
+            allowedToSynchronize = false;
+        }
+    }
 
 
+    public int GetMaxAbilitiesCount()
+    {
+        return _maxAbilitiesCount;
+    }
 
 
 
@@ -114,5 +133,9 @@ public class GameManager : MonoBehaviour
     public int GetMaxEnemyCount()
     {
         return _maxEnemyCount;
+    }
+    public bool GetIsAllowedToSync()
+    {
+        return allowedToSynchronize;
     }
 }

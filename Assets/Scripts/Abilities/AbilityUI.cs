@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 
 public class AbilityUI : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class AbilityUI : MonoBehaviour
         player_abilityUser.AddAbilityToActiveList(ability.Code); // add to player AbilityUser
         ability.UpgradeAbility(); // upgrade level
 
+        _abilityPickerMenu.AddPickedAbility(GameManager.Instance.GetInnateAbilityCode());
+        _abilityPickerMenu.AddPickedAbility(ability.Code);
         GameManager.Instance.CloseAbilityPickerMenu();
     }
     private void DefaultSprite()

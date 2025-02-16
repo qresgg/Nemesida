@@ -5,8 +5,8 @@ using System;
 
 public class P_HPController : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private float _currentHealth;
+    private float _maxHealth;
+    private float _currentHealth;
     [SerializeField] private float _healthRegeneration = 0.1f;
 
     [SerializeField] TMP_Text m_healthCount; // HP
@@ -17,6 +17,7 @@ public class P_HPController : MonoBehaviour
 
     private void Start()
     {
+        _maxHealth = P_Stats.Instance.MaxHealthPoints;
         _currentHealth = _maxHealth;
         _player = GameObject.Find("Player").GetComponent<Player>();
         m_healthSlider = GameObject.Find("SliderHPBar").GetComponent<Slider>();

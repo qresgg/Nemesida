@@ -6,7 +6,7 @@ public interface Ability
     string Name { get; } 
     bool IsNewAbility { get; }
     string DamageType { get; }
-    int DamageCount { get; }
+    float DamageCount { get; }
     string Description { get; }
     //float Cooldown { get; }
     int ProjectileSpeed { get; }
@@ -47,11 +47,11 @@ class Fireball : ScriptableObject, Ability
     public string Name { get; } = "Fireball";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 25 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
     public float Cooldown { get; } = 2.5f;
     public int ProjectileSpeed { get; } = 10;
-    public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
+    public int ProjectileCount { get; } = 1 + P_Stats.Instance.ProjectileCount;
     public float Range { get; } = 10f;
     public string Code { get;  } = "fireball";
     public int Id { get; } = 1;
@@ -104,12 +104,12 @@ class PlasmaSpheres : ScriptableObject, Ability
     public string Name { get; } = "Plasma Spheres";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 15 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 15 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "Plasma spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
-    public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
-    public float Radius { get; } = 2f * P_Stats.Instance.GetRadiusAmplifier();
+    public int ProjectileCount { get; } = 1 + P_Stats.Instance.ProjectileCount;
+    public float Radius { get; } = 2f * P_Stats.Instance.RadiusAmplifier;
     public float Duration { get; } = 5f;
     public string Code { get; } = "plasma_spheres";
     public int Id { get; } = 2;
@@ -142,13 +142,13 @@ class Whirligig : ScriptableObject, Ability
     public string Name { get; } = "Whirligig";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public int DamageCount { get; } = 50 * P_Stats.Instance.GetPhysicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 50 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "The player surrounds themselves with a spinning sawblade, which damages enemies and pushes them away upon contact.";
     public float Cooldown { get; } = 3f;
     public int ProjectileSpeed { get; } = 0;
-    public float Radius { get; } = 3f * P_Stats.Instance.GetRadiusAmplifier();
+    public float Radius { get; } = 3f * P_Stats.Instance.RadiusAmplifier;
     public float Duration { get; } = 0.8f;
-    public float PushForce { get; } = 15f * P_Stats.Instance.GetPushForceAmplifier();
+    public float PushForce { get; } = 15f * P_Stats.Instance.PushForceAmplifier;
     public float RecoveryTime { get;  } = 0.3f;
     public string Code { get; } = "whirligig";
     public int Id { get; } = 3;
@@ -181,10 +181,10 @@ class RicochetStone : ScriptableObject, Ability
     public string Name { get; } = "Ricochet Stone";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public int DamageCount { get; } = 20 * P_Stats.Instance.GetPhysicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 20 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public int FragmentsMaxCount { get; } = 3;
     public string Description { get; } = "Upon striking an enemy, the stone shatters into smaller fragments, dealing additional damage to nearby foes.";
-    public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
+    public int ProjectileCount { get; } = 1 + P_Stats.Instance.ProjectileCount;
     public int ProjectileSpeed { get; } = 10;
     public float Cooldown { get; } = 2.8f;
     public float Range { get; } = 10f;
@@ -220,7 +220,7 @@ class LaserBeam : ScriptableObject, Ability
     public string Name { get; } = "Laser Beam";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 100 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 100 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "This ability releases a powerful laser beam that pierces through enemies in its path, dealing massive damage and destroying obstacles.";
     public int ProjectileCount { get; } = 1; // покищо ні
     public float Cooldown { get; } = 2f;
@@ -256,11 +256,11 @@ class UFORay : ScriptableObject, Ability
     public string Name { get; } = "?UFO? Ray";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public int DamageCount { get; } = 25 * P_Stats.Instance.GetMagicDamageAmplifier() * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
     public string Description { get; } = "A powerful beam descends from the spaceship, pulling enemies upward into the ship. This ability imediatelly kills any enemy.";
     public float Cooldown { get; } = 15f;
     public int ProjectileSpeed { get; } = 5;
-    public int ProjectileCount { get; } = 1 + P_Stats.Instance.GetProjectileCount();
+    public int ProjectileCount { get; } = 1 + P_Stats.Instance.ProjectileCount;
     public float Range { get; } = 10f;
     public string Code { get; } = "ufo_ray";
     public int Id { get; } = 6;

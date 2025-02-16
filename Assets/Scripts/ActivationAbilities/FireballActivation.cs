@@ -13,7 +13,7 @@ public class FireballActivation : MonoBehaviour
         FindRandomOrClosestEnemy();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Shoot();
     }
@@ -95,6 +95,7 @@ public class FireballActivation : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().TakeDamage(Fireball.DamageCount);
             Destroy(this.gameObject);
+            Debug.Log(Fireball.DamageCount);
         }
     }
 

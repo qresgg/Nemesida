@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AbilityPickerMenu : MonoBehaviour
 {
     private List<Ability> abilities = new List<Ability>();
+    private HashSet<string> pickedAbilities = new HashSet<string>();
 
     [SerializeField] private Transform abilityContainer;
     [SerializeField] private AbilityUI[] abilitySlots;
@@ -23,13 +25,13 @@ public class AbilityPickerMenu : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
 
         _innateAbility = GameManager.Instance.GetInnateAbilityCode();
-        abilities = _abilityManager.GetAbilityListFiltered();
+        abilities = _abilityManager.GetAbilityList();
 
         ShuffleAbilities();
         DisplayAbilities();
     }
 
-    public void ShuffleAbilities()
+    private void ShuffleAbilities()
     {
         System.Random random = new System.Random();
         int n = abilities.Count;
@@ -43,15 +45,18 @@ public class AbilityPickerMenu : MonoBehaviour
         }
     }
 
-    public void DisplayAbilities()
+    private void DisplayAbilities()
     {
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (abilities[i].AbilityLevel.Level != 8) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
+            if (pickedAbilities.Count < GameManager.Instance.GetMaxAbilitiesCount() || pickedAbilities.Contains(abilities[i].Code))
             {
-                abilitySlots[slotIndex].SetAbility(abilities[i]);
-                slotIndex++;
+                if (abilities[i].AbilityLevel.Level < 8) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
+                {
+                    abilitySlots[slotIndex].SetAbility(abilities[i]);
+                    slotIndex++;
+                }
             }
         }
         for (int i = slotIndex; i < abilitySlots.Length; i++) 
@@ -63,6 +68,16 @@ public class AbilityPickerMenu : MonoBehaviour
         {
             isFirstCall = false;
             Debug.Log("First call of DisplayAbilities completed.");
+        }
+    }
+
+    public void AddPickedAbility(string abilityCode)
+    {
+        pickedAbilities.Add(abilityCode);
+        foreach (var code in pickedAbilities)
+        {
+            Debug.Log($"[ABILITYPICKERMENU] Added PickedAbility: {code}");
+            Debug.Log(pickedAbilities.Count);
         }
     }
 

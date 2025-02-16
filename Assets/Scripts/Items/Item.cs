@@ -60,7 +60,7 @@ class MagicQuiver : ScriptableObject, Item
     public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
     public void UseBonus()
     {
-        P_Stats.Instance.SetProjectileCount(ProjectileStep);
+        P_Stats.Instance.ProjectileCount = ProjectileStep;
     }
     /* private void UpdateItemStats()
     {
@@ -106,7 +106,7 @@ class Sirnycks : ScriptableObject, Item
     }
     public void UseBonus()
     {
-        P_Stats.Instance.SetMagicDamageAmplifier(MagicDamageAmplifierStep);
+        P_Stats.Instance.MagicDamageAmplifier = MagicDamageAmplifierStep;
     }
     public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }

@@ -70,21 +70,6 @@ public class WhirligigActivation : MonoBehaviour
         }
     }
 
-    public int GetDamage()
-    {
-        return Whirligig.DamageCount;
-    }
-
-    public float GetRecoveryTime()
-    {
-        return Whirligig.RecoveryTime;
-    }
-
-    public float GetPushForce()
-    {
-        return Whirligig.PushForce;
-    }
-
     IEnumerator DestroyCoroutine()
     {
         yield return new WaitForSeconds(Whirligig.Duration);

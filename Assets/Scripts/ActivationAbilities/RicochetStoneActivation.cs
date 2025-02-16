@@ -10,7 +10,7 @@ public class RicochetStoneActivation : MonoBehaviour
     private Transform parentEnemy;
     private bool hasReduced = false; // Flag to track size reduction
 
-    public int currentDamage;
+    public float currentDamage;
 
     public void Start()
     {
