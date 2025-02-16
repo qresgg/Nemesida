@@ -60,7 +60,7 @@ public class AbilityUI : MonoBehaviour
         player_abilityUser.AddAbilityToActiveList(ability.Code); // add to player AbilityUser
         ability.UpgradeAbility(); // upgrade level
 
-        _abilityPickerMenu.AddPickedAbility(GameManager.Instance.GetInnateAbilityCode());
+        _abilityPickerMenu.AddPickedAbility(GameManager.Instance.InnateAbilityCode);
         _abilityPickerMenu.AddPickedAbility(ability.Code);
         GameManager.Instance.CloseAbilityPickerMenu();
     }

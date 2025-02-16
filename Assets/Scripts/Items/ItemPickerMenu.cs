@@ -19,7 +19,7 @@ public class ItemPickerMenu : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _ItemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
 
-        _personalItem = GameManager.Instance.GetPersonalItemCode();
+        _personalItem = GameManager.Instance.PersonalItemCode;
         items = _ItemManager.GetItemListFiltered();
         foreach (Item item in items )
         {

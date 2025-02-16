@@ -33,7 +33,7 @@ public class AbilityManager : MonoBehaviour
         _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
         _player = GameObject.Find("Player").GetComponent<Player>();
 
-        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.InnateAbilityCode;
         UpdateAbilityByCode(_innateAbility);
     }
     private void LoadAbilities()

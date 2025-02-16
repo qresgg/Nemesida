@@ -47,7 +47,7 @@ class Fireball : ScriptableObject, Ability
     public string Name { get; } = "Fireball";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public string Description { get; } = "The player releases a fireball that automatically targets and damages the nearest enemy.";
     public float Cooldown { get; } = 2.5f;
     public int ProjectileSpeed { get; } = 10;
@@ -104,7 +104,7 @@ class PlasmaSpheres : ScriptableObject, Ability
     public string Name { get; } = "Plasma Spheres";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public float DamageCount { get; } = 15 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 15 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public string Description { get; } = "Plasma spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     public float Cooldown { get; } = 5f;
     public int ProjectileSpeed { get; } = 5;
@@ -142,7 +142,7 @@ class Whirligig : ScriptableObject, Ability
     public string Name { get; } = "Whirligig";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public float DamageCount { get; } = 50 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 50 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public string Description { get; } = "The player surrounds themselves with a spinning sawblade, which damages enemies and pushes them away upon contact.";
     public float Cooldown { get; } = 3f;
     public int ProjectileSpeed { get; } = 0;
@@ -181,7 +181,7 @@ class RicochetStone : ScriptableObject, Ability
     public string Name { get; } = "Ricochet Stone";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Physical";
-    public float DamageCount { get; } = 20 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 20 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public int FragmentsMaxCount { get; } = 3;
     public string Description { get; } = "Upon striking an enemy, the stone shatters into smaller fragments, dealing additional damage to nearby foes.";
     public int ProjectileCount { get; } = 1 + P_Stats.Instance.ProjectileCount;
@@ -220,7 +220,7 @@ class LaserBeam : ScriptableObject, Ability
     public string Name { get; } = "Laser Beam";
     public bool IsNewAbility { get; set; } = true;
     public string DamageType { get; } = "Magical";
-    public float DamageCount { get; } = 100 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 100 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public string Description { get; } = "This ability releases a powerful laser beam that pierces through enemies in its path, dealing massive damage and destroying obstacles.";
     public int ProjectileCount { get; } = 1; // покищо ні
     public float Cooldown { get; } = 2f;
@@ -256,7 +256,7 @@ class UFORay : ScriptableObject, Ability
     public string Name { get; } = "?UFO? Ray";
     public bool IsNewAbility { get; private set; } = true;
     public string DamageType { get; } = "Magical";
-    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.GetDamageMultiplier();
+    public float DamageCount { get; } = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
     public string Description { get; } = "A powerful beam descends from the spaceship, pulling enemies upward into the ship. This ability imediatelly kills any enemy.";
     public float Cooldown { get; } = 15f;
     public int ProjectileSpeed { get; } = 5;

@@ -24,7 +24,7 @@ public class AbilityPickerMenu : MonoBehaviour
         _abilityManager = GameObject.Find("AbilityManager").GetComponent<AbilityManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
 
-        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.InnateAbilityCode;
         abilities = _abilityManager.GetAbilityList();
 
         ShuffleAbilities();
@@ -50,7 +50,7 @@ public class AbilityPickerMenu : MonoBehaviour
         int slotIndex = 0;
         for (int i = 0; i < abilities.Count && slotIndex < abilitySlots.Length; i++)
         {
-            if (pickedAbilities.Count < GameManager.Instance.GetMaxAbilitiesCount() || pickedAbilities.Contains(abilities[i].Code))
+            if (pickedAbilities.Count < GameManager.Instance.MaxAbilitiesCount || pickedAbilities.Contains(abilities[i].Code))
             {
                 if (abilities[i].AbilityLevel.Level < 8) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
                 {

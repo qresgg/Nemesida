@@ -30,7 +30,7 @@ public class ItemManager : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
 
-        _personalItem = GameManager.Instance.GetPersonalItemCode();
+        _personalItem = GameManager.Instance.PersonalItemCode;
     }
     private void LoadItems()
     {

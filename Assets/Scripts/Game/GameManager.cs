@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _xpMultiplier = 1; // x1
     [SerializeField] private int _maxEnemyCount = 5;
 
-    [SerializeField] public bool allowedToSynchronize = false;
-
     private int _maxAbilitiesCount = 5;
 
     public bool _abilityPickerMenuOpened = false;
@@ -41,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SynchronizeData());
     }
 
     private void Update()
@@ -92,50 +89,29 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator SynchronizeData()
+    public int MaxAbilitiesCount
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            allowedToSynchronize = true;
-            Debug.Log("SYNC = TRUE");
-            yield return new WaitForFixedUpdate();
-            allowedToSynchronize = false;
-        }
+        get => _maxAbilitiesCount;
     }
-
-
-    public int GetMaxAbilitiesCount()
+    public string PersonalItemCode
     {
-        return _maxAbilitiesCount;
+        get => _personalItemCode;
     }
-
-
-
-
-
-    public string GetPersonalItemCode()
+    
+    public string InnateAbilityCode
     {
-        return _personalItemCode;
+        get => _innateAbilityCode;
     }
-    public string GetInnateAbilityCode()
+    public int DamageMultiplier
     {
-        return _innateAbilityCode;
+        get => _damageMultiplier;
     }
-    public int GetDamageMultiplier()
+    public int XPMultiplier
     {
-        return _damageMultiplier;
+        get => _xpMultiplier;
     }
-    public int GetXPMultiplier()
+    public int MaxEnemyCount
     {
-        return _xpMultiplier;
-    }
-    public int GetMaxEnemyCount()
-    {
-        return _maxEnemyCount;
-    }
-    public bool GetIsAllowedToSync()
-    {
-        return allowedToSynchronize;
+        get => _maxEnemyCount;
     }
 }

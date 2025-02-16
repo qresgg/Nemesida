@@ -76,7 +76,7 @@ public class AbilityInventory : MonoBehaviour
     }
     private void InnateAbilityBookSlot()
     {
-        _innateAbility = GameManager.Instance.GetInnateAbilityCode();
+        _innateAbility = GameManager.Instance.InnateAbilityCode;
         Sprite sprite = GetSpriteByAbilityCode(_innateAbility);
         if (sprite != null)
         {
