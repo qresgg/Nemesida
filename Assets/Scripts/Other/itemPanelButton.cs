@@ -22,14 +22,5 @@ public class itemPanelButton : MonoBehaviour
         isEnabled = !isEnabled;
         animator.SetBool("IsEnable", isEnabled);
 
-        if (isEnabled)
-        {
-            transform.Translate(-moveAmount);
-        }
-        else
-        {
-            transform.Translate(moveAmount);
-
-        }
     }
 }

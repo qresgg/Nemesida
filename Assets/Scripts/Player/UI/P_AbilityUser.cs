@@ -44,7 +44,7 @@ public class P_AbilityUser : MonoBehaviour
         UFORay = new UFORay();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _abilityUICooldowns = GameObject.Find("Cooldowns").GetComponent<AbilityUICooldowns>();
+        _abilityUICooldowns = GameObject.Find("UICooldowns").GetComponent<AbilityUICooldowns>();
         string _innateAbilityCode = GameManager.Instance.InnateAbilityCode;
         activeAbilities = new List<string> { _innateAbilityCode };
     }

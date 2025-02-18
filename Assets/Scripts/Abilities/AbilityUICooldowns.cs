@@ -6,8 +6,12 @@ using System.Collections.Generic;
 
 public class AbilityUICooldowns : MonoBehaviour
 {
-    [SerializeField] private Image[] cooldownSlot;
-    [SerializeField] private TMP_Text[] cooldownText;
+    [SerializeField] private GameObject[] objects;
+    private string CooldownsObjectName = "Cooldowns";
+    private string cdObjectName = "CD";
+    private string imageObjectName = "image";
+    private Image[] cooldownSlot;
+    private TMP_Text[] cooldownText;
 
     Dictionary<string, int> abilitiesDictionary = new Dictionary<string, int>();
 
@@ -18,10 +22,11 @@ public class AbilityUICooldowns : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _abilityInventory = GameObject.Find("AbilityPanel").GetComponent<AbilityInventory>();
-        
 
+        FindCooldownComponents();
         CooldownClear();
     }
+
     private void CooldownClear()
     {
         for (int i = 0; i < cooldownSlot.Length; i++)
@@ -29,6 +34,38 @@ public class AbilityUICooldowns : MonoBehaviour
             cooldownSlot[i].enabled = false;
             cooldownText[i].text = "";
         }
+    }
+    private void FindCooldownComponents()
+    {
+        List<Image> images = new List<Image>();
+        List<TMP_Text> texts = new List<TMP_Text>();
+
+        foreach (GameObject obj in objects)
+        {
+            Transform CooldownsTransform = obj.transform.Find(CooldownsObjectName);
+            Transform cdTransform = obj.transform.Find(cdObjectName);
+
+            if (CooldownsTransform != null)
+            {
+                Image image = CooldownsTransform.GetComponent<Image>();
+                if (image != null)
+                {
+                    images.Add(image);
+                }
+            }
+
+            if (cdTransform != null)
+            {
+                TMP_Text text = cdTransform.GetComponent<TMP_Text>();
+                if (text != null)
+                {
+                    texts.Add(text);
+                }
+            }
+        }
+
+        cooldownSlot = images.ToArray();
+        cooldownText = texts.ToArray();
     }
 
     public void SetCooldown(int index, float cooldownTime, string code)
@@ -50,6 +87,7 @@ public class AbilityUICooldowns : MonoBehaviour
             yield return new WaitForSeconds(cooldownTime);
             cooldownSlot[index].enabled = true;
         }
+
         while (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
@@ -60,5 +98,4 @@ public class AbilityUICooldowns : MonoBehaviour
         cooldownSlot[index].enabled = false;
         cooldownText[index].text = "";
     }
-
 }

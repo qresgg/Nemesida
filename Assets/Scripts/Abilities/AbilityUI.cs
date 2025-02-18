@@ -19,7 +19,7 @@ public class AbilityUI : MonoBehaviour
 
     private void Start()
     {
-        _abilityInventory = GameObject.Find("AbilityInventory").GetComponent<AbilityInventory>();
+        _abilityInventory = GameObject.Find("AbilityPanel").GetComponent<AbilityInventory>();
         _abilityPickerMenu = GameObject.Find("AbilityPickerMenu").GetComponent<AbilityPickerMenu>();
         player_abilityUser = GameObject.Find("P_AbilityUser").GetComponent<P_AbilityUser>();
 
