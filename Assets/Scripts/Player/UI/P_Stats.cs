@@ -23,6 +23,8 @@ public class P_Stats : MonoBehaviour
         }
     }
 
+    [SerializeField] private int _maxAbilitiesCount = 5;
+
     // PROCENTS
     [SerializeField] float magicDamageAmplifier = 100;
     [SerializeField] float physicDamageAmplifier = 100;
@@ -85,5 +87,11 @@ public class P_Stats : MonoBehaviour
     {
         get => healthRegeneration;
         set => healthRegeneration += value;
+    }
+
+    public int MaxAbilitiesCount
+    {
+        get => _maxAbilitiesCount;
+        set => _maxAbilitiesCount += value;
     }
 }

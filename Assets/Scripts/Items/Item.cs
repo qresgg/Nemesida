@@ -110,13 +110,40 @@ class Sirnycks : ScriptableObject, Item
     }
     public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
+class Declaration : ScriptableObject, Item
+{
+    public string Name { get; } = "Declaration";
+    public bool IsNewItem { get; set; } = true;
+    public string Description { get; } = "A rare and ancient scroll that grants the user an additional ability slot. Said to be inscribed by the greatest sorcerers of old, this powerful artifact allows for unprecedented growth and mastery.";
+    public string Code { get; } = "declaration";
+    public int AbilitiesMaxCountStep { get; } = 1;
+    public int Id { get; } = 3;
+    public string IconPath { get; } = "Images/UI/ItemIcons/Declaration";
+
+    public void UpgradeItem()
+    {
+        IsNewItem = false;
+        ItemLevel.LevelUp(this);
+        //UpdateAbilityStats();
+    }
+    public void SetNewItem(bool value)
+    {
+        IsNewItem = value;
+    }
+    public void UseBonus()
+    {
+        P_Stats.Instance.MaxAbilitiesCount = AbilitiesMaxCountStep;
+    }
+    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
+}
+
 class Smth : ScriptableObject, Item
 {
-    public string Name { get; } = "M2r";
+    public string Name { get; } = "s";
     public bool IsNewItem { get; set; } = true;
     public string Description { get; } = "";
     public string Code { get; } = "lacker_quiver";
-    public int Id { get; } = 1;
+    public int Id { get; } = 4;
     public string IconPath { get; } = "Images/UI/ItemIcons/default_item";
 
     public void UpgradeItem()
@@ -134,3 +161,4 @@ class Smth : ScriptableObject, Item
     }
     public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
+

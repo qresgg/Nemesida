@@ -44,7 +44,7 @@ public class AbilityInventory : MonoBehaviour
     {
         if (!abilitiesDictionary.ContainsKey(ability.Code))
         {
-            for (int i = 0; i < objects.Length; i++)
+            for (int i = 0; i < P_Stats.Instance.MaxAbilitiesCount; i++)
             {
                 if (imageSlots[i].sprite == null)
                 {

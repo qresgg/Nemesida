@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _xpMultiplier = 1; // x1
     [SerializeField] private int _maxEnemyCount = 5;
 
-    private int _maxAbilitiesCount = 5;
-
     public bool _abilityPickerMenuOpened = false;
 
     private Queue<System.Action> abilityPickerQueue = new Queue<Action>();
@@ -89,15 +87,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public int MaxAbilitiesCount
-    {
-        get => _maxAbilitiesCount;
-    }
     public string PersonalItemCode
     {
         get => _personalItemCode;
     }
-    
     public string InnateAbilityCode
     {
         get => _innateAbilityCode;
