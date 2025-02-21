@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour
     {
         get => _innateAbilityCode;
     }
+    public string PerkCode
+    {
+        get => _perkCode;
+    }
     public int DamageMultiplier
     {
         get => _damageMultiplier;
