@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ItemPickerMenu _itemPickerMenu;
 
     [Header("Game Changer")]
+    [SerializeField] private string _perkCode;
     [SerializeField] private string _innateAbilityCode;
     [SerializeField] private string _personalItemCode;
     [SerializeField] private int _damageMultiplier = 1; // x1

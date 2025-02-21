@@ -73,11 +73,19 @@ public class AbilityPickerMenu : MonoBehaviour
 
     public void AddPickedAbility(string abilityCode)
     {
+        bool reached = false;
+
         pickedAbilities.Add(abilityCode);
         foreach (var code in pickedAbilities)
         {
             Debug.Log($"[ABILITYPICKERMENU] Added PickedAbility: {code}");
             Debug.Log(pickedAbilities.Count);
+        }
+
+        if (pickedAbilities.Count == P_Stats.Instance.MaxAbilitiesCount && reached == false)
+        {
+            P_Stats.Instance.MaxAbilitiesPicked = true;
+            reached = true;
         }
     }
 

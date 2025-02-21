@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -23,7 +24,9 @@ public class P_Stats : MonoBehaviour
         }
     }
 
+    [SerializeField] private bool _maxAbilitiesPicked = false;
     [SerializeField] private int _maxAbilitiesCount = 5;
+    [SerializeField] private int _enemyKilled = 0;
 
     // PROCENTS
     [SerializeField] float magicDamageAmplifier = 100;
@@ -36,6 +39,7 @@ public class P_Stats : MonoBehaviour
     [SerializeField] int maxHealthPoints = 100;
     [SerializeField] float healthRegeneration = 0.25f;
 
+    public event Action<int> OnEnemyKilledChanged;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -93,5 +97,19 @@ public class P_Stats : MonoBehaviour
     {
         get => _maxAbilitiesCount;
         set => _maxAbilitiesCount += value;
+    }
+    public int EnemyKilled
+    {
+        get => _enemyKilled;
+        set {
+            _enemyKilled += value;
+            OnEnemyKilledChanged?.Invoke(_enemyKilled);
+        }
+    }
+
+    public bool MaxAbilitiesPicked
+    {
+        get => _maxAbilitiesPicked;
+        set => _maxAbilitiesPicked = value;
     }
 }

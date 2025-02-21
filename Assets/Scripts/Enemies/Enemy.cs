@@ -110,6 +110,7 @@ public class Enemy : MonoBehaviour
     {
         Destroy(this.gameObject);
         xp_spawner.CollectDataAndSpawn(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0));
+        P_Stats.Instance.EnemyKilled = 1;
     }
 
     public void TakeDamage(float damageAmount)
