@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
 
 public class ItemManager : MonoBehaviour
 {
@@ -34,10 +36,17 @@ public class ItemManager : MonoBehaviour
     }
     private void LoadItems()
     {
-        allItems.Add(new MagicQuiver());
-        allItems.Add(new Sirnycks());
-        allItems.Add(new Declaration());
-        allItems.Add(new Smth());
+        var itemTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => t.GetCustomAttributes(typeof(ItemAttribute), false).Length > 0);
+
+        foreach (var type in itemTypes)
+        {
+            var itemInstance = Activator.CreateInstance(type) as Item;
+            if (itemInstance != null)
+            {
+                allItems.Add(itemInstance);
+            }
+        }
     }
     public List<Item> GetItemList()
     {

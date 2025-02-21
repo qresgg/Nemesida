@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AbilityManager : MonoBehaviour
@@ -38,12 +40,17 @@ public class AbilityManager : MonoBehaviour
     }
     private void LoadAbilities()
     {
-        allAbilities.Add(new Fireball()); 
-        allAbilities.Add(new PlasmaSpheres());
-        allAbilities.Add(new Whirligig());
-        allAbilities.Add(new RicochetStone());
-        allAbilities.Add(new LaserBeam());
-        allAbilities.Add(new UFORay());
+        var abilityTypes = Assembly.GetExecutingAssembly().GetTypes()
+        .Where(t => t.GetCustomAttributes(typeof(AbilityAttribute), false).Length > 0);
+
+        foreach (var type in abilityTypes)
+        {
+            var abilityInstance = Activator.CreateInstance(type) as Ability;
+            if (abilityInstance != null)
+            {
+                allAbilities.Add(abilityInstance);
+            }
+        }
     }
     public List<Ability> GetAbilityList()
     {

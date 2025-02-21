@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PerkManager : MonoBehaviour
@@ -22,7 +24,17 @@ public class PerkManager : MonoBehaviour
     }
     private void LoadPerks()
     {
-        allPerks.Add(new Prophecy());
+        var perkTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => t.GetCustomAttributes(typeof(PerkAttribute), false).Length > 0);
+
+        foreach (var type in perkTypes)
+        {
+            var perkInstance = Activator.CreateInstance(type) as Perk;
+            if (perkInstance != null)
+            {
+                allPerks.Add(perkInstance);
+            }
+        }
     }
     public List<Perk> GetPerkList()
     {

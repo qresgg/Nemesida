@@ -1,7 +1,14 @@
+using System;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
+[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+sealed class ItemAttribute : Attribute
+{
+    public ItemAttribute() { }
+}
 public interface Item
 {
     string Name { get; }
@@ -15,6 +22,45 @@ public interface Item
     void SetNewItem(bool value);
     void UseBonus();
     ItemLevel ItemLevel { get; }
+}
+
+public abstract class ItemBase : ScriptableObject, Item
+{
+    private static int nextId = 1;
+
+    private string naming;
+    private string description;
+    private bool is_new_item = true;
+    private int id;
+    private string icon_path;
+    private string info;
+    public ItemBase(string name, string description)
+    {
+        naming = name;
+        this.description = description;
+        id = nextId++;
+        icon_path = $"Images/UI/ItemIcons/{name.Replace(" ", "")}";
+    }
+    public string Name => naming;
+    public bool IsNewItem { get; set; } = true;
+    public string Description => description;
+    public string Code { get => naming.ToLower().Replace(" ", "_"); }
+    public int Id { get => id; }
+    public string IconPath { get => icon_path; }
+
+    public void UpgradeItem() {
+        IsNewItem = false;
+        ItemLevel.LevelUp(this);
+        //UpdateAbilityStats();
+    }
+    public void SetNewItem(bool value)
+    {
+        IsNewItem = value;
+    }
+    public virtual void UseBonus() {
+
+    }
+    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
 
 public class ItemLevel
@@ -36,105 +82,49 @@ public class ItemLevel
     }
 }
 
-class MagicQuiver : ScriptableObject, Item
+[Item]
+class MagicQuiver : ItemBase
 {
-    public string Name { get; } = "Magic Quiver";
-    public bool IsNewItem { get; set; } = true;
-    public string Description { get; } = "Empowers your hero with the ability to launch additional projectiles, enhancing their offensive capabilities and allowing them to overwhelm enemies with a barrage of attacks.";
-    int ProjectileStep { get; } = 1;
-    public string Code { get; } = "magic_quiver";
-    public int Id { get; } = 1;
-    public string IconPath { get; } = "Images/UI/ItemIcons/MagicQuiver";
-
-    public void UpgradeItem()
+    private const string NAME = "MagicQuiver";
+    private const string DESCRIPTION = "Empowers your hero with the ability to launch additional projectiles, enhancing their offensive capabilities and allowing them to overwhelm enemies with a barrage of attacks.";
+    public MagicQuiver() : base(NAME, DESCRIPTION)
     {
-        IsNewItem = false;
-        ItemLevel.LevelUp(this);
-        //UpdateAbilityStats();
     }
-    public void SetNewItem(bool value)
-    {
-        IsNewItem = value;
-    }
-
-    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
-    public void UseBonus()
+    private int ProjectileStep => 1;
+    public override void UseBonus()
     {
         P_Stats.Instance.ProjectileCount = ProjectileStep;
     }
-    /* private void UpdateItemStats()
-    {
-        switch (ItemLevel.Level)
-        {
-            case 2:
-                DamageCount = 60;
-                Cooldown = 2.8f;
-                Radius = 3.2f;
-                Duration = 0.9f;
-                break;
-            case 3:
-                DamageCount = 70;
-                Cooldown = 2.6f;
-                Radius = 3.4f;
-                Duration = 1.0f;
-                break;
-            default:
-                break;
-        }
-    }*/
-
 }
-class Sirnycks : ScriptableObject, Item
-{
-    public string Name { get; } = "Sirnycks";
-    public bool IsNewItem { get; set; } = true;
-    public string Description { get; } = "Ignites to significantly boost magic damage. Essential for spellcasters who want to enhance their attack power and dominate their enemies with increased magical prowess.";
-    public int MagicDamageAmplifierStep { get; } = 25; 
-    public string Code { get; } = "sirnycks";
-    public int Id { get; } = 2;
-    public string IconPath { get; } = "Images/UI/ItemIcons/Sirnycks";
 
-    public void UpgradeItem()
+[Item]
+class Sirnycks : ItemBase
+{
+    private const string NAME = "Sirnycks";
+    private const string DESCRIPTION = "Ignites to significantly boost magic damage. Essential for spellcasters who want to enhance their attack power and dominate their enemies with increased magical prowess.";
+    public Sirnycks() : base(NAME, DESCRIPTION)
     {
-        IsNewItem = false;
-        ItemLevel.LevelUp(this);
-        //UpdateAbilityStats();
     }
-    public void SetNewItem(bool value)
-    {
-        IsNewItem = value;
-    }
-    public void UseBonus()
+    public int MagicDamageAmplifierStep { get; } = 25;
+    public override void UseBonus()
     {
         P_Stats.Instance.MagicDamageAmplifier = MagicDamageAmplifierStep;
     }
-    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
-class Declaration : ScriptableObject, Item
-{
-    public string Name { get; } = "Declaration";
-    public bool IsNewItem { get; set; } = true;
-    public string Description { get; } = "A rare and ancient scroll that grants the user an additional ability slot. Said to be inscribed by the greatest sorcerers of old, this powerful artifact allows for unprecedented growth and mastery.";
-    public string Code { get; } = "declaration";
-    public int AbilitiesMaxCountStep { get; } = 1;
-    public int Id { get; } = 3;
-    public string IconPath { get; } = "Images/UI/ItemIcons/Declaration";
 
-    public void UpgradeItem()
+[Item]
+class Declaration : ItemBase
+{
+    private const string NAME = "Declaration";
+    private const string DESCRIPTION = "A rare and ancient scroll that grants the user an additional ability slot. Said to be inscribed by the greatest sorcerers of old, this powerful artifact allows for unprecedented growth and mastery.";
+    public Declaration() : base(NAME, DESCRIPTION)
     {
-        IsNewItem = false;
-        ItemLevel.LevelUp(this);
-        //UpdateAbilityStats();
     }
-    public void SetNewItem(bool value)
-    {
-        IsNewItem = value;
-    }
-    public void UseBonus()
+    public int AbilitiesMaxCountStep { get; } = 1;
+    public override void UseBonus()
     {
         P_Stats.Instance.MaxAbilitiesCount = AbilitiesMaxCountStep;
     }
-    public ItemLevel ItemLevel { get; private set; } = new ItemLevel(1);
 }
 
 class Smth : ScriptableObject, Item

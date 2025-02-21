@@ -26,11 +26,11 @@ public class ItemPickerMenu : MonoBehaviour
             Debug.Log(item.Code);
         }
 
-        ShuffleAbilities();
-        DisplayAbilities();
+        ShuffleItems();
+        DisplayItems();
     }
 
-    public void ShuffleAbilities()
+    public void ShuffleItems()
     {
         System.Random random = new System.Random();
         int n = items.Count;
@@ -44,12 +44,12 @@ public class ItemPickerMenu : MonoBehaviour
         }
     }
 
-    public void DisplayAbilities()
+    public void DisplayItems()
     {
         int slotIndex = 0;
         for (int i = 0; i < items.Count && slotIndex < itemSlots.Length; i++)
         {
-            if (items[i].ItemLevel.Level != 6) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
+            if (items[i].ItemLevel.Level < 6) //|| !pickedAbilityCodes.Contains(abilities[i].Code))
             {
                 itemSlots[slotIndex].SetItem(items[i]);
                 slotIndex++;
@@ -72,8 +72,8 @@ public class ItemPickerMenu : MonoBehaviour
         this.gameObject.SetActive(arg);
         if (arg)
         {
-            ShuffleAbilities();
-            DisplayAbilities();
+            ShuffleItems();
+            DisplayItems();
         }
     }
 }
