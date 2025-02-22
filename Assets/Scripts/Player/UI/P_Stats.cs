@@ -40,6 +40,9 @@ public class P_Stats : MonoBehaviour
     [SerializeField] float pushForceAmplifier = 0;
     [SerializeField] float radiusAmplifier = 0;
 
+    [SerializeField] float xpAmplifier = 0;
+    [SerializeField] float speedAmplifier = 0;
+
     // NOT PROCENTS
     [Header("Amplifiers (default)")]
     [SerializeField] int additionalProjectileCount = 0;
@@ -48,6 +51,16 @@ public class P_Stats : MonoBehaviour
 
     public event Action<int> OnEnemyKilledChanged;
 
+    public float SpeedAmplifier
+    {
+        get => speedAmplifier;
+        set => SpeedAmplifier += value;
+    }
+    public float XPAmplifier
+    {
+        get => xpAmplifier; 
+        set => xpAmplifier += value;
+    }
     public float CriticalDamageAmplifier
     {
         get => criticalDamageAmplifier;

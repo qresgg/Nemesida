@@ -41,9 +41,12 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
+        float _playerSpeed = AmplifierController.Instance.SpeedSystem(_speed);
+        
+
         _input.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         rightDirection = !(leftDirection = (_input.x > 0 ? false : true));
-        Vector3 newPosition = _rb.position + _input * _speed * Time.fixedDeltaTime;
+        Vector3 newPosition = _rb.position + _input * _playerSpeed * Time.fixedDeltaTime;
         _rb.MovePosition(newPosition);
     }
     void HealthManager()

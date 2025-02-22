@@ -44,7 +44,7 @@ public class AmplifierController : MonoBehaviour
     }
     public float RadiusSystem(AbilityBase Ability)
     {
-        float radius = (Ability.Radius + (Ability.Radius * P_Stats.Instance.RadiusAmplifier));
+        float radius = Ability.Radius + (Ability.Radius * P_Stats.Instance.RadiusAmplifier);
         return radius;
     }
 
@@ -52,6 +52,17 @@ public class AmplifierController : MonoBehaviour
     {
         float pushForce = Ability.PushForce + (Ability.PushForce * P_Stats.Instance.PushForceAmplifier);
         target.gameObject.GetComponent<Enemy>().ApplyImpulseAndRecover(PushForce, RecoveryTime, position);
+    }
+    
+    public float XPSystem(float xp_points)
+    {
+        float xp = (xp_points + (xp_points * P_Stats.Instance.XPAmplifier)) * GameManager.Instance.XPMultiplier;
+        return xp;
+    }
+    public float SpeedSystem(float playerSpeed)
+    {
+        float speed = playerSpeed + (playerSpeed * P_Stats.Instance.SpeedAmplifier);
+        return speed;
     }
     // PUSHFORCESYSTEM
 }

@@ -101,3 +101,21 @@ class Berzerk : PerkBase
         P_Stats.Instance.CriticalDamageAmplifier += CriticalDamageAmplifier;
     }
 }
+
+[Perk]
+class Mugger : PerkBase
+{
+    private const string NAME = "Mugger";
+    private const string DESCRIPTION = "Grants character additional experience points and increased speed. With this perk, characters become more agile and can accumulate experience faster, making them more formidable and efficient in their tasks.";
+    public Mugger() : base(NAME, DESCRIPTION)
+    {
+    }
+    private float XPAmplifier = 0.15f;
+    private float AdditionalPlayerSpeed = 0.10f;
+    public override void Bonus()
+    {
+        P_Stats.Instance.XPAmplifier += XPAmplifier;
+        P_Stats.Instance.SpeedAmplifier += AdditionalPlayerSpeed;
+    }
+}
+    

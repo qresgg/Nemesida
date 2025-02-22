@@ -49,7 +49,7 @@ public class P_XPController : MonoBehaviour
             }
         }
     }
-    public void TakeXP(int takenXP)
+    public void TakeXP(float takenXP)
     {
         totalXP += takenXP;
     }

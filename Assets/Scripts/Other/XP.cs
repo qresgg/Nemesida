@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using static UnityEngine.GraphicsBuffer;
 
 public class XP : MonoBehaviour
@@ -10,7 +11,7 @@ public class XP : MonoBehaviour
     P_XPController player_XPController;
 
     private bool _isAttractive = false;
-    private int xp_points = 25;
+    private float xp_points = 25;
     private bool _xpTaken = false;
 
     void Start()
@@ -47,7 +48,7 @@ public class XP : MonoBehaviour
 
         //Debug.Log("XP TAKED 1 TIME");
         _xpTaken = true;
-        xp_points *= GameManager.Instance.XPMultiplier;
+        xp_points = AmplifierController.Instance.XPSystem(xp_points);
         player_XPController.TakeXP(xp_points);
         Destroy(this.gameObject);
     }

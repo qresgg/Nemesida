@@ -1898,7 +1898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _abilityPickerMenu: {fileID: 168706714}
   _itemPickerMenu: {fileID: 5188739920546942690}
-  _perkCode: berzerk
+  _perkCode: mugger
   _innateAbilityCode: fireball
   _personalItemCode: kk
   _damageMultiplier: 5
@@ -3931,6 +3931,8 @@ MonoBehaviour:
   criticalDamageAmplifier: 0
   pushForceAmplifier: 0
   radiusAmplifier: 0
+  xpAmplifier: 0
+  speedAmplifier: 0
   additionalProjectileCount: 0
   maxHealthPoints: 100
   healthRegeneration: 0.25
