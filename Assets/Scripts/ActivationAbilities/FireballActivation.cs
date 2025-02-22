@@ -5,11 +5,11 @@ using UnityEngine;
 public class FireballActivation : MonoBehaviour
 {
     private Transform target;
-    private Fireball Fireball;
+    private Fireball Ability;
 
     public void Start()
     {
-        Fireball = new Fireball();
+        Ability = ScriptableObject.CreateInstance<Fireball>();
         FindRandomOrClosestEnemy();
     }
 
@@ -26,7 +26,7 @@ public class FireballActivation : MonoBehaviour
 
             // Õ¿—“–Œ… ¿ ƒÀﬂ ‘≈…— “” ‘≈…— « “¿–√≈“ŒÃ
             transform.LookAt(target);
-            this.transform.position += direction * Fireball.ProjectileSpeed * Time.deltaTime;
+            this.transform.position += direction * Ability.ProjectileSpeed * Time.deltaTime;
             Quaternion rotation = Quaternion.LookRotation(direction); 
             rotation *= Quaternion.Euler(90, 0, 90);
             transform.rotation = rotation;
@@ -40,7 +40,7 @@ public class FireballActivation : MonoBehaviour
 
     void FindRandomOrClosestEnemy()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Fireball.Range);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Ability.Range);
         List<Transform> potentialTargets = new List<Transform>();
 
         foreach (var hitCollider in hitColliders)
@@ -93,14 +93,8 @@ public class FireballActivation : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(Fireball.DamageCount);
+            AmplifierController.Instance.DamageSystem(other, Ability);
             Destroy(this.gameObject);
-            Debug.Log(Fireball.DamageCount);
         }
-    }
-
-    public float GetCooldown()
-    {
-        return Fireball.Cooldown;
     }
 }

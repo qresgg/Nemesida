@@ -5,7 +5,7 @@ using UnityEngine;
 public class UFORayActivation : MonoBehaviour
 {
     private Transform target;
-    UFORay UFORay;
+    UFORay Ability;
     private float _lastUFORay;
 
     Player _player;
@@ -17,7 +17,7 @@ public class UFORayActivation : MonoBehaviour
 
     private void Start()
     {
-        UFORay = new UFORay();
+        Ability = ScriptableObject.CreateInstance<UFORay>();
         _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
@@ -32,7 +32,7 @@ public class UFORayActivation : MonoBehaviour
     }
     private void PickupZone()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, UFORay.Range); // RANGE
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Ability.Range); // RANGE
         List<Transform> potentialTargets = new List<Transform>();
 
         foreach (var hitCollider in hitColliders)
@@ -59,7 +59,7 @@ public class UFORayActivation : MonoBehaviour
 
     private void RayBehaviour(Transform target)
     {
-        if (Time.time > _lastUFORay + UFORay.Cooldown)
+        if (Time.time > _lastUFORay + Ability.Cooldown)
         {
             (Vector3 spawnPosition, Quaternion spawnRotation) = RayAdjustments(target);
             currentUFORay = Instantiate(UFORayPrefab, spawnPosition, spawnRotation);

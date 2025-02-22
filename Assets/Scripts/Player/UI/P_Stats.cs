@@ -24,62 +24,67 @@ public class P_Stats : MonoBehaviour
         }
     }
 
+    [Header("Counters")]
     [SerializeField] private bool _maxAbilitiesPicked = false;
     [SerializeField] private int _maxAbilitiesCount = 5;
     [SerializeField] private int _enemyKilled = 0;
 
     // PROCENTS
-    [SerializeField] float magicDamageAmplifier = 100;
-    [SerializeField] float physicDamageAmplifier = 100;
-    [SerializeField] float pushForceAmplifier = 100;
-    [SerializeField] float radiusAmplifier = 100;
+    [Header("Amplifiers (%)")]
+    [SerializeField] float magicDamageAmplifier = 0;
+    [SerializeField] float physicDamageAmplifier = 0;
+
+    [SerializeField] float criticalChance = 0;
+    [SerializeField] float criticalDamageAmplifier = 0;
+
+    [SerializeField] float pushForceAmplifier = 0;
+    [SerializeField] float radiusAmplifier = 0;
 
     // NOT PROCENTS
-    [SerializeField] int projectileCount = 0;
-    [SerializeField] int maxHealthPoints = 100;
-    [SerializeField] float healthRegeneration = 0.25f;
+    [Header("Amplifiers (default)")]
+    [SerializeField] int additionalProjectileCount = 0;
+    [Tooltip("Max HP of the player")][SerializeField] int maxHealthPoints = 100;
+    [Tooltip("HP regeneration of the player")][SerializeField] float healthRegeneration = 0.25f;
 
     public event Action<int> OnEnemyKilledChanged;
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
 
+    public float CriticalDamageAmplifier
+    {
+        get => criticalDamageAmplifier;
+        set => criticalDamageAmplifier += value;
+    }
+    public float CriticalChance
+    {
+        get => criticalChance;
+        set => criticalChance += value;
+    }
     public float MagicDamageAmplifier
     {
-        get => magicDamageAmplifier / 100f;
+        get => magicDamageAmplifier;
         set => magicDamageAmplifier += value;
     }
 
     public float PhysicDamageAmplifier
     {
-        get => physicDamageAmplifier / 100f;
+        get => physicDamageAmplifier;
         set => physicDamageAmplifier += value;
     }
 
     public float PushForceAmplifier
     {
-        get => magicDamageAmplifier / 100f;
+        get => magicDamageAmplifier;
         set => magicDamageAmplifier += value;
     }
 
     public float RadiusAmplifier
     {
-        get => radiusAmplifier / 100f;
+        get => radiusAmplifier;
         set => radiusAmplifier += value;
     }
     public int ProjectileCount
     {
-        get => projectileCount;
-        set => projectileCount += value;
+        get => additionalProjectileCount;
+        set => additionalProjectileCount += value;
     }
     public int MaxHealthPoints
     {

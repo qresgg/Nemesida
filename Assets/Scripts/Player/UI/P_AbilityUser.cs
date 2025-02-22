@@ -36,12 +36,12 @@ public class P_AbilityUser : MonoBehaviour
 
     void Start()
     {
-        Fireball = new Fireball();
-        PlasmaSpheres = new PlasmaSpheres();
-        Whirligig = new Whirligig();
-        RicochetStone = new RicochetStone();
-        LaserBeam = new LaserBeam();
-        UFORay = new UFORay();
+        Fireball = ScriptableObject.CreateInstance<Fireball>();
+        PlasmaSpheres = ScriptableObject.CreateInstance<PlasmaSpheres>();
+        Whirligig = ScriptableObject.CreateInstance<Whirligig>();
+        RicochetStone = ScriptableObject.CreateInstance<RicochetStone>();
+        LaserBeam = ScriptableObject.CreateInstance<LaserBeam>();
+        UFORay = ScriptableObject.CreateInstance<UFORay>();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
         _abilityUICooldowns = GameObject.Find("UICooldowns").GetComponent<AbilityUICooldowns>();
@@ -84,12 +84,12 @@ public class P_AbilityUser : MonoBehaviour
             {
                 for (int i = 0; i < PlasmaSpheres.ProjectileCount; i++)
                 {
-                    //Debug.Log("Perevirka");
+                    Debug.Log("Perevirka");
                     if (SpheresContainer.transform.childCount < PlasmaSpheres.ProjectileCount)
                     {
                         GameObject plasmaSphere = Instantiate(_abilityPrefabs[1], transform.parent.position, Quaternion.identity);
                         plasmaSphere.transform.SetParent(SpheresContainer.transform);
-                        //Debug.Log("plasmaSphere ADDED");
+                        Debug.Log("plasmaSphere ADDED");
                     }
                 }
                 SetUICooldown("plasma_spheres", PlasmaSpheres.Cooldown);

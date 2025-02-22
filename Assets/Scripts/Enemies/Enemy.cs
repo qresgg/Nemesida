@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     XPSpawner xp_spawner;
     [SerializeField] EnemyHealthBar healthBar;
     Whirligig Whirligig;
-    P_HPController hpController;
+    P_HPController player_hpController;
 
     [Header("Movement")]
     [SerializeField] private float speed = 2.0f;
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         maxHealth = 100;
         health = maxHealth;
 
-        hpController = GameObject.Find("HP").GetComponent<P_HPController>();
+        player_hpController = GameObject.Find("HP").GetComponent<P_HPController>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         xp_spawner = GameObject.Find("XPSpawner").GetComponent<XPSpawner>();
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
     {
         if (_player != null)
         {
-            hpController.TakeDamage(damage);
+            player_hpController.TakeDamage(damage);
         }
     }
 }

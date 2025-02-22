@@ -19,15 +19,10 @@ public class PerkUI : MonoBehaviour
         SetPerk(FindPerkByCode(pickedPerk));
     }
 
-    void Update()
-    {
-        
-    }
-    
     void SetPerk(Perk perk)
     {
         _perkImage.sprite = Resources.Load<Sprite>(perk.IconPath);
-        Debug.Log("PERK SETTED");
+        perk.Bonus();
     }
 
     private Perk FindPerkByCode(string code)

@@ -105,7 +105,7 @@ class Sirnycks : ItemBase
     public Sirnycks() : base(NAME, DESCRIPTION)
     {
     }
-    public int MagicDamageAmplifierStep { get; } = 25;
+    public float MagicDamageAmplifierStep { get; } = 0.25f;
     public override void UseBonus()
     {
         P_Stats.Instance.MagicDamageAmplifier = MagicDamageAmplifierStep;

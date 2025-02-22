@@ -77,42 +77,20 @@ public abstract class AbilityBase : ScriptableObject, Ability
         this.cooldown = cooldown;
     }
     // NAME, ISNEW, DAMAGETYPE, DAMAGECOUNT, DESCRIPTION, CODE, ID, ICONPATH, INFO, UPGRADE, SETNEWAB
-    public string Name
-    {
-        get => naming;
-    }
-    public bool IsNewAbility
-    {
-        get => is_new_ability;
-        set => is_new_ability = value;
-    }
-    public string DamageType
-    {
-        get => damage_type.ToString();
-    }
-    public float DamageCount
-    {
-        get => damage_count;
-    }
-    public string Description
-    {
-        get => description;
-    }
+    public string Name => naming;
+    public bool IsNewAbility { get; set; }
+    public string DamageType => damage_type.ToString();
+    public float DamageCount => damage_count;
+    public string Description => description;
     public float Cooldown { get => cooldown; }
-    public string Code
-    {
-        get => naming.ToLower().Replace(" ", "_");
-    }
-    public int ProjectileCount { get => 1 + P_Stats.Instance.ProjectileCount; }
-    public int Id
-    {
-        get => id;
-    }
-    public string IconPath
-    {
-        get => icon_path;
-    }
+    public string Code => naming.ToLower().Replace(" ", "_");
+    public int ProjectileCount => 1 + P_Stats.Instance.ProjectileCount;
+    public int Id => id;
+    public string IconPath => icon_path;
     public string Info => FormatInfo();
+
+    public virtual float Radius { get; set; }
+    public virtual float PushForce { get; set; }
 
     public void UpgradeAbility()
     {
@@ -157,7 +135,7 @@ public abstract class AbilityBase : ScriptableObject, Ability
 class Fireball : AbilityBase
 {
     private const string NAME = "Fireball";
-    private static float COUNT = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 25;
     private const DamageType TYPE = global::DamageType.Magical;
     private const string DESCRIPTION = "The player releases a fireball that automatically targets and damages the nearest enemy.";
     private const float COOLDOWN = 2.5f;
@@ -177,7 +155,7 @@ class Fireball : AbilityBase
 class PlasmaSpheres : AbilityBase
 {
     private const string NAME = "Plasma Spheres";
-    private static float COUNT = 15 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 15;
     private const DamageType TYPE = global::DamageType.Magical;
     private const string DESCRIPTION = "Plasma spheres orbit around the player, causing damage to any enemies that come into contact with them.";
     private const float COOLDOWN = 5f;
@@ -185,7 +163,7 @@ class PlasmaSpheres : AbilityBase
     {
     }
     public float ProjectileSpeed => 5f;
-    public float Radius => 2f * P_Stats.Instance.RadiusAmplifier;
+    public override float Radius => 2f;
     public float Duration => COOLDOWN;
     public override string FormatInfo()
     {
@@ -201,16 +179,16 @@ class PlasmaSpheres : AbilityBase
 class Whirligig : AbilityBase
 {
     private const string NAME = "Whirligig";
-    private static float COUNT = 50 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 50;
     private const DamageType TYPE = global::DamageType.Physical;
     private const string DESCRIPTION = "The player surrounds themselves with a spinning sawblade, which damages enemies and pushes them away upon contact.";
     private const float COOLDOWN = 3f;
     public Whirligig() : base(NAME, DESCRIPTION, TYPE, COUNT, COOLDOWN)
     {
     }
-    public float Radius => 2f * P_Stats.Instance.RadiusAmplifier;
+    public override float Radius => 4f;
     public float Duration => 0.8f;
-    public float PushForce => 15f * P_Stats.Instance.PushForceAmplifier;
+    public override float PushForce => 15f;
     public float RecoveryTime => 0.3f;
     public override string FormatInfo()
     {
@@ -226,7 +204,7 @@ class Whirligig : AbilityBase
 class RicochetStone : AbilityBase
 {
     private const string NAME = "Ricochet Stone";
-    private static float COUNT = 20 * P_Stats.Instance.PhysicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 20;
     private const DamageType TYPE = global::DamageType.Physical;
     private const string DESCRIPTION = "Upon striking an enemy, the stone shatters into smaller fragments, dealing additional damage to nearby foes.";
     private const float COOLDOWN = 2.8f;
@@ -252,7 +230,7 @@ class RicochetStone : AbilityBase
 class LaserBeam : AbilityBase
 {
     private const string NAME = "Laser Beam";
-    private static float COUNT = 100 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 100;
     private const DamageType TYPE = global::DamageType.Magical;
     private const string DESCRIPTION = "This ability releases a powerful laser beam that pierces through enemies in its path, dealing massive damage and destroying obstacles.";
     private const float COOLDOWN = 2f;
@@ -275,7 +253,7 @@ class LaserBeam : AbilityBase
 class UFORay : AbilityBase
 {
     private const string NAME = "UFO Ray";
-    private static float COUNT = 25 * P_Stats.Instance.MagicDamageAmplifier * GameManager.Instance.DamageMultiplier;
+    private static float COUNT = 25;
     private const DamageType TYPE = global::DamageType.Magical;
     private const string DESCRIPTION = "A powerful beam descends from the spaceship, pulling enemies upward into the ship. This ability imediatelly kills any enemy.";
     private const float COOLDOWN = 15f;

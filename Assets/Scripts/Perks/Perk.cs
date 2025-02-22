@@ -61,6 +61,10 @@ public abstract class PerkBase : ScriptableObject, Perk
     {
         // Override in derived classes
     }
+    public virtual void FormatInfo()
+    {
+
+    }
 }
 [Perk]
 class Wizzardy : PerkBase
@@ -70,9 +74,12 @@ class Wizzardy : PerkBase
     public Wizzardy() : base(NAME, DESCRIPTION)
     {
     }
-
+    private float MagicalDamageAmplifier = 0.15f;
+    private int ProjectileAdditionalCount = 1;
     public override void Bonus()
     {
+        P_Stats.Instance.MagicDamageAmplifier += MagicalDamageAmplifier;
+        P_Stats.Instance.ProjectileCount += ProjectileAdditionalCount;
     }
 }
 
@@ -80,12 +87,17 @@ class Wizzardy : PerkBase
 class Berzerk : PerkBase
 {
     private const string NAME = "Berzerk";
-    private const string DESCRIPTION = "3123123";
+    private const string DESCRIPTION = "Unleash the chaos within. Empowered by an untamed force, Berzerk grants you 10% additional physical damage and a 25% boost to critical hits, turning the battlefield into your playground.";
     public Berzerk() : base(NAME, DESCRIPTION)
     {
     }
-
+    private float PhysicalDamageAmplifier = 0.10f;
+    private float CriticalDamageAmplifier = 0.25f;
+    private float CriticalChange = 0.25f;
     public override void Bonus()
     {
+        P_Stats.Instance.PhysicDamageAmplifier += PhysicalDamageAmplifier;
+        P_Stats.Instance.CriticalChance += CriticalChange;
+        P_Stats.Instance.CriticalDamageAmplifier += CriticalDamageAmplifier;
     }
 }

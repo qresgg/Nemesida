@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LaserBeamActivation : MonoBehaviour
 {
-    LaserBeam LaserBeam;
+    LaserBeam Ability;
     Player _player;
     private Vector3 _initialPlayerPosition;
     private bool _isActivated = false;
@@ -16,7 +16,7 @@ public class LaserBeamActivation : MonoBehaviour
 
     void Start()
     {
-        LaserBeam = new LaserBeam();
+        Ability = ScriptableObject.CreateInstance<LaserBeam>();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
         this.transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -77,7 +77,7 @@ public class LaserBeamActivation : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(LaserBeam.DamageCount);
+            AmplifierController.Instance.DamageSystem(other, Ability);
         }
     }
 }

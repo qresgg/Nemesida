@@ -5,7 +5,7 @@ using UnityEngine;
 public class RicochetStoneActivation : MonoBehaviour
 {
     private Transform target;
-    RicochetStone RicochetStone;
+    RicochetStone Ability;
     public HashSet<Transform> hitEnemies = new HashSet<Transform>();
     private Transform parentEnemy;
     private bool hasReduced = false; // Flag to track size reduction
@@ -14,9 +14,10 @@ public class RicochetStoneActivation : MonoBehaviour
 
     public void Start()
     {
-        RicochetStone = new RicochetStone();
+        Ability = ScriptableObject.CreateInstance<RicochetStone>();
+        
         FindRandomOrClosestEnemy();
-        currentDamage = RicochetStone.DamageCount;
+        currentDamage = Ability.DamageCount;
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class RicochetStoneActivation : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
-            this.transform.position += direction * RicochetStone.ProjectileSpeed * Time.deltaTime;
+            this.transform.position += direction * Ability.ProjectileSpeed * Time.deltaTime;
         }
         else
         {
@@ -39,7 +40,7 @@ public class RicochetStoneActivation : MonoBehaviour
 
     public void FindRandomOrClosestEnemy()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, RicochetStone.Range);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Ability.Range);
         List<Transform> potentialTargets = new List<Transform>();
 
         foreach (var hitCollider in hitColliders)
@@ -96,8 +97,7 @@ public class RicochetStoneActivation : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(RicochetStone.DamageCount);
+            AmplifierController.Instance.DamageSystem(other, Ability);
             hitEnemies.Add(other.transform);
             Debug.Log(other.transform.name + "one time");
             if (!hasReduced)
@@ -114,7 +114,7 @@ public class RicochetStoneActivation : MonoBehaviour
 
     private void SpawnSmallerRicochetStones(Transform parentEnemy)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, RicochetStone.Range / 2);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Ability.Range / 2);
         List<Transform> potentialTargets = new List<Transform>();
 
         foreach (var hitCollider in hitColliders)

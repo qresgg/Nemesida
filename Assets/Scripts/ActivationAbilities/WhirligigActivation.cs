@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WhirligigActivation : MonoBehaviour
 {
-    Whirligig Whirligig;
     Player _player;
+    Whirligig Ability;
 
     private bool isActive = true;
 
@@ -14,9 +15,9 @@ public class WhirligigActivation : MonoBehaviour
 
     void Start()
     {
-        Whirligig = new Whirligig();
+        Ability = ScriptableObject.CreateInstance<Whirligig>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        transform.localScale = new Vector3(Whirligig.Radius, 0.01f, Whirligig.Radius);
+        transform.localScale = new Vector3(AmplifierController.Instance.RadiusSystem(Ability), 0.01f, AmplifierController.Instance.RadiusSystem(Ability));
 
         StartCoroutine(DestroyCoroutine());
     }
@@ -33,7 +34,7 @@ public class WhirligigActivation : MonoBehaviour
             {
                 if (enemyCollider != null && enemyCollider.CompareTag("Enemy"))
                 {
-                    if (!enemyLastHitTime.ContainsKey(enemyCollider) || Time.time - enemyLastHitTime[enemyCollider] >= Whirligig.Cooldown)
+                    if (!enemyLastHitTime.ContainsKey(enemyCollider) || Time.time - enemyLastHitTime[enemyCollider] >= Ability.Cooldown)
                     {
                         enemiesToDamage.Add(enemyCollider);
                     }
@@ -45,8 +46,8 @@ public class WhirligigActivation : MonoBehaviour
                 Enemy enemy = enemyCollider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(Whirligig.DamageCount);
-                    enemy.ApplyImpulseAndRecover(Whirligig.PushForce, Whirligig.RecoveryTime, transform.position);
+                    AmplifierController.Instance.DamageSystem(enemyCollider, Ability);
+                    AmplifierController.Instance.PushForceSystem(enemyCollider, Ability, Ability.PushForce, Ability.RecoveryTime, transform.position);
                     enemyLastHitTime[enemyCollider] = Time.time;
                 }
             }
@@ -72,7 +73,7 @@ public class WhirligigActivation : MonoBehaviour
 
     IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(Whirligig.Duration);
+        yield return new WaitForSeconds(Ability.Duration);
         isActive = false;
         Destroy(gameObject);
     }
