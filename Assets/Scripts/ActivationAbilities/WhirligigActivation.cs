@@ -43,7 +43,7 @@ public class WhirligigActivation : MonoBehaviour
 
             foreach (var enemyCollider in enemiesToDamage)
             {
-                Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                EnemyBase enemy = enemyCollider.GetComponent<EnemyBase>();
                 if (enemy != null)
                 {
                     AmplifierController.Instance.DamageSystem(enemyCollider, Ability);

@@ -1901,7 +1901,7 @@ MonoBehaviour:
   _perkCode: mugger
   _innateAbilityCode: fireball
   _personalItemCode: kk
-  _damageMultiplier: 5
+  _damageMultiplier: 1
   _IsInvulnerability: 0
   _xpMultiplier: 20
   _maxEnemyCount: 10
@@ -5580,8 +5580,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25.961615, y: 31.719288}
-  m_SizeDelta: {x: 1000.1564, y: 561.2852}
+  m_AnchoredPosition: {x: 25.9989, y: 31.112682}
+  m_SizeDelta: {x: 1000.0631, y: 562.8017}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1921820365
 MonoBehaviour:

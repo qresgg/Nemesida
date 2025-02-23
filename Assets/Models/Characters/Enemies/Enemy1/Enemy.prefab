@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1206f553f06a049924e0468d0b6c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  FloattingTextPrefab: {fileID: 2440934290569664710, guid: 52af3fdeca2ad9942852da7bf23b9313, type: 3}
   speed: 2
 --- !u!54 &3329939034691765658
 Rigidbody:

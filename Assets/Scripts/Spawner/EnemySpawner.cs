@@ -8,8 +8,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _enemyContainer;
 
-    [SerializeField] Camera cam;
-
     [SerializeField] float _spawnRadius = 16f;
     [SerializeField] bool _isPlayerDead = false;
     [SerializeField] int _maxEnemies = 5;
@@ -21,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        cam = GameObject.Find("Camera").GetComponent<Camera>();
         StartCoroutine(SpawnEnemyRoutine());
     }
 
@@ -82,6 +79,6 @@ public class EnemySpawner : MonoBehaviour
         newEnemy.transform.parent = _enemyContainer.transform;
 
         hpIncrease += 1;
-        newEnemy.GetComponent<Enemy>().InitializeHP(hpIncrease);
+        newEnemy.GetComponent<EnemyBase>().InitializeHP(hpIncrease);
     }
 }

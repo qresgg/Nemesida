@@ -99,7 +99,6 @@ public class RicochetStoneActivation : MonoBehaviour
         {
             AmplifierController.Instance.DamageSystem(other, Ability);
             hitEnemies.Add(other.transform);
-            Debug.Log(other.transform.name + "one time");
             if (!hasReduced)
             {
                 SpawnSmallerRicochetStones(other.transform);

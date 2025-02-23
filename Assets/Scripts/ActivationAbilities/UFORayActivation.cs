@@ -106,7 +106,7 @@ public class UFORayActivation : MonoBehaviour
             enemy.position = currentLiftPosition;
             if (enemy.position.z < -11)
             {
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                EnemyBase enemyScript = enemy.GetComponent<EnemyBase>();
                 enemyScript.Die();
                 Destroy(currentUFORay);
             }

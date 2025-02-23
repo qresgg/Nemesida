@@ -54,7 +54,7 @@ public class P_Stats : MonoBehaviour
     public float SpeedAmplifier
     {
         get => speedAmplifier;
-        set => SpeedAmplifier += value;
+        set => speedAmplifier += value;
     }
     public float XPAmplifier
     {

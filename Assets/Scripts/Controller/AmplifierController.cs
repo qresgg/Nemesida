@@ -27,18 +27,21 @@ public class AmplifierController : MonoBehaviour
         if (Ability.DamageType == "Magical")
         {
             float damage = (Ability.DamageCount + (Ability.DamageCount * P_Stats.Instance.MagicDamageAmplifier)) * GameManager.Instance.DamageMultiplier;
-            target.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            target.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
             Debug.Log(damage);
         }
         if (Ability.DamageType == "Physical")
         {
             float damage = (Ability.DamageCount + (Ability.DamageCount * P_Stats.Instance.PhysicDamageAmplifier)) * GameManager.Instance.DamageMultiplier;
+            string type = "default";
             bool isCriticalHit = Random.Range(0f, 1f) < P_Stats.Instance.CriticalChance;
             if (isCriticalHit)
             {
                 damage *= ( 1 * P_Stats.Instance.CriticalDamageAmplifier);
+                type = "critical";
             }
-            target.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+
+            target.gameObject.GetComponent<EnemyBase>().TakeDamage(damage, type);
             Debug.Log(damage);
         }
     }
@@ -51,7 +54,7 @@ public class AmplifierController : MonoBehaviour
     public void PushForceSystem(Collider target, AbilityBase Ability, float PushForce, float RecoveryTime, Vector3 position)
     {
         float pushForce = Ability.PushForce + (Ability.PushForce * P_Stats.Instance.PushForceAmplifier);
-        target.gameObject.GetComponent<Enemy>().ApplyImpulseAndRecover(PushForce, RecoveryTime, position);
+        target.gameObject.GetComponent<EnemyBase>().ApplyImpulseAndRecover(PushForce, RecoveryTime, position);
     }
     
     public float XPSystem(float xp_points)
